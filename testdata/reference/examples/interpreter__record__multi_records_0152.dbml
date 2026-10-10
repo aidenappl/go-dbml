@@ -1,0 +1,26 @@
+
+Table users {
+  id int [pk]
+  name varchar
+}
+
+Table posts {
+  id int [pk]
+  title varchar
+}
+
+records users(id, name) {
+  1, 'Alice'
+}
+
+records posts(id, title) {
+  1, 'First post'
+}
+
+records users(id, name) {
+  2, 'Bob'
+}
+
+records posts(id, title) {
+  2, 'Second post'
+}

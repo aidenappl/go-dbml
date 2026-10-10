@@ -1,0 +1,12 @@
+
+Enum status {
+  active
+  inactive
+}
+Table users {
+  id int [pk]
+  status status
+}
+records users(id, status) {
+  1, 1
+}

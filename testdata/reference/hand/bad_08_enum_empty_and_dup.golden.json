@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"DUPLICATE_COLUMN_NAME","end":[1,3],"level":"error","msg":"Duplicate enum field 'x'","start":[1,2]},{"code":"DUPLICATE_COLUMN_NAME","end":[2,3],"level":"error","msg":"Duplicate enum field 'x'","start":[2,2]}]}

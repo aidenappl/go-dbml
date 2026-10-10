@@ -1,0 +1,6 @@
+
+Table orders {
+  indexes {
+    (user_id, product_id) [unique]
+  }
+}

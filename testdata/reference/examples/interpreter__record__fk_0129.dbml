@@ -1,0 +1,18 @@
+
+Table follows {
+  following_user_id integer
+  followed_user_id integer
+  created_at timestamp
+}
+
+Table users {
+  id integer [primary key]
+  username varchar
+}
+
+Ref: users.id < follows.following_user_id
+Ref: users.id < follows.followed_user_id
+
+Records follows(following_user_id, followed_user_id, created_at) {
+  1, 2, '2026-01-01'
+}

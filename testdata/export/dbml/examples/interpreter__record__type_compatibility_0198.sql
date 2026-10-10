@@ -1,0 +1,13 @@
+Enum "status" {
+  "active"
+  "inactive"
+}
+
+Table "users" {
+  "id" int [pk]
+  "status" status
+}
+
+Records users(id, status) {
+  1, null
+}

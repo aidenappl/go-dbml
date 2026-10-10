@@ -1,0 +1,41 @@
+Enum "kind" {
+  "x"
+  "y"
+}
+
+Table "users" [headerColor: #fff] {
+  "id" int [pk]
+  "created_by" s.s.s.user_ref
+  "kind" kind
+  "amount" decimal(10,2) [check: `amount > 0`, default: 1.5]
+
+  Checks {
+    `amount < 100` [name: 'users.small']
+  }
+
+  Indexes {
+    created_by [name: "by_creator"]
+  }
+  Note: 'audit'
+}
+
+Table "posts" [headerColor: #fff] {
+  "id" int [pk]
+  "created_by" s.s.s.user_ref
+  "kind" kind
+  "amount" decimal(10,2) [check: `amount > 0`, default: 1.5]
+  "note2" text [note: 'n']
+
+  Checks {
+    `amount < 100` [name: 'posts.small']
+  }
+
+  Indexes {
+    created_by [name: "by_creator"]
+  }
+  Note: 'audit'
+}
+
+Ref:"users"."id" < "users"."created_by"
+
+Ref:"users"."id" < "posts"."created_by"

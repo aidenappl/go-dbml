@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"DUPLICATE_NAME","end":[1,7],"level":"error","msg":"Table 'a' already exists in schema 'public'","start":[1,6]}]}

@@ -1,0 +1,8 @@
+
+Enum types.status {
+  active
+  inactive
+}
+Table users {
+  status types.status [default: types.status.active]
+}

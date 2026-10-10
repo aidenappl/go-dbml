@@ -1,0 +1,11 @@
+Table students {
+  id int [pk]
+  name varchar [not null]
+}
+Table courses {
+  code varchar(10) [pk]
+  title varchar
+}
+Ref: students.id <> courses.code
+Table teachers { id int [pk] }
+Ref: teachers.id - courses.code

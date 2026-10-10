@@ -1,0 +1,3 @@
+
+Enum types.status { active\n inactive }
+Table users { status types.status }

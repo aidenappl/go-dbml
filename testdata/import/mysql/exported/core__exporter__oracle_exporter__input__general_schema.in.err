@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `user` (\n  `user_id` int PRIMARY KEY AUTO_INCREMENT,\n  `username` varchar2'

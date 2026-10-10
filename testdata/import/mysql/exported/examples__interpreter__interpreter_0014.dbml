@@ -1,0 +1,8 @@
+Table "users" {
+  "first_name" varchar(255)
+  "last_name" varchar(255)
+
+  Indexes {
+    (first_name, last_name) [name: "users_index_0"]
+  }
+}

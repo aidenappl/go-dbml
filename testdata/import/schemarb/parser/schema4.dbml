@@ -1,0 +1,33 @@
+Table "actions" {
+  "id" varchar
+  "action_type" string
+  "action_option" string
+  "target_type" string
+  "target_id" integer
+  "user_type" string
+  "user_id" integer
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "active_storage_attachments" {
+  "id" varchar
+  "name" string
+  "record_type" string
+  "record_id" bigint
+  "blob_id" bigint
+  "created_at" datetime
+}
+
+Table "active_storage_blobs" {
+  "id" varchar
+  "key" string
+  "filename" string
+  "content_type" string
+  "metadata" text
+  "byte_size" bigint
+  "checksum" string
+  "created_at" datetime
+}
+
+Ref "fk_rails_active_storage_attachments_active_storage_blobs":"active_storage_attachments"."blob_id" - "active_storage_blobs"."id"

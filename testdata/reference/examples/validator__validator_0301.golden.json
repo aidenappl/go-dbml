@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_DIAGRAMVIEW_FIELD","end":[3,7],"level":"error","msg":"Fields are not allowed at DiagramView level. Use Tables, Notes, TableGroups, or Schemas blocks instead.","start":[3,2]}]}

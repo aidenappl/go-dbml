@@ -1,0 +1,30 @@
+
+TablePartial pk_col {
+  region varchar
+}
+
+Table products {
+  id int
+  ~pk_col
+
+  indexes {
+    (id, region) [pk]
+  }
+}
+
+Table orders {
+  id int [pk]
+  product_id int
+  region varchar
+}
+
+Ref: orders.(product_id, region) > products.(id, region)
+
+records products(id, region) {
+  1, "US"
+  null, "EU"
+}
+
+records orders(id, product_id, region) {
+  1, 1, "US"
+}

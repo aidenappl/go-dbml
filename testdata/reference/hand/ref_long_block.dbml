@@ -1,0 +1,7 @@
+Table a { id int
+ bid int }
+Table b { id int }
+Ref named_ref {
+  a.bid - b.id [update: cascade]
+}
+Ref: a.id <> b.id [inactive]

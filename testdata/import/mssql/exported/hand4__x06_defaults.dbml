@@ -1,0 +1,12 @@
+Table "d" {
+  "a" int
+  "b" int
+  "c" bool [default: `true`]
+  "e" bool [default: `false`]
+  "f" nvarchar(255) [default: '']
+  "g" int [default: -1.25]
+  "h" text [default: 'quoted']
+  "i" int [default: 1000]
+  "j" int [unique, pk, not null, increment]
+  "k" varchar(255)
+}

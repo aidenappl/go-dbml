@@ -1,0 +1,16 @@
+
+Enum status {
+  active
+  inactive
+}
+Table users {
+  id int
+  quantity int
+  name varchar(5)
+  price decimal(5, 2)
+  active boolean
+  status status
+}
+records users(id, quantity, name, price, active, status) {
+  "invalid", 10.5, "VeryLongName", 12345.67, "not_bool", "invalid_status"
+}

@@ -1,0 +1,2 @@
+Table a { x int }
+Dep: a.x -> b.y

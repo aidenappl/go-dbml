@@ -1,0 +1,8 @@
+Table "users" {
+  "id" int
+  "name" varchar(255)
+}
+
+Records users(id, name) {
+  1, 'Alice'
+}

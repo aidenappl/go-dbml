@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"SAME_ENDPOINT","end":[0,29],"level":"error","msg":"Two endpoints are the same","start":[0,18]},{"code":"SAME_ENDPOINT","end":[1,16],"level":"error","msg":"Two endpoints are the same","start":[1,0]}]}

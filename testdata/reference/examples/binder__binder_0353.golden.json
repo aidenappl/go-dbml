@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[3,21],"level":"error","msg":"Could not find table 'ghost'","start":[3,16]}]}

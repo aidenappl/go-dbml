@@ -1,0 +1,16 @@
+
+TablePartial hierarchical {
+  parent_id int [ref: >? nodes.id]
+}
+
+Table nodes {
+  id int [pk]
+  name varchar
+  ~hierarchical
+}
+
+records nodes(id, name, parent_id) {
+  1, "Root", null
+  2, "Child 1", 1
+  3, "Invalid Child", 999
+}

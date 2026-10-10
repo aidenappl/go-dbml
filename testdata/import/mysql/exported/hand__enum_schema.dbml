@@ -1,0 +1,10 @@
+Enum "v2"."jobs_status_enum" {
+  "created"
+  "running"
+  "done"
+  "failure"
+}
+
+Table "v2"."jobs" {
+  "status" v2.jobs_status_enum [default: 'created']
+}

@@ -1,0 +1,28 @@
+Table "a" {
+  "x" INT [not null]
+  "y" INT [not null]
+  "label" TEXT
+
+  Indexes {
+    (x, y) [pk]
+  }
+}
+
+Table "b" {
+  "id" INT [pk]
+  "ax" INT
+  "ay" INT
+  "label2" TEXT
+
+  Checks {
+    `ax > 0`
+    `ay <> ax` [name: 'ck2']
+  }
+
+  Indexes {
+    (ax, ay)
+    label2 [name: "ft"]
+  }
+}
+
+Ref "fk_ab":"a".("x", "y") ?<? "b".("ax", "ay") [update: cascade]

@@ -1,0 +1,7 @@
+
+Table users {
+  email varchar
+  indexes {
+    email [name: 'idx_email']
+  }
+}

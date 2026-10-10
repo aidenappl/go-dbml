@@ -1,0 +1,13 @@
+CREATE SCHEMA [audit] AUTHORIZATION [dbo];
+GO
+CREATE TABLE [audit].[Events] (
+    [EventId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWSEQUENTIALID(),
+    [Kind] NVARCHAR(50) NOT NULL,
+    [At] DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
+    [Data] NVARCHAR(MAX) NULL,
+    CONSTRAINT [PK_Events] PRIMARY KEY ([EventId]),
+    CONSTRAINT [CK_Events_Kind] CHECK (LEN([Kind]) > 0)
+);
+GO
+CREATE INDEX [IX_Events_Kind_At] ON [audit].[Events] ([Kind], [At]) INCLUDE ([Data]);
+GO

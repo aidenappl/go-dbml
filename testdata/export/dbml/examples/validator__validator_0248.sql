@@ -1,0 +1,3 @@
+Enum "status" {
+  "active" [note: 'Currently active']
+}

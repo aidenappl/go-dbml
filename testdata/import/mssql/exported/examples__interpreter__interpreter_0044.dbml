@@ -1,0 +1,7 @@
+Table "t" {
+  "col" nvarchar(255)
+
+  Indexes {
+    col [name: "t_index_0"]
+  }
+}

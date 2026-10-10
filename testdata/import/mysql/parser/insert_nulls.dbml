@@ -1,0 +1,13 @@
+Table "users" {
+  "id" INT [pk]
+  "name" VARCHAR(100)
+  "email" VARCHAR(100)
+  "age" INT
+}
+
+Records users(id, name, email, age) {
+  1, 'Alice', 'alice@example.com', 25
+  2, 'Bob', null, 30
+  3, null, null, null
+  4, 'Charlie', null, null
+}

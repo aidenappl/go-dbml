@@ -1,0 +1,18 @@
+Table "users" {
+  "id" int [pk]
+  "name" nvarchar(255)
+  Note: 'this will override'
+}
+
+Table "posts" {
+  "id" int [pk]
+  "user_id" int
+  Note: '''# Heading 1
+    code block
+# Heading 2
+'''
+}
+
+Table "sales"."orders" {
+  "id" int [pk]
+}

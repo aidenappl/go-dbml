@@ -1,0 +1,13 @@
+Table "raw_orders" {
+  "id" int
+  "amount" int
+}
+
+Table "stg_orders" {
+  "id" int
+  "revenue" int
+}
+
+Table "fct_orders" {
+  "revenue" int
+}

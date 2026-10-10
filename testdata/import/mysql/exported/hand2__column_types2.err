@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `t` (\n  `a` character varying(10),\n  `b` decimal(10,2),\n  `e` int[],\n  `f` s'

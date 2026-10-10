@@ -1,0 +1,7 @@
+Table "t" {
+  "email" nvarchar(255)
+
+  Indexes {
+    email [unique, name: "idx_email"]
+  }
+}

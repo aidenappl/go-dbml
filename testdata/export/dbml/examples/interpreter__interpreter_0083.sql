@@ -1,0 +1,3 @@
+Note MyNote {
+  'hello'
+}

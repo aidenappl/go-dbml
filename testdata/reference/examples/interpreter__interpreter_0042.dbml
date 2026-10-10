@@ -1,0 +1,4 @@
+
+Table a { id1 int\n id2 int }
+Table b { a_id1 int\n a_id2 int }
+Ref: (b.a_id1, b.a_id2) > (a.id1, a.id2)

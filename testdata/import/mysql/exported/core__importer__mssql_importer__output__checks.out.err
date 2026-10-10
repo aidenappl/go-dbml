@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `documents` (\n  `doc_id` INT PRIMARY KEY,\n  `title` VARCHAR(200),\n  `content` VARCHAR(MAX'
+mismatched input 'discount_amt' expecting '-'

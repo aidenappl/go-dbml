@@ -1,0 +1,4 @@
+
+Table users { id int }
+Table posts { id int }
+Enum status { active inactive }

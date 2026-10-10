@@ -1,0 +1,4 @@
+    Table user_infos {
+      user_id integer [ref: - users.id]
+    }
+    

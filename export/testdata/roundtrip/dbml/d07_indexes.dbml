@@ -1,0 +1,14 @@
+Table articles {
+  id int [pk]
+  title varchar(255)
+  body text
+  lang char(2)
+  views int
+  indexes {
+    title [unique]
+    (lang, views) [name: 'idx_lang_views', type: hash]
+    `lower(title)` [name: 'idx_lower_title']
+    (lang, `views * 2`)
+    id [pk]
+  }
+}

@@ -1,0 +1,13 @@
+// Long form
+Ref name_optional {
+  schema1.table1.column1 < schema2.table2.column2
+}
+
+// Short form
+Ref name_optional: schema1.table1.column1 < schema2.table2.column2
+
+// Inline form
+Table schema2.table2 {
+  id integer
+  column2 integer [ref: > schema1.table1.column1]
+}

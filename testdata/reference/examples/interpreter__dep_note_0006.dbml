@@ -1,0 +1,3 @@
+
+Table a { id int }
+Dep: a.id -> a.id

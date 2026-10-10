@@ -1,0 +1,2 @@
+use * from './mid'
+Table c { id int [ref: > a.id] }

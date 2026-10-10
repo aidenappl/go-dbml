@@ -1,0 +1,8 @@
+Table t {
+  a "character varying"(10)
+  b decimal(10, 2)
+  c double precision
+  d timestamp(6) with time zone
+  e int[][]
+  f s.custom_type
+}

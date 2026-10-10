@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `A` (\n  `id` integer,\n  `code` number'

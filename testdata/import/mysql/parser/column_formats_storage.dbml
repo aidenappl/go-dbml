@@ -1,0 +1,265 @@
+Enum "format_enum_set_status_enum" {
+  "a"
+  "b"
+  "c"
+}
+
+Table "col_format_fixed" {
+  "id" INT [pk]
+  "fixed_col" VARCHAR(100)
+}
+
+Table "col_format_dynamic" {
+  "id" INT [pk]
+  "dynamic_col" VARCHAR(100)
+}
+
+Table "col_format_default" {
+  "id" INT [pk]
+  "default_col" VARCHAR(100)
+}
+
+Table "col_format_mixed" {
+  "id" INT [pk]
+  "fixed_col" VARCHAR(50)
+  "dynamic_col" TEXT
+  "default_col" VARCHAR(100)
+}
+
+Table "col_storage_disk" {
+  "id" INT [pk]
+  "disk_col" BLOB
+}
+
+Table "col_storage_memory" {
+  "id" INT [pk]
+  "memory_col" VARCHAR(100)
+}
+
+Table "col_storage_default" {
+  "id" INT [pk]
+  "default_col" TEXT
+}
+
+Table "col_storage_mixed" {
+  "id" INT [pk]
+  "disk_col" BLOB
+  "memory_col" VARCHAR(200)
+  "default_col" TEXT
+}
+
+Table "col_format_storage" {
+  "id" INT [pk]
+  "col1" VARCHAR(100)
+  "col2" TEXT
+  "col3" BLOB
+}
+
+Table "col_format_attrs" {
+  "id" INT [pk]
+  "col1" VARCHAR(100) [not null]
+  "col2" TEXT [default: 'test']
+  "col3" VARCHAR(50) [note: 'Fixed column']
+}
+
+Table "col_storage_attrs" {
+  "id" INT [pk]
+  "col1" BLOB [not null]
+  "col2" TEXT [note: 'Memory storage']
+  "col3" VARCHAR(200) [default: 'default']
+}
+
+Table "col_format_types" {
+  "id" INT [pk]
+  "char_col" CHAR(50)
+  "varchar_col" VARCHAR(100)
+  "text_col" TEXT
+  "blob_col" BLOB
+}
+
+Table "col_storage_types" {
+  "id" INT [pk]
+  "int_col" INT
+  "varchar_col" VARCHAR(200)
+  "text_col" TEXT
+  "blob_col" BLOB
+  "json_col" JSON
+}
+
+Table "alter_format_test" {
+  "id" INT [pk]
+  "data" VARCHAR(100)
+}
+
+Table "alter_storage_test" {
+  "id" INT [pk]
+  "data" TEXT
+}
+
+Table "alter_both_test" {
+  "id" INT [pk]
+  "col1" VARCHAR(100)
+  "col2" TEXT
+}
+
+Table "format_backticks" {
+  "id" INT [pk]
+  "col-name" VARCHAR(100)
+}
+
+Table "storage_backticks" {
+  "id" INT [pk]
+  "blob-col" BLOB
+}
+
+Table "format_reserved" {
+  "id" INT [pk]
+  "select" VARCHAR(100)
+  "where" TEXT
+}
+
+Table "storage_reserved" {
+  "id" INT [pk]
+  "table" TEXT
+  "index" BLOB
+}
+
+Table "format_null" {
+  "id" INT [pk]
+  "nullable_col" VARCHAR(100)
+  "not_null_col" VARCHAR(100) [not null]
+}
+
+Table "storage_null" {
+  "id" INT [pk]
+  "nullable_col" TEXT
+  "not_null_col" BLOB [not null]
+}
+
+Table "format_default_val" {
+  "id" INT [pk]
+  "col1" VARCHAR(100) [default: 'test']
+  "col2" VARCHAR(50) [default: 'fixed']
+}
+
+Table "storage_default_val" {
+  "id" INT [pk]
+  "col1" TEXT [default: 'test']
+  "col2" VARCHAR(200) [default: 'memory']
+}
+
+Table "format_auto_inc" {
+  "id" INT [pk, increment]
+  "data" VARCHAR(100)
+}
+
+Table "format_unique" {
+  "id" INT [pk]
+  "unique_col" VARCHAR(100) [unique]
+}
+
+Table "storage_unique" {
+  "id" INT [pk]
+  "unique_col" VARCHAR(200) [unique]
+}
+
+Table "format_pk" {
+  "id" VARCHAR(50) [pk]
+  "data" VARCHAR(100)
+}
+
+Table "format_indexed" {
+  "id" INT [pk]
+  "indexed_col" VARCHAR(100)
+
+  Indexes {
+    indexed_col [name: "idx_col"]
+  }
+}
+
+Table "storage_indexed" {
+  "id" INT [pk]
+  "indexed_col" TEXT
+
+  Indexes {
+    indexed_col [name: "idx_col"]
+  }
+}
+
+Table "format_comment" {
+  "id" INT [pk]
+  "col1" VARCHAR(100) [note: 'Dynamic format column']
+}
+
+Table "storage_comment" {
+  "id" INT [pk]
+  "col1" BLOB [note: 'Disk storage column']
+}
+
+Table "both_comment" {
+  "id" INT [pk]
+  "col1" VARCHAR(100) [note: 'Full options']
+}
+
+Table "all_attributes" {
+  "id" INT [pk, increment]
+  "full_col" VARCHAR(100) [unique, not null, default: 'test', note: 'Column with all attributes']
+}
+
+Table "format_generated" {
+  "id" INT [pk]
+  "base_val" INT
+  "computed" VARCHAR(100)
+}
+
+Table "storage_generated" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "tax" DECIMAL(10,2)
+}
+
+Table "format_enum_set" {
+  "id" INT [pk]
+  "status" format_enum_set_status_enum
+  "flags" SET('read','write')
+}
+
+Table "format_charset" {
+  "id" INT [pk]
+  "col1" VARCHAR(100)
+}
+
+Table "storage_charset" {
+  "id" INT [pk]
+  "col1" TEXT
+}
+
+Table "format_collate" {
+  "id" INT [pk]
+  "col1" VARCHAR(100)
+}
+
+Table "storage_collate" {
+  "id" INT [pk]
+  "col1" TEXT
+}
+
+Table "attr_order_test1" {
+  "id" INT [pk]
+  "col1" VARCHAR(100) [not null, default: 'test']
+}
+
+Table "attr_order_test2" {
+  "id" INT [pk]
+  "col1" VARCHAR(100) [not null, default: 'test']
+}
+
+Table "storage_order_test1" {
+  "id" INT [pk]
+  "col1" TEXT [not null]
+}
+
+Table "storage_order_test2" {
+  "id" INT [pk]
+  "col1" TEXT [not null]
+}

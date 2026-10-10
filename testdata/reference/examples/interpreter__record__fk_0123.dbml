@@ -1,0 +1,25 @@
+
+Table auth.users {
+  id int
+  tenant_id int
+
+  indexes {
+    (id, tenant_id) [pk]
+  }
+}
+Table public.posts {
+  id int [pk]
+  user_id int
+  tenant_id int
+  content text
+}
+Ref: public.posts.(user_id, tenant_id) > auth.users.(id, tenant_id)
+
+records auth.users(id, tenant_id) {
+  1, 100
+  2, 100
+}
+records public.posts(id, user_id, tenant_id, content) {
+  1, 1, 100, "Hello"
+  2, 999, 100, "Invalid user"
+}

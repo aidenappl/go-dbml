@@ -1,0 +1,12 @@
+Table orders {
+  id int [pk]
+  total float
+  status varchar
+}
+records orders(id, total) [example] {
+  1, 10.5
+  2, 20
+}
+records orders(id, status) {
+  3, 'paid'
+}

@@ -1,0 +1,16 @@
+
+TablePartial WithId {
+  id int
+  extra varchar
+}
+
+Table users {
+  ~WithId
+  id int [pk]
+  name varchar
+}
+
+records users(extra, id, name) {
+  'extra_value', 1, 'Alice'
+  'extra_value2', 2, 'Bob'
+}

@@ -1,0 +1,24 @@
+
+Table merchants {
+  id int
+  country_code varchar
+
+  indexes {
+    (id, country_code) [pk]
+  }
+}
+Table orders {
+  id int [pk]
+  merchant_id int
+  country varchar
+}
+Ref: orders.(merchant_id, country) > merchants.(id, country_code)
+
+records merchants(id, country_code) {
+  1, "US"
+  2, "UK"
+}
+records orders(id, merchant_id, country) {
+  1, 1, "US"
+  2, 1, "UK"
+}

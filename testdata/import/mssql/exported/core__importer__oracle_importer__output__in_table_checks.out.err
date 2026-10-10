@@ -1,0 +1,2 @@
+no viable alternative at input 'REGEXP_LIKE(account_number,'^[0-9]{10}$'))'
+no viable alternative at input '(account_number'

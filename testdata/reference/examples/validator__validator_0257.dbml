@@ -1,0 +1,6 @@
+
+Table users { id int }
+TableGroup social {
+  users
+  nonexistent
+}

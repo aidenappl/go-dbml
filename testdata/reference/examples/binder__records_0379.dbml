@@ -1,0 +1,12 @@
+
+Enum status { pending\n active\n completed }
+Table tasks {
+  id int
+  status status
+}
+records tasks(id, status) {
+  1, status.pending
+  2, status.active
+  3, status.completed
+  4, status.pending
+}

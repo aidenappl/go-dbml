@@ -1,0 +1,5 @@
+
+Project myproject {
+  database_type: 'PostgreSQL'
+  Note: 'Project description'
+}

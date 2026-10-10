@@ -1,0 +1,13 @@
+
+Table users {
+  id int [increment]
+  tenant_id int
+
+  indexes {
+    (id, tenant_id) [pk]
+  }
+}
+records users(tenant_id) {
+  null
+  1
+}

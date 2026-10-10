@@ -1,0 +1,31 @@
+Records users(id, name, email, created_at) {
+  1, 'Alice Johnson', 'alice@example.com', `NOW()`
+  2, 'Bob Smith', 'bob@example.com', `NOW()`
+  3, 'Charlie Davis', 'charlie@example.com', `NOW()`
+}
+
+Records public.posts(id, title, content, author_id, published_at) {
+  1, 'Getting Started with PostgreSQL', 'This post covers the basics of PostgreSQL...', 1, `NOW()`
+  2, 'Understanding Indexing in Databases', 'Indexes help speed up queries by...', 2, `NOW()`
+  3, 'Best Practices for SQL Queries', 'Writing efficient SQL queries is crucial for...', 1, `NOW()`
+}
+
+Records blog.posts(id, title, content, author_id, published_at) {
+  1, 'Getting Started with PostgreSQL', 'This post covers the basics of PostgreSQL...', 1, `NOW()`
+  2, 'Understanding Indexing in Databases', 'Indexes help speed up queries by...', 2, `NOW()`
+  3, 'Best Practices for SQL Queries', 'Writing efficient SQL queries is crucial for...', 1, `NOW()`
+}
+
+Records store.products(id, name, details, tags, in_stock, price, created_at) {
+  1, 'Laptop', '{\"brand\": \"Dell\", \"specs\": {\"ram\": \"16GB\", \"storage\": \"512GB SSD\"}}', `ARRAY['electronics','computer']`, true, 1299.99, `NOW()`
+  2, 'Smartphone', '{\"brand\": \"Samsung\", \"specs\": {\"ram\": \"8GB\", \"storage\": \"256GB\"}}', `ARRAY['electronics','mobile']`, true, 899.99, `NOW()`
+  3, 'Headphones', '{\"brand\": \"Sony\", \"specs\": {\"type\": \"Wireless\", \"battery_life\": \"30 hours\"}}', `ARRAY['electronics','audio']`, false, 199.99, `NOW()`
+}
+
+Records ignore_1.users() {
+  
+}
+
+Records ignore_2.users(id, name, email, preferences, created_at) {
+
+}

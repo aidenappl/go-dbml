@@ -1,0 +1,12 @@
+Table d {
+  a int [default: null]
+  b int [default: NULL]
+  c bool [default: true]
+  e bool [default: FALSE]
+  f varchar [default: '']
+  g int [default: -1.25]
+  h text [default: `'quoted'`]
+  i int [default: 1e3]
+  j int [pk, not null, unique, increment]
+  k varchar(255) [null]
+}

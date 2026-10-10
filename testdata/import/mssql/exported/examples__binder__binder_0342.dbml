@@ -1,0 +1,3 @@
+Table "derived" {
+  "id" int
+}

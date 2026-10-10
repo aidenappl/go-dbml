@@ -1,0 +1,17 @@
+CREATE TABLE [A] (
+  [id] integer,
+  [code] number
+)
+GO
+
+CREATE TABLE [B] (
+  [id] integer,
+  [code] number
+)
+GO
+
+ALTER TABLE [A] ADD FOREIGN KEY ([id]) REFERENCES [B] ([id]) ON DELETE NO ACTION ON UPDATE CASCADE
+GO
+
+ALTER TABLE [A] ADD FOREIGN KEY ([code]) REFERENCES [B] ([code]) ON DELETE SET DEFAULT ON UPDATE SET NULL
+GO

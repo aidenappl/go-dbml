@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_SETTINGS","end":[9,3],"level":"error","msg":"'dep' must be a simple field (e.g. dep: value). Block syntax is not allowed","start":[7,2]}]}

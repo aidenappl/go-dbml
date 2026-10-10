@@ -1,0 +1,53 @@
+Table "organizations" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "name" text [not null, check: `char_length(name) > 0`]
+  "plan" varchar(20) [not null, default: 'free']
+  "created_at" timestamptz [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table "memberships" {
+  "org_id" uuid [not null]
+  "user_id" integer [not null]
+  "role" text
+
+  Checks {
+    `role IN ('owner', 'member')` [name: 'role_ok']
+  }
+
+  Indexes {
+    (org_id, user_id) [pk]
+  }
+}
+
+Table "invoices" {
+  "id" bigserial [pk, increment]
+  "org_id" uuid
+  "amount_cents" bigint [not null, default: 0]
+  "currency" char(3) [default: 'USD']
+  "due" date
+  "paid_at" timestamp(6)
+  "data" json
+  "ratio" doubleprecision
+
+  Checks {
+    `amount_cents >= 0` [name: 'positive']
+  }
+
+  Indexes {
+    (org_id, due) [unique]
+    due [name: "invoices_due"]
+  }
+}
+
+Ref:"organizations"."id" <? "memberships"."org_id" [delete: cascade]
+
+Ref:"organizations"."id" ?<? "invoices"."org_id" [update: cascade, delete: set null]
+
+Records organizations(id, name) {
+  '00000000-0000-0000-0000-000000000001', 'Acme'
+  '00000000-0000-0000-0000-000000000002', '\'O\\\'Brien'
+}
+
+Records invoices(org_id, amount_cents, due, ratio) {
+  null, 500, '2024-03-01', 0.5
+}

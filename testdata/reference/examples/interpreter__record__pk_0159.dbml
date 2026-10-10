@@ -1,0 +1,9 @@
+
+Table items {
+  id int [pk, default: 0]
+  name varchar
+}
+records items(name) {
+  "Alice"
+  "Bob"
+}

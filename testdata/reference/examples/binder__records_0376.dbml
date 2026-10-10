@@ -1,0 +1,10 @@
+
+Enum auth.role { admin\n user\n guest }
+Table auth.users {
+  id int
+  role auth.role
+}
+records auth.users(id, role) {
+  1, auth.role.admin
+  2, auth.role.user
+}

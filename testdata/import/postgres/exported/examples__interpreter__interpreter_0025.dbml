@@ -1,0 +1,7 @@
+Table "users" {
+  "id" int
+}
+
+Table "posts" {
+  "id" int
+}

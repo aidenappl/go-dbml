@@ -1,0 +1,13 @@
+Table "users" {
+  "id" int [pk]
+  "email" varchar [unique]
+  "username" varchar [unique]
+  "phone" varchar [unique]
+}
+
+Records users(id, email, username, phone) {
+  1, 'alice@example.com', 'alice', '111-111'
+  2, 'bob@example.com', 'bob', '222-222'
+  3, 'charlie@example.com', 'alice', '333-333'
+  4, 'dave@example.com', 'dave', '111-111'
+}

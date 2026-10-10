@@ -1,0 +1,18 @@
+Table "Mixed Case" {
+  "Id" INT [pk, increment]
+  "Value" NUMERIC
+  "computed" INT
+  "bits" bitvarying(8)
+  "iv" intervaldaytosecond
+  "arr" "integer[4]"
+  "t" time(3)
+}
+
+Table "part" {
+  "id" int
+  "region" text
+
+  Indexes {
+    (id, region) [pk, name: "part_pk"]
+  }
+}

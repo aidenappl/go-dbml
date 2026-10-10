@@ -1,0 +1,11 @@
+Table "src" {
+  "v" int
+}
+
+Table "mid" {
+  "v" int
+}
+
+Table "out" {
+  "w" int
+}

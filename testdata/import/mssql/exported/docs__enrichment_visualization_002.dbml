@@ -1,0 +1,5 @@
+Table "users" {
+  "id" int [pk]
+  "name" nvarchar(255)
+  Note: 'Stores user data'
+}

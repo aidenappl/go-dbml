@@ -1,0 +1,9 @@
+CREATE TABLE "a" (
+  "id" int
+);
+
+CREATE TABLE "b" (
+  "a_id" int
+);
+
+ALTER TABLE "b" ADD FOREIGN KEY ("a_id") REFERENCES "a" ("id") DEFERRABLE INITIALLY IMMEDIATE;

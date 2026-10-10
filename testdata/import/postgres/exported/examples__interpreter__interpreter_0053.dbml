@@ -1,0 +1,6 @@
+Enum "priority" {
+  "low"
+  "medium"
+  "high"
+  "critical"
+}

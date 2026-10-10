@@ -1,0 +1,21 @@
+Table "t" {
+  "x" int
+  "b" int [pk]
+  "a" text
+
+  Indexes {
+    b [unique, name: "t_index_0"]
+    a [name: "t_index_1"]
+    x [name: "t_index_2"]
+  }
+}
+
+Table "t2" {
+  "b" int [pk]
+  "a" int
+
+  Indexes {
+    a [name: "t2_index_3"]
+    b [unique, name: "t2_index_4"]
+  }
+}

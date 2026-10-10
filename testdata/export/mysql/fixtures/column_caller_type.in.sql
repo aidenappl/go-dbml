@@ -1,0 +1,7 @@
+CREATE TABLE `User` (
+  `id` int,
+  `secret` nvarbinary(MAX),
+  `name` varchar(MAX),
+  `code` varbinary(MAX),
+  `ssid` int(10)
+);

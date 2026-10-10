@@ -1,0 +1,10 @@
+
+Table data {
+  id int
+  value decimal
+}
+records data(id, value) {
+  1, 1e10
+  2, 3.14e-5
+  3, 2E+8
+}

@@ -1,0 +1,4 @@
+mismatched input 'CHECK' expecting {'INDEX', ')', ','}
+no viable alternative at input '(zip_code'
+no viable alternative at input '(20'
+no viable alternative at input '(serial_number'

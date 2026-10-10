@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `a` (\n  `id` int(-'
+mismatched input '1' expecting '-'

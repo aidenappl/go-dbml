@@ -1,0 +1,5 @@
+
+Table users {
+  id int
+  ~nonexistent_partial
+}

@@ -1,0 +1,4 @@
+CREATE TABLE [users] (
+  [id] int UNIQUE PRIMARY KEY NOT NULL IDENTITY(1, 1)
+)
+GO

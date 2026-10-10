@@ -1,0 +1,4 @@
+
+Table users { id int }
+Table posts { user_id int }
+Ref post_author: posts.user_id > users.id [delete: cascade, update: no action, color: #abc]

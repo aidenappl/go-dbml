@@ -1,0 +1,7 @@
+
+Table t {
+  col varchar
+  indexes {
+    col [type: btree]
+  }
+}

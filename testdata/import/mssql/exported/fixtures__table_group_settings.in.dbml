@@ -1,0 +1,3 @@
+Table "table1" {
+  "id" int [pk]
+}

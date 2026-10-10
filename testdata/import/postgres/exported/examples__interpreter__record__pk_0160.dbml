@@ -1,0 +1,9 @@
+Table "items" {
+  "id" INT [pk, increment]
+  "name" varchar
+}
+
+Records items(name) {
+  'Alice'
+  'Bob'
+}

@@ -1,0 +1,6 @@
+
+DiagramView myView {
+  Notes {
+    *
+  }
+}

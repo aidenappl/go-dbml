@@ -1,0 +1,26 @@
+/* Short form */
+
+// `raw_orders` is the upstream table endpoint
+// `stg_orders` is the downstream table endpoint
+// `->` and `<-` always point from the upstream to the downstream
+Dep: raw_orders -> stg_orders
+Dep: stg_orders <- raw_orders
+
+// Column-level dependency
+Dep: raw_orders.amount -> stg_orders.revenue   // column-level
+
+// Mixed-level dependency: table -> column
+// `fct_orders.revenue` is an aggregate over every row of `stg_orders`,
+// so the upstream is the whole table, not one of its columns
+Dep: stg_orders -> fct_orders.revenue
+
+// Mixed-level dependency: column -> table
+// the JSON in `raw_events.payload` is unpacked into
+// many columns, so one column is the upstream of a whole table
+Dep: raw_events.payload -> stg_events
+
+/* Inline form */
+Table fct_orders [dep: <- stg_orders] {
+  id int
+  revenue decimal [dep: -> report_revenue.total]
+}

@@ -1,0 +1,12 @@
+Table "very_long_users" {
+  "id" int [pk]
+}
+
+Table "orders" {
+  "uid" int
+  "uid2" int
+}
+
+Ref:"very_long_users"."id" < "orders"."uid"
+
+Ref:"orders"."uid2" < "very_long_users"."id"

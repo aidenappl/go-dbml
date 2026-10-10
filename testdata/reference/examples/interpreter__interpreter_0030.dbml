@@ -1,0 +1,28 @@
+
+Project ecommerce {
+  database_type: 'PostgreSQL'
+}
+
+TablePartial timestamps {
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table users [headercolor: #3498db] {
+  id integer [pk, increment]
+  email varchar(255) [unique, not null]
+  ~timestamps
+  Note: 'Users table'
+}
+
+Table orders {
+  id integer [pk]
+  user_id integer [ref: > users.id]
+  total decimal(10, 2)
+  ~timestamps
+}
+
+TableGroup core {
+  users
+  orders
+}

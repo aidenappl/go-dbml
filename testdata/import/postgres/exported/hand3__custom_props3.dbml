@@ -1,0 +1,7 @@
+Enum "status" {
+  "active"
+}
+
+Table "users" {
+  "email" varchar
+}

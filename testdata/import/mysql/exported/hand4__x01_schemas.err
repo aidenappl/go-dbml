@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `app`.`users` (\n  `id` int PRIMARY KEY AUTO_INCREMENT,\n  `st` ENUM ('active', 'on hold') NOT NULL,\n  `st2` ENUM ('a', 'b'),\n  `cur` public'

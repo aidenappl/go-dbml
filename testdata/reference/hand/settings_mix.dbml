@@ -1,0 +1,14 @@
+Table t1 as T [headercolor: #3498DB, note: 'n'] {
+  id integer [primary key, increment, unique, not null, default: 1]
+  name varchar(255) [null, default: 'x']
+  ratio float [default: -1.5]
+  flag bool [default: false]
+  ts timestamp [default: `now()`]
+  arr int[]
+  "json" jsonb
+  indexes {
+    id [unique, name: 'idx_id', type: hash]
+    (name, `lower(name)`) [note: 'expr']
+    name [pk]
+  }
+}

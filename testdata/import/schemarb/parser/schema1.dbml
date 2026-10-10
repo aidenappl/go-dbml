@@ -1,0 +1,4 @@
+Table "xero_users" {
+  "id" varchar
+  "email_address" string
+}

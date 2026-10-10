@@ -1,0 +1,15 @@
+
+Table order_items {
+  order_id int
+  product_id int
+  quantity int
+
+  indexes {
+    (order_id, product_id) [pk]
+  }
+}
+records order_items(order_id, product_id, quantity) {
+  1, 100, 2
+  1, null, 3
+  null, 101, 4
+}

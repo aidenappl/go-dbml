@@ -1,0 +1,11 @@
+
+Table t1 { c1 int }
+Table t2 { c2 int }
+Table t3 { c3 int }
+Table t4 { c4 int }
+Dep dep1 {
+  t1.c1 <- t2.c2
+  Dep dep2 {
+    t3.c3 <- t4.c4
+  }
+}

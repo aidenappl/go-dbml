@@ -1,0 +1,16 @@
+CREATE TABLE a (
+  x INT NOT NULL,
+  y INT NOT NULL,
+  label TEXT,
+  PRIMARY KEY (x, y)
+);
+CREATE TABLE b (
+  id INT PRIMARY KEY,
+  ax INT,
+  ay INT,
+  CONSTRAINT fk_ab FOREIGN KEY (ax, ay) REFERENCES a (x, y) ON UPDATE CASCADE,
+  INDEX (ax, ay),
+  FULLTEXT INDEX ft (label2),
+  label2 TEXT
+);
+ALTER TABLE b ADD PRIMARY KEY (id), ADD CHECK (ax > 0), ADD CONSTRAINT ck2 CHECK (ay <> ax);

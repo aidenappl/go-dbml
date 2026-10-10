@@ -1,0 +1,42 @@
+Table "orders" {
+  "id" SERIAL [pk, increment]
+  "user_id" int [not null]
+  "created_at" datetime [default: `now()`]
+}
+
+Table "order_items" {
+  "id" SERIAL [pk, increment]
+  "order_id" int [not null]
+  "product_id" int
+  "quantity" int [default: 1]
+}
+
+Table "products" {
+  "id" SERIAL [pk, increment]
+  "name" varchar
+  "price" decimal(10,4)
+  "created_at" datetime [default: `now()`]
+}
+
+Table "users" {
+  "id" SERIAL [pk, increment]
+  "name" varchar
+  "email" varchar [unique]
+  "date_of_birth" datetime
+  "created_at" datetime [default: `now()`]
+  "country_code" int [not null]
+}
+
+Table "countries" {
+  "code" int [pk]
+  "name" varchar
+  "continent_name" varchar
+}
+
+Ref:"users"."id" <? "orders"."user_id" [delete: restrict]
+
+Ref:"orders"."id" <? "order_items"."order_id" [delete: cascade]
+
+Ref:"products"."id" ?<? "order_items"."product_id" [delete: set null]
+
+Ref:"countries"."code" <? "users"."country_code" [delete: no action]

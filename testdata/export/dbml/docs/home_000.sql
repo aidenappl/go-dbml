@@ -1,0 +1,23 @@
+Enum "post_status" {
+  "draft"
+  "published"
+  "private" [note: 'visible via URL only']
+}
+
+Table "users" {
+  "id" integer
+  "username" varchar
+  "role" varchar
+  "created_at" timestamp
+}
+
+Table "posts" {
+  "id" integer [pk]
+  "title" varchar
+  "body" text [note: 'Content of the post']
+  "user_id" integer
+  "status" post_status
+  "created_at" timestamp
+}
+
+Ref:"users"."id" < "posts"."user_id"

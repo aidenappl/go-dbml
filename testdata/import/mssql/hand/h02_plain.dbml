@@ -1,0 +1,43 @@
+Table "users" {
+  "id" INT [pk, not null]
+  "email" VARCHAR(255) [unique]
+  "manager_id" INT
+  "full_name" "AS first + ' ' + last PERSISTED"
+  "first" NVARCHAR(50) [default: `N'x'`]
+  "last" NVARCHAR(50) [default: '']
+  "score" FLOAT [default: -1.5]
+  "ts" ROWVERSION
+  "nickname" NVARCHAR(30)
+
+  Checks {
+    `nickname <> ''` [name: 'ck_nick']
+  }
+
+  Indexes {
+    email [unique, name: "ux_email"]
+  }
+}
+
+Ref:"users"."id" ?<? "users"."manager_id"
+
+Ref "fk_items_user":"users"."id" < "sales"."items"."user_id" [update: no action]
+
+Table "sales"."items" {
+  "sku" CHAR(8) [not null]
+  "user_id" INT [not null]
+  "qty" SMALLINT [check: `qty > 0`]
+
+  Indexes {
+    qty [unique, name: "ix_qty"]
+    (sku, user_id) [pk, name: "pk_items"]
+  }
+}
+
+Records users(id, email, first) {
+  1, 'a@b.c', `N'Ann'`
+  2, null, 'Bob'
+}
+
+Records sales.items(sku, user_id, qty) {
+  'A1', 1, 3
+}

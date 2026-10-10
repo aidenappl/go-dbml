@@ -1,0 +1,12 @@
+Table "data" {
+  "id" int
+  "quantity" int
+  "price" decimal
+}
+
+Records data(id, quantity, price) {
+  `not_a_number`, 100, 100
+  2, 10, 100
+  3, 20, `also_not_a_number`
+  4, 30, `true`
+}

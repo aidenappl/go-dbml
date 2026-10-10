@@ -1,0 +1,3 @@
+Table x { id int [pk] }
+Table y { x_id int [ref: >? x.id]
+ x2 int [ref: ?- x.id, ref: <> x.id] }

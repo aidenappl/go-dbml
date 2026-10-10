@@ -1,0 +1,11 @@
+
+Table data {
+  id int
+  count integer
+  small smallint
+  big bigint
+}
+records data(id, count, small, big) {
+  1, 42, -100, 9999999999
+  0, 0, 0, 0
+}

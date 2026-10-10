@@ -1,0 +1,5 @@
+
+Table public.articles as A { id int }
+DiagramView myView {
+  Tables { A }
+}

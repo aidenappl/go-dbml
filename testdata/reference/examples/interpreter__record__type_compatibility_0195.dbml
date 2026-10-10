@@ -1,0 +1,18 @@
+
+Enum status {
+  active
+  inactive
+}
+Enum role {
+  admin
+  user
+}
+Table users {
+  id int [pk]
+  status status
+  role role
+}
+records users(id, status, role) {
+  1, "active", "admin"
+  2, status.invalid, "user"
+}

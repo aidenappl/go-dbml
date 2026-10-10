@@ -1,0 +1,16 @@
+Table "users" {
+  "id" int
+}
+
+Table "posts" {
+  "id" int
+}
+
+Table "comments" {
+  "id" int
+}
+
+TableGroup "content" {
+  "posts"
+  "comments"
+}

@@ -1,0 +1,5 @@
+
+Table users { id int [pk] }
+Table posts { user_id int [ref: > users.id] }
+Table comments { user_id int [ref: > users.id] }
+Table likes { user_id int [ref: > users.id] }

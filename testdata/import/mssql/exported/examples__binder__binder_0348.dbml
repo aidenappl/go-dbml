@@ -1,0 +1,10 @@
+Table "users" {
+  "id" int [pk]
+}
+
+Table "posts" {
+  "id" int [pk]
+  "user_id" int
+}
+
+Ref:"users"."id" < "posts"."user_id"

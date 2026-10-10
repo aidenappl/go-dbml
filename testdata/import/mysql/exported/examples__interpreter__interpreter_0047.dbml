@@ -1,0 +1,7 @@
+Table "t" {
+  "email" varchar(255)
+
+  Indexes {
+    email [name: "t_index_0"]
+  }
+}

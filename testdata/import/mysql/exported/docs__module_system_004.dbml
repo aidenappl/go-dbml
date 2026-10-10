@@ -1,0 +1,13 @@
+Table "auth"."users" {
+  "id" int [pk]
+  "email" varchar(255)
+}
+
+Table "auth"."roles" {
+  "id" int [pk]
+  "name" varchar(255)
+}
+
+Table "auth"."sessions" {
+  "id" int [pk]
+}

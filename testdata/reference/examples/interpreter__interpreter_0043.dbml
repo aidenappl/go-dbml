@@ -1,0 +1,4 @@
+
+Table auth.users { id int }
+Table public.posts { user_id int }
+Ref: public.posts.user_id > auth.users.id

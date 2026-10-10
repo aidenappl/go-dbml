@@ -1,0 +1,15 @@
+Table "data" {
+  "id" int
+  "count" int
+  "active" boolean
+  "created_at" timestamp
+  "amount" decimal
+  "name" varchar
+  "description" text
+}
+
+Records data(id, count, active, created_at, amount, name, description) {
+  1, null, null, null, null, null, null
+  2, null, null, null, null, null, null
+  3, 10, true, '2024-01-15T10:30:00+07:00', 99.99, 'test', 'content'
+}

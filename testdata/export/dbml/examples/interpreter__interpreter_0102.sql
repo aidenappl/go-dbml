@@ -1,0 +1,3 @@
+Note my_note {
+  'A plain note'
+}

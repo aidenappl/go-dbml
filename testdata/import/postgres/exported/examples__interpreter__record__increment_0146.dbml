@@ -1,0 +1,9 @@
+Table "users" {
+  "id" serial [pk, increment]
+  "name" varchar
+}
+
+Records users(id, name) {
+  null, 'Alice'
+  null, 'Bob'
+}

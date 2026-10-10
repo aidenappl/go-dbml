@@ -1,0 +1,43 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar
+}
+
+Table "countries" {
+  "code" varchar(2) [pk]
+  "name" varchar
+}
+
+Table "posts" {
+  "id" int [pk]
+  "user_id" int
+  "title" varchar
+}
+
+Table "cities" {
+  "id" int [pk]
+  "country_code" varchar(2)
+  "name" varchar
+}
+
+Ref:"users"."id" < "posts"."user_id"
+
+Ref:"countries"."code" < "cities"."country_code"
+
+Records users(id, name) {
+  1, 'Alice'
+}
+
+Records countries(code, name) {
+  'US', 'United States'
+}
+
+Records posts(id, user_id, title) {
+  1, 1, 'Valid Post'
+  2, 999, 'Invalid FK'
+}
+
+Records cities(id, country_code, name) {
+  1, 'US', 'New York'
+  2, 'FR', 'Paris'
+}

@@ -1,0 +1,3 @@
+Table "users" {
+  "status" nvarchar(255) [check: `[status] IN ('value', 'other')`, default: 'value']
+}

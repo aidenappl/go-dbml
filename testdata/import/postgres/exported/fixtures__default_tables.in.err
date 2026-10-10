@@ -1,0 +1,2 @@
+no viable alternative at input '(current_date + interval 1'
+mismatched input '1' expecting ')'

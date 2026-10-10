@@ -1,0 +1,3 @@
+
+Table users { id int\n name varchar }
+Table posts { id int\n name varchar }

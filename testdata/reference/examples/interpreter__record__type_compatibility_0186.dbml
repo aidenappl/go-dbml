@@ -1,0 +1,9 @@
+
+Table articles {
+  id int
+  content text
+  description varchar
+}
+records articles(id, content, description) {
+  1, "This is a very long text content that can be arbitrarily long without any length restrictions because text type does not have a length parameter", "This is a very long description that can be arbitrarily long"
+}

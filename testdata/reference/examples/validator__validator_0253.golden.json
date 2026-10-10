@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[2,16],"level":"error","msg":"Table 'nonexistent' does not exist in Schema 'public'","start":[2,5]}]}

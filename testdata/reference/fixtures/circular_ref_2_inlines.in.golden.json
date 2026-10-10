@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"CIRCULAR_REF","end":[5,23],"level":"error","msg":"References with same endpoints exist","start":[5,12]},{"code":"CIRCULAR_REF","end":[1,23],"level":"error","msg":"References with same endpoints exist","start":[1,12]}]}

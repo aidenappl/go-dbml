@@ -1,0 +1,19 @@
+CREATE TABLE `users` (
+  `id` int,
+  `name` varchar(5),
+  `code` char(3),
+  `title` nvarchar(10),
+  `shortcode` nchar(4),
+  `description` character varying(8)
+);
+
+-- Disable foreign key checks for INSERT
+SET FOREIGN_KEY_CHECKS = 0;
+
+INSERT INTO `users` (`id`, `name`, `code`, `title`, `shortcode`, `description`)
+VALUES
+  (1, 'Alice', 'ABC', 'Manager', 'MGMT', 'Valid'),
+  (2, 'VeryLongName', 'ABCD', 'VeryLongTitle', 'TOOLONG', 'TooLongDesc');
+
+-- Re-enable foreign key checks
+SET FOREIGN_KEY_CHECKS = 1;

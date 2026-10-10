@@ -1,0 +1,3 @@
+
+TablePartial base { id int }
+Table derived { ~base }

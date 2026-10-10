@@ -1,0 +1,9 @@
+Table "users" {
+  "id" int [pk]
+  "created_at" timestamp
+}
+
+Records users(id, created_at) {
+  1, `now()`
+  2, `uuid_generate_v4()`
+}

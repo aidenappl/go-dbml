@@ -1,0 +1,109 @@
+Table "products" {
+  "id" int [pk]
+  "price" decimal(10,4) [check: `[price] > 0`]
+  "quantity" int [check: `[quantity] >= 0`]
+  "discount" decimal(5,2) [check: `[discount] >= 0 AND [discount] <= 100`]
+  "status" varchar(20) [check: `[status] IN ('active', 'inactive', 'pending')`]
+}
+
+Table "orders" {
+  "order_id" int [pk]
+  "order_date" datetime
+  "delivery_date" datetime
+  "total" decimal(10,2)
+
+  Checks {
+    `[delivery_date] > [order_date]`
+    `[total] >= 0`
+  }
+}
+
+Table "employees" {
+  "emp_id" int [pk]
+  "age" int
+  "salary" decimal(10,2)
+  "email" varchar(100)
+
+  Checks {
+    `[age] >= 18 AND [age] <= 65` [name: 'chk_age']
+    `[salary] > 0` [name: 'chk_salary']
+  }
+}
+
+Table "inventory" {
+  "item_id" int [pk]
+  "stock" int [check: `[stock] >= 0`, check: `[stock] <= 10000`]
+}
+
+Table "users" {
+  "user_id" int [pk]
+  "username" varchar(50)
+  "role" varchar(20) [check: `[role] NOT IN ('banned', 'suspended')`]
+}
+
+Table "accounts" {
+  "account_id" int [pk]
+  "balance" decimal(15,2)
+
+  Checks {
+    `[balance] >= 0` [name: 'chk_balance_positive']
+    `[balance] <= 1000000`
+  }
+}
+
+Table "transactions" {
+  "txn_id" int [pk]
+  "amount" decimal(10,2)
+  "fee" decimal(10,2)
+  "type" varchar(20)
+
+  Checks {
+    `[amount] + [fee] > 0`
+    `[type] IN ('debit', 'credit')`
+  }
+}
+
+Table "settings" {
+  "setting_id" int [pk]
+  "[value]" int
+
+  Checks {
+    `[value] = 0 OR [value] = 1 OR [value] = -1`
+  }
+}
+
+Table "contacts" {
+  "contact_id" int [pk]
+  "email" varchar(100) [check: `[email] LIKE '%@%.%'`]
+  "phone" varchar(20) [check: `[phone] LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'`]
+}
+
+Table "ranges" {
+  "range_id" int [pk]
+  "min_val" int
+  "max_val" int
+
+  Checks {
+    `([min_val] >= 0) AND ([max_val] <= 100) AND ([min_val] < [max_val])`
+  }
+}
+
+Table "shipments" {
+  "shipment_id" int [pk]
+  "priority" varchar(20)
+  "carrier" varchar(50)
+
+  Checks {
+    `[priority] IN ('low', 'medium', 'high', 'urgent')`
+  }
+}
+
+Table "workflow" {
+  "workflow_id" int [pk]
+  "status" varchar(20)
+  "category" varchar(50)
+
+  Checks {
+    `[status] IN ('draft', 'pending') AND [status] IN ('active', 'inactive')`
+  }
+}

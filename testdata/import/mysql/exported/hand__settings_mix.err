@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `t1` (\n  `id` integer UNIQUE PRIMARY KEY NOT NULL AUTO_INCREMENT DEFAULT 1,\n  `name` varchar(255) DEFAULT 'x',\n  `ratio` float DEFAULT -1.5,\n  `flag` bool DEFAULT false,\n  `ts` timestamp DEFAULT (now()),\n  `arr` int[],\n  `json` jsonb'
+mismatched input '1.5' expecting '-'

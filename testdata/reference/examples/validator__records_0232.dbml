@@ -1,0 +1,8 @@
+
+Table config {
+  key varchar
+  value varchar
+}
+records config(key, value) {
+  "db_host", localhost
+}

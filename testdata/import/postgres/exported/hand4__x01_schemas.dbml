@@ -1,0 +1,61 @@
+Enum "app"."status" {
+  "active"
+  "on hold"
+}
+
+Table "app"."users" {
+  "id" INT [pk, increment]
+  "st" app.status [not null]
+  "st2" status
+  "cur" public.money_t
+  "cur2" "other"."other".money_t
+  "name" varchar [default: 'x', note: '''Bob\'s name''']
+  Note: '''It\'s users'''
+}
+
+Table "app"."users_tags" {
+  "users_id" int
+  "tags_id" smallint
+
+  Indexes {
+    (users_id, tags_id) [pk]
+  }
+}
+
+Enum "status" {
+  "a"
+  "b"
+}
+
+Table "posts" {
+  "id" BIGINT [pk, increment]
+  "user_id" int
+  "t" timestamp [default: `now()`]
+  Note: 'posts'
+}
+
+Table "posts_tags" {
+  "posts_id" bigint
+  "tags_id" smallint
+
+  Indexes {
+    (posts_id, tags_id) [pk]
+  }
+}
+
+Ref:"app"."users"."id" ?<? "posts"."user_id"
+
+Ref:"app"."users"."id" ?<? "app"."users_tags"."users_id"
+
+Ref:"other"."tags"."id" ?<? "app"."users_tags"."tags_id"
+
+Ref:"posts"."id" ?<? "posts_tags"."posts_id"
+
+Ref:"other"."tags"."id" ?<? "posts_tags"."tags_id"
+
+Ref "r1":"posts"."user_id" <? "other"."tags"."id" [update: set null, delete: cascade]
+
+Table "other"."tags" {
+  "id" SMALLINT [pk, increment]
+  "name" "My Type"
+}

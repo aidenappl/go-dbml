@@ -1,0 +1,3 @@
+Table users as U { id int [pk] }
+Table posts as P { uid int [ref: > U.id] }
+Ref: P.uid > U.id

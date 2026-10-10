@@ -1,0 +1,13 @@
+
+Table orders {
+  id int [default: 0]
+  code int
+
+  indexes {
+    (id, code) [pk]
+  }
+}
+records orders(code) {
+  1
+  1
+}

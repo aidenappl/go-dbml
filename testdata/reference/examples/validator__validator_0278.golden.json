@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_TABLE_CONTEXT","end":[2,24],"level":"error","msg":"Table must appear top-level","start":[2,2]}]}

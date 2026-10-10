@@ -1,0 +1,16 @@
+
+TablePartial WithOverrides {
+  a int
+  b int
+}
+
+Table T {
+  a varchar [pk]
+  b text
+  ~WithOverrides
+  c int
+}
+
+records T(a, b, c) {
+  'value_a', 'value_b', 3
+}

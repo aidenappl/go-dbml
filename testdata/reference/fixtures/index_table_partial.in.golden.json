@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[10,7],"level":"error","msg":"No column named 'id' inside TablePartial 'user_partial'","start":[10,5]}]}

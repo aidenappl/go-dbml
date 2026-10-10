@@ -1,0 +1,7 @@
+Table "orders" {
+  "id" int [pk]
+  "user_id" int [unique, not null]
+  "status" nvarchar(255) [note: 'Status of an order']
+  "created_at" nvarchar(255) [note: 'When order created']
+  Note: 'User orders'
+}

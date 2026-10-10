@@ -1,0 +1,9 @@
+
+Table ids {
+  id int [pk]
+}
+records ids(id) {
+  1
+  2
+  3
+}

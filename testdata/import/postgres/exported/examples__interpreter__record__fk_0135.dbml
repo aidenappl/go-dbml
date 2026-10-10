@@ -1,0 +1,34 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar
+}
+
+Table "categories" {
+  "id" int [pk]
+  "name" varchar
+}
+
+Table "posts" {
+  "id" int [pk]
+  "title" varchar
+  "user_id" int
+  "category_id" int
+}
+
+Ref:"categories"."id" ?<? "posts"."category_id"
+
+Ref:"users"."id" ?<? "posts"."user_id"
+
+Records users(id, name) {
+  1, 'Alice'
+}
+
+Records categories(id, name) {
+  1, 'Tech'
+}
+
+Records posts(id, title, user_id, category_id) {
+  1, 'Valid Post', 1, 1
+  2, 'Invalid Category', 1, 999
+  3, 'Invalid User', 999, 1
+}

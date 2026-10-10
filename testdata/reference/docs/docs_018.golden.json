@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[1,15],"level":"error","msg":"TablePartial 'partial_name' does not exist in Schema 'public'","start":[1,3]},{"code":"BINDING_ERROR","end":[3,18],"level":"error","msg":"TablePartial 'another_partial' does not exist in Schema 'public'","start":[3,3]}]}

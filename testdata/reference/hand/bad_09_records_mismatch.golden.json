@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[6,13],"level":"error","msg":"Column 'zzz' does not exist in Table 't'","start":[6,10]}]}

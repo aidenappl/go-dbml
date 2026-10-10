@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"UNEXPECTED_TOKEN","end":[2,0],"level":"error","msg":"Expect a closing brace '}'","start":[2,0]}]}

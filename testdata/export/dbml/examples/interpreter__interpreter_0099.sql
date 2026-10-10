@@ -1,0 +1,3 @@
+Note my_note [color: #FF5733] {
+  'A colored note'
+}

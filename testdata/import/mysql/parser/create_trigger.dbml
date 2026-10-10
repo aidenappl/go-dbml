@@ -1,0 +1,24 @@
+Table "audit_log" {
+  "id" INT [pk, increment]
+  "table_name" VARCHAR(50)
+  "action" VARCHAR(10)
+  "user_id" INT
+  "changed_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "users" {
+  "id" INT [pk, increment]
+  "name" VARCHAR(100)
+  "email" VARCHAR(100)
+  "status" VARCHAR(20)
+  "created_at" TIMESTAMP
+  "updated_at" TIMESTAMP
+}
+
+Table "products" {
+  "id" INT [pk, increment]
+  "name" VARCHAR(200)
+  "price" DECIMAL(10,2)
+  "stock" INT
+  "last_updated" TIMESTAMP
+}

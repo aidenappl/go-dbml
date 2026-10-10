@@ -1,0 +1,6 @@
+
+Enum status {
+  pending
+  approved
+  rejected
+}

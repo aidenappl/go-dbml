@@ -1,0 +1,13 @@
+Table a { id int }
+Table b { id int }
+TableGroup g { a }
+Note sticky { 'hello' }
+DiagramView main {
+  Tables { a
+    b }
+  TableGroups { g }
+  Notes { sticky }
+}
+DiagramView all_tables {
+  Tables { * }
+}

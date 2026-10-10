@@ -1,0 +1,10 @@
+
+Table users {
+  id int
+  id varchar
+}
+Enum status {
+  active
+  active
+}
+Ref: nonexistent.id > users.id

@@ -1,0 +1,13 @@
+
+Table public.users as U [headercolor: #fff] {
+  id integer [pk, increment]
+  email varchar(255) [unique, not null]
+  status user_status [default: 'active']
+
+  indexes {
+    email [unique, name: 'idx_email']
+    (id, email) [pk]
+  }
+
+  Note: 'Main users table'
+}

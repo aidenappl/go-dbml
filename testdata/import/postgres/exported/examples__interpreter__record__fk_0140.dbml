@@ -1,0 +1,31 @@
+Table "students" {
+  "id" int [pk]
+}
+
+Table "courses" {
+  "id" int [pk]
+}
+
+Table "students_courses" {
+  "students_id" int
+  "courses_id" int
+
+  Indexes {
+    (students_id, courses_id) [pk]
+  }
+}
+
+Ref:"students"."id" ?<? "students_courses"."students_id"
+
+Ref:"courses"."id" ?<? "students_courses"."courses_id"
+
+Records students(id) {
+  1
+  2
+  3
+}
+
+Records courses(id) {
+  10
+  20
+}

@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"DUPLICATE_REF_SETTING","end":[3,39],"level":"error","msg":"'inactive' can only appear once","start":[3,31]},{"code":"DUPLICATE_REF_SETTING","end":[3,49],"level":"error","msg":"'inactive' can only appear once","start":[3,41]}]}

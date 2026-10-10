@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"UNEXPECTED_NEWLINE","end":[1,35],"level":"error","msg":"Invalid newline encountered while parsing","start":[1,22]},{"code":"INVALID_OPERAND","end":[2,1],"level":"error","msg":"Invalid start of operand \"}\"","start":[2,0]}]}

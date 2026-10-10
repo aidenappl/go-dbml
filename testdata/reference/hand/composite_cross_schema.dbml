@@ -1,0 +1,11 @@
+Table core.orders {
+  merchant_id int
+  country_code char(2)
+}
+Table billing.merchants {
+  id int
+  country_code char(2)
+  indexes { (id, country_code) [pk] }
+}
+Ref fk_comp: core.orders.(merchant_id, country_code) > billing.merchants.(id, country_code) [delete: cascade, update: no action, color: #aabbcc]
+Ref: billing.merchants.id < core.orders.merchant_id [delete: set null]

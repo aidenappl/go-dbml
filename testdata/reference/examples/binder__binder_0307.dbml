@@ -1,0 +1,4 @@
+
+Table users as U { id int\n other_id int }
+TableGroup g1 { U }
+Ref: U.id < U.other_id

@@ -1,0 +1,5 @@
+Table table_name {
+  ~partial_name
+  field_name field_type
+  ~another_partial
+}

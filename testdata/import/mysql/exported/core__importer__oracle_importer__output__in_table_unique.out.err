@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `test_datatypes` (\n  `col_number` NUMBER'

@@ -1,0 +1,12 @@
+Table "data" {
+  "id" int
+  "name" varchar(255)
+  "title" text
+  "content" text
+}
+
+Records data(id, name, title, content) {
+  1, 'Alice', 'Bob', 'Line 1\nLine 2'
+  2, '', '', 'Tab\tSeparated'
+  3, '123', 'true', 'Quote: \"test\"'
+}

@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[8,28],"level":"error","msg":"No column named 'non_existent_column' inside Table 'posts'","start":[8,9]}]}

@@ -1,0 +1,7 @@
+Table "users" {
+  "email" varchar(255)
+
+  Indexes {
+    email [type: hash, name: "users_index_0"]
+  }
+}

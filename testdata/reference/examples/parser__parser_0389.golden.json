@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[2,14],"level":"error","msg":"Table or schema 'users' does not exist","start":[2,9]},{"code":"BINDING_ERROR","end":[3,15],"level":"error","msg":"Table or schema 'orders' does not exist","start":[3,9]},{"code":"BINDING_ERROR","end":[4,17],"level":"error","msg":"Table or schema 'products' does not exist","start":[4,9]}]}

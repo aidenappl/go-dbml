@@ -1,0 +1,6 @@
+Table n {
+  b float [default: 1e10]
+  d int [default: -0]
+  e float [default: 1.5E-3]
+  f int [default: +7]
+}

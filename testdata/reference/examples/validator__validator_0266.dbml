@@ -1,0 +1,8 @@
+
+TablePartial timestamps { created_at timestamp }
+TablePartial auditable { modified_by int }
+Table users {
+  id int
+  ~timestamps
+  ~auditable
+}

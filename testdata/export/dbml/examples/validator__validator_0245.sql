@@ -1,0 +1,15 @@
+Table "users" {
+  "id" int
+}
+
+Table "roles" {
+  "id" int
+}
+
+Table "user_roles" {
+  "user_id" int
+}
+
+Ref:"users"."id" < "user_roles"."user_id"
+
+Ref:"roles"."id" < "user_roles"."user_id"

@@ -1,0 +1,10 @@
+
+Table data {
+  id int
+  count int
+  active boolean
+  name varchar
+}
+records data(id, count, active, name) {
+  "", "", "", ""
+}

@@ -1,0 +1,7 @@
+Table "user" {
+  "name" text
+  "id" int
+  "status" nvarchar(255) [check: `[status] IN ('active', 'churned', 'inactive')`, default: 'active']
+  "gender" nvarchar(255) [check: `[gender] IN ('male', 'female')`, default: 'male']
+  "age_type" nvarchar(255) [check: `[age_type] IN ('toddler', 'children', 'teenager', 'young_adult', 'elder')`, default: 'young_adult']
+}

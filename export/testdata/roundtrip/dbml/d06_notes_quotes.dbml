@@ -1,0 +1,15 @@
+Table "user data" {
+  "first name" varchar [note: 'User\'s first name']
+  "e-mail" varchar [unique]
+  id int [pk]
+  Note: '''
+  Multi-line
+  table note with 'quotes'
+  '''
+}
+Table log {
+  id int [pk]
+  msg text [note: "Contains \"double\" quotes"]
+  user_id int
+}
+Ref: log.user_id > "user data".id

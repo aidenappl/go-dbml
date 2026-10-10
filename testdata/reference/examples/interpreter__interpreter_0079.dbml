@@ -1,0 +1,10 @@
+
+Table users { id int }
+Table orders { id int }
+DiagramView myView {
+  Tables {
+    users
+    orders
+  }
+  Schemas { * }
+}

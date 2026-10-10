@@ -1,0 +1,26 @@
+
+Table users {
+  id int [pk]
+  name varchar
+}
+Table countries {
+  code varchar(2) [pk]
+  name varchar
+}
+Table accounts {
+  id int [pk]
+  name varchar
+}
+records users(id, name) {
+  1, "Alice"
+  2, "Bob"
+}
+records countries(code, name) {
+  "US", "United States"
+  "UK", "United Kingdom"
+}
+records accounts(id, name) {
+  0, "Default Account"
+  1, "User Account"
+  2, "Business Account"
+}

@@ -1,0 +1,16 @@
+Table "t1" {
+  "id" INTEGER [unique, pk, not null, increment, default: 1]
+  "name" varchar(255) [default: 'x']
+  "ratio" float [default: `-1.5`]
+  "flag" bool [default: false]
+  "ts" timestamp [default: `now()`]
+  "arr" "int[]"
+  "json" jsonb
+
+  Indexes {
+    name [pk]
+    id [type: hash, unique, name: "idx_id"]
+    (`(lower(name))`, name)
+  }
+  Note: 'n'
+}

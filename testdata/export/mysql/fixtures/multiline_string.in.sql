@@ -1,0 +1,9 @@
+CREATE TABLE `users` (
+  `id` int COMMENT '# Objective
+  * Support writing long string that can ''span'' over multiple lines
+  * Support writing markdown for DBML Note
+
+# Syntax
+
+'
+);

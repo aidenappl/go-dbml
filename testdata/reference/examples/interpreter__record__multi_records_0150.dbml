@@ -1,0 +1,21 @@
+
+Table users {
+  id int [pk]
+  name varchar
+  age int
+  email varchar
+}
+
+records users(id, name) {
+  1, 'Alice'
+  2, 'Bob'
+}
+
+records users(id, age) {
+  3, 25
+  4, 30
+}
+
+records users(id, name, email) {
+  5, 'Charlie', 'charlie@example.com'
+}

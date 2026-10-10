@@ -1,0 +1,7 @@
+Table "core"."users" {
+  "id" int
+}
+
+Table "orders" {
+  "id" int
+}

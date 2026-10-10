@@ -1,0 +1,7 @@
+Table "users" {
+  "id" int [pk]
+}
+
+Table "orders" {
+  "id" int [pk]
+}

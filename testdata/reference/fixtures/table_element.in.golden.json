@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"NOTE_REDEFINED","end":[6,20],"level":"error","msg":"Duplicate notes are defined","start":[6,2]},{"code":"NOTE_REDEFINED","end":[27,3],"level":"error","msg":"Duplicate notes are defined","start":[18,2]}]}

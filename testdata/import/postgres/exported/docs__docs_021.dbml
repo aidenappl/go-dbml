@@ -1,0 +1,36 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar
+  "email" varchar
+}
+
+Table "posts" {
+  "id" int [pk]
+  "title" varchar
+  "published" boolean
+}
+
+Table "comments" {
+  "id" int [pk]
+  "user_id" int
+  "post_id" int
+  "title" string
+}
+
+Ref:"users"."id" ?<? "comments"."user_id"
+
+Ref:"posts"."id" ?<? "comments"."post_id"
+
+Records users(id, name, email) {
+  1, 'Alice', 'alice@example.com'
+  2, 'Bob', 'bob@example.com'
+}
+
+Records posts(id, title, published) {
+  1, 'First Post', true
+  2, 'Second Post', false
+}
+
+Records comments(id, user_id, post_id, title) {
+  1, 2, 1, 'First comment of first post by the second user'
+}

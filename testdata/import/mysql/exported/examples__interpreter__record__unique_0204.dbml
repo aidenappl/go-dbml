@@ -1,0 +1,15 @@
+Table "user_settings" {
+  "user_id" int
+  "category" varchar(255)
+  "value" varchar(255)
+
+  Indexes {
+    (user_id, category) [unique, name: "user_settings_index_0"]
+  }
+}
+
+Records user_settings(user_id, category, value) {
+  1, null, 'default'
+  1, null, 'another default'
+  1, 'theme', 'dark'
+}

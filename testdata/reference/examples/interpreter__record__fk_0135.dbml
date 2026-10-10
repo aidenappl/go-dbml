@@ -1,0 +1,39 @@
+
+TablePartial user_ref {
+  user_id int [ref: > users.id]
+}
+
+TablePartial category_ref {
+  category_id int [ref: > categories.id]
+}
+
+Table users {
+  id int [pk]
+  name varchar
+}
+
+Table categories {
+  id int [pk]
+  name varchar
+}
+
+Table posts {
+  id int [pk]
+  title varchar
+  ~user_ref
+  ~category_ref
+}
+
+records users(id, name) {
+  1, "Alice"
+}
+
+records categories(id, name) {
+  1, "Tech"
+}
+
+records posts(id, title, user_id, category_id) {
+  1, "Valid Post", 1, 1
+  2, "Invalid Category", 1, 999
+  3, "Invalid User", 999, 1
+}

@@ -1,0 +1,25 @@
+Table "users" {
+  "id" int [pk]
+}
+
+Table "posts" {
+  "created_at" timestamp [default: `now()`]
+  "title" varchar(255)
+  "owner_id" int
+  "id" bigint
+
+  Checks {
+    `id > 0` [name: 'posts.pos']
+  }
+
+  Indexes {
+    created_at [name: "posts_index_0"]
+  }
+}
+
+Ref:"users"."id" ?<? "posts"."owner_id"
+
+Records posts(id, title, owner_id, created_at) {
+  1, 'a', 1, '2024-01-01T00:00:00'
+  1, 'b', 2, null
+}

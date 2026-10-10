@@ -1,0 +1,5 @@
+Enum "bug_status" {
+  "new"
+  "open"
+  "closed"
+}

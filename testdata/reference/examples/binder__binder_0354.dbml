@@ -1,0 +1,5 @@
+
+Table auth.users { id int }
+DiagramView myView {
+  Tables { auth.users }
+}

@@ -1,0 +1,7 @@
+
+Table public.users { id int }
+Table ecommerce.users { id int }
+TableGroup mixed {
+  public.users
+  ecommerce.users
+}

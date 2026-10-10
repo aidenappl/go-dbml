@@ -1,0 +1,16 @@
+Table "users" {
+  "id" int
+  "full_name" nvarchar(255)
+  "created_at" timestamp
+  "country_code" int
+}
+
+Table "merchants" {
+  "id" int
+  "merchant_name" nvarchar(255)
+  "country_code" int
+  "created at" nvarchar(255)
+  "admin_id" int
+}
+
+Ref:"users"."id" < "merchants"."admin_id"

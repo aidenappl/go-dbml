@@ -1,0 +1,4 @@
+
+Table users {
+  name varchar [default: null]
+}

@@ -1,0 +1,29 @@
+
+Table users {
+  id int [pk]
+  name varchar
+}
+Table posts {
+  id int [pk]
+  user_id int [ref: > users.id]
+  title varchar
+}
+Table employees {
+  id int [pk]
+  manager_id int
+  name varchar
+}
+Ref: employees.manager_id >? employees.id
+
+records users(id, name) {
+  1, "Alice"
+}
+records posts(id, user_id, title) {
+  1, 1, "Valid Post"
+  2, 999, "Invalid Post"
+}
+records employees(id, manager_id, name) {
+  1, null, "CEO"
+  2, 1, "Manager"
+  3, 999, "Invalid Manager Reference"
+}

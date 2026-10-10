@@ -1,0 +1,9 @@
+
+Table users {
+  id int [pk]
+  name varchar
+
+  records [example] {
+    1, "Alice"
+  }
+}

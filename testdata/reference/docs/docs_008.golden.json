@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[7,50],"level":"error","msg":"Table 'reviews' does not exist in Schema 'public'","start":[7,43]},{"code":"CIRCULAR_REF","end":[7,34],"level":"error","msg":"References with same endpoints exist","start":[7,14]},{"code":"CIRCULAR_REF","end":[2,34],"level":"error","msg":"References with same endpoints exist","start":[2,19]}]}

@@ -1,0 +1,26 @@
+Table "dbo"."Customers" {
+  "CustomerID" "int IDENTITY(1,1)" [not null]
+  "Name" nvarchar(100) [not null]
+  "Email" nvarchar(MAX)
+  "Balance" decimal(18,2) [not null, default: 0]
+  "Created" datetime2(7) [not null, default: `getdate()`]
+  "Flag" bit
+
+  Indexes {
+    CustomerID [pk, name: "PK_Customers"]
+  }
+}
+
+Table "dbo"."Orders" {
+  "OrderID" "int IDENTITY(1,1)" [not null]
+  "CustomerID" int [not null]
+  "Total" money
+  "Status" varchar(20) [not null, default: 'new']
+
+  Indexes {
+    OrderID [pk, name: "PK_Orders"]
+    CustomerID [name: "IX_Orders_Customer"]
+  }
+}
+
+Ref "FK_Orders_Customers":"dbo"."Customers"."CustomerID" < "dbo"."Orders"."CustomerID" [delete: cascade]

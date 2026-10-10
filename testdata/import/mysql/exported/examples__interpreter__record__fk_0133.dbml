@@ -1,0 +1,35 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar(255)
+}
+
+Table "posts" {
+  "id" int [pk]
+  "title" varchar(255)
+  "created_by" int
+}
+
+Table "comments" {
+  "id" int [pk]
+  "content" varchar(255)
+  "created_by" int
+}
+
+Ref:"users"."id" ?<? "posts"."created_by"
+
+Ref:"users"."id" ?<? "comments"."created_by"
+
+Records users(id, name) {
+  1, 'Alice'
+  2, 'Bob'
+}
+
+Records posts(id, title, created_by) {
+  1, 'Post 1', 1
+  2, 'Post 2', 2
+}
+
+Records comments(id, content, created_by) {
+  1, 'Comment 1', 1
+  2, 'Comment 2', 999
+}

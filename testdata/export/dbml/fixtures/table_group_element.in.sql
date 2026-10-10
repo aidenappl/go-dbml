@@ -1,0 +1,29 @@
+Table "table1" {
+  "id" int [pk]
+}
+
+Table "table2" {
+  "id" int [pk]
+}
+
+TableGroup "group1" {
+  "table1"
+  "table2"
+  Note: '''# Note
+
+## Objective
+  * Support define element\'s note inside element body
+  * Make writing long note easier with the new syntax
+  
+'''
+}
+
+TableGroup "group2" {
+  Note: '''# Note
+* Support define element\'s note inside element body
+  '''
+}
+
+TableGroup "group3" {
+  Note: 'simple note'
+}

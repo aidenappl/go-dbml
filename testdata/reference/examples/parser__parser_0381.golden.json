@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_ENUM_ELEMENT","end":[3,29],"level":"error","msg":"An Enum must have only a field and optionally a setting list","start":[3,21]}]}

@@ -1,0 +1,23 @@
+Table "raw_orders" {
+  "id" int [pk]
+  "user_id" int
+  "amount" decimal
+  "created_at" timestamp
+}
+
+Table "stg_orders" {
+  "id" int [pk]
+  "user_id" int
+  "amount" decimal
+}
+
+Table "fct_orders" {
+  "id" int [pk]
+  "user_id" int
+  "revenue" decimal
+}
+
+Table "mart_orders" {
+  "id" int [pk]
+  "total" decimal
+}

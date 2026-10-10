@@ -1,0 +1,9 @@
+Table "a" {
+  "id" int
+}
+
+Table "b" {
+  "a_id" int
+}
+
+Ref:"b"."a_id" - "a"."id"

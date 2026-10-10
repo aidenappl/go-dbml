@@ -1,0 +1,5 @@
+
+use * from './base.dbml'
+DiagramView myView {
+  Tables { users }
+}

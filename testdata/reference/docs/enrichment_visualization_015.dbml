@@ -1,0 +1,7 @@
+// short form
+Ref: products.merchant_id > merchants.id [color: #79AD51]
+
+// long form
+Ref {
+  products.merchant_id > merchants.id [color: #79AD51]
+}

@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[5,34],"level":"error","msg":"Enum field 'value' does not exist in Enum 'public.true'","start":[5,29]}]}

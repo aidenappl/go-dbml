@@ -1,0 +1,4 @@
+Table users [headercolor: #3498DB] {
+  id integer [primary key]
+  username varchar(255) [not null, unique]
+}

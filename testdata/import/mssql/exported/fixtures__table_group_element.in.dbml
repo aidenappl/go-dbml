@@ -1,0 +1,7 @@
+Table "table1" {
+  "id" int [pk]
+}
+
+Table "table2" {
+  "id" int [pk]
+}

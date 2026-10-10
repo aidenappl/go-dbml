@@ -1,0 +1,103 @@
+Table "Table_0" {
+  "id" INT [default: 'default value with semicolon ;']
+}
+
+Table "Table_1" {
+  "id" INT
+}
+
+Table "Table_2" {
+  "id" INT
+}
+
+Table "Table_3" {
+  "id" INT
+}
+
+Table "Table_4" {
+  "id" INT
+}
+
+Table "Table_5" {
+  "id" INT
+}
+
+Table "Table_6" {
+  "id" INT
+}
+
+Table "Table_7" {
+  "id" INT
+}
+
+Table "Table_8" {
+  "id" INT
+}
+
+Table "Table_9" {
+  "id" INT
+}
+
+Table "Table_10" {
+  "id" INT
+}
+
+Table "Table_11" {
+  "id" INT
+}
+
+Table "Table_12" {
+  "id" INT
+}
+
+Table "Table_13" {
+  "id" INT
+}
+
+Table "Table_14" {
+  "id" INT
+}
+
+Table "Table_15" {
+  "id" INT
+}
+
+Table "Table_16" {
+  "id" INT
+}
+
+Table "Table_17" {
+  "id" INT
+}
+
+Table "Table_18" {
+  "id" INT
+}
+
+Table "Table_19" {
+  "id" INT
+}
+
+Table "Table_20" {
+  "id" INT
+}
+
+Table "Table_21" {
+  "id" INT
+}
+
+Table "Table_22" {
+  "id" INT
+}
+
+Table "Table_23" {
+  "id" INT [default: 'default value with semicolon ;']
+}
+
+Table "Table_24" {
+  "id" INT [default: 'default value with new delimiter @@']
+}
+
+Table "Table_inf" {
+  "id" INT [default: 'there is no way out']
+}

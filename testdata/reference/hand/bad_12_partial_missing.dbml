@@ -1,0 +1,2 @@
+Table a { ~missing
+ id int }

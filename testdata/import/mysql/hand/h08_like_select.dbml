@@ -1,0 +1,11 @@
+Table "base" {
+  "id" INT [pk]
+}
+
+Table "tmp" {
+  "x" INT
+
+  Indexes {
+    x
+  }
+}

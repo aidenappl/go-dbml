@@ -1,0 +1,11 @@
+Table core.users {
+  id integer [pk]
+}
+
+Table blogging.posts {
+  id integer [pk]
+  user_id integer [ref: > core.users.id]
+}
+
+// or this
+Ref: blogging.posts.user_id > core.users.id

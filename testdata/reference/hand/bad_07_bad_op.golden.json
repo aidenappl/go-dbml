@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_REF_FIELD","end":[2,17],"level":"error","msg":"A Ref field must be a binary relationship","start":[2,5]},{"code":"UNEQUAL_FIELDS_BINARY_REF","end":[2,17],"level":"error","msg":"Unequal fields in ref endpoints","start":[2,5]}]}

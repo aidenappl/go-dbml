@@ -1,0 +1,13 @@
+Table raw { id int
+ amount int }
+Table stg [dep: <- raw] { id int
+ revenue int [dep: <- raw.amount] }
+Table fct { total int }
+Dep: stg.revenue -> fct.total
+Dep build [color: #79AD51] {
+  raw -> fct
+  stg -> fct
+  note: 'n'
+  materialized: table
+  priority: 3
+}

@@ -1,0 +1,9 @@
+Table "Bảng Người Dùng" as U {
+  "mã số" int [pk]
+  "名前" varchar
+  "emoji 😀" text [note: 'emoji 🎉 inside']
+}
+Table "order items" {
+  "user id" int [ref: > U."mã số"]
+}
+Table `weird table` { id int }

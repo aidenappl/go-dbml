@@ -1,0 +1,5 @@
+Enum "order_status" {
+  "pending" [note: 'Initial state']
+  "processing"
+  "completed" [note: 'Final state']
+}

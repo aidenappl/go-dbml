@@ -1,0 +1,7 @@
+
+Enum true {
+  other
+}
+Table users {
+  status true [default: true.value]
+}

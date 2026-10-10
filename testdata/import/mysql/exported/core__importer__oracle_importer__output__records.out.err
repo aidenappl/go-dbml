@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `departments` (\n  `id` integer PRIMARY KEY,\n  `name` nvarchar2'

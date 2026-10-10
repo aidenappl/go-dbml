@@ -1,0 +1,6 @@
+
+Table users {
+  id int
+  ~timestamps
+}
+TablePartial timestamps { created_at timestamp }

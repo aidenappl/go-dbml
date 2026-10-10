@@ -1,0 +1,23 @@
+Table "a" {
+  "id" int
+  "bid" int
+}
+
+Table "b" {
+  "id" int
+}
+
+Table "a_b" {
+  "a_id" int
+  "b_id" int
+
+  Indexes {
+    (a_id, b_id) [pk]
+  }
+}
+
+Ref "named_ref":"a"."bid" ?<? "b"."id" [update: cascade]
+
+Ref:"a"."id" ?<? "a_b"."a_id"
+
+Ref:"b"."id" ?<? "a_b"."b_id"

@@ -1,0 +1,7 @@
+Table "users" {
+  "id" int
+}
+
+Table "ecommerce"."users" {
+  "id" int
+}

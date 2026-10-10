@@ -1,0 +1,8 @@
+Table posts {
+  id int [pk]
+  title text
+  records {
+    1, 'Hello'
+    2, 'World'
+  }
+}

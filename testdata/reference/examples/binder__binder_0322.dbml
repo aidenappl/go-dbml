@@ -1,0 +1,4 @@
+
+Table users {
+  status varchar [default: nonexistent_enum.value]
+}

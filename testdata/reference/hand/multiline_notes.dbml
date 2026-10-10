@@ -1,0 +1,24 @@
+Project proj {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # Title
+    Some **markdown**
+      indented line
+    trailing
+  '''
+}
+Table t [note: '''
+  line one
+  line two'''] {
+  c int [note: 'it\'s escaped \n newline']
+  Note {
+    '''
+    table-level note
+    '''
+  }
+}
+Note standalone {
+  '''
+  Sticky
+  note'''
+}

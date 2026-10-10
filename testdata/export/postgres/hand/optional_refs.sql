@@ -1,0 +1,35 @@
+CREATE TABLE "a" (
+  "id" int PRIMARY KEY,
+  "b_id" int,
+  "c_id" int,
+  "d_id" int
+);
+
+CREATE TABLE "b" (
+  "id" int PRIMARY KEY
+);
+
+CREATE TABLE "c" (
+  "id" int PRIMARY KEY
+);
+
+CREATE TABLE "d" (
+  "id" int PRIMARY KEY
+);
+
+ALTER TABLE "a" ADD FOREIGN KEY ("b_id") REFERENCES "b" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+CREATE TABLE "a_c" (
+  "a_c_id" int,
+  "c_id" int,
+  PRIMARY KEY ("a_c_id", "c_id")
+);
+
+ALTER TABLE "a_c" ADD FOREIGN KEY ("a_c_id") REFERENCES "a" ("c_id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "a_c" ADD FOREIGN KEY ("c_id") REFERENCES "c" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+
+ALTER TABLE "d" ADD FOREIGN KEY ("id") REFERENCES "a" ("d_id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "a" ADD FOREIGN KEY ("id") REFERENCES "b" ("id") DEFERRABLE INITIALLY IMMEDIATE;

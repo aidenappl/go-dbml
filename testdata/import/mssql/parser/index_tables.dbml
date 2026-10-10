@@ -1,0 +1,17 @@
+Table "users" {
+  "id" int
+  "full_name" nvarchar(255)
+  "email" nvarchar(255) [unique]
+  "gender" nvarchar(255)
+  "date_of_birth" nvarchar(255)
+  "created_at" nvarchar(255)
+  "country_code" int
+  "active" boolean
+
+  Indexes {
+    (id, full_name) [pk]
+    id [unique, name: "users_index_0"]
+    full_name [name: "User Name"]
+    (email, created_at) [name: "users_index_2"]
+  }
+}

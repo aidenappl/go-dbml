@@ -1,0 +1,29 @@
+Table "x" {
+  "id" int [pk]
+}
+
+Table "y" {
+  "x_id" int
+  "x2" int
+}
+
+Table "z" {
+  "x3" int
+}
+
+Table "x_z" {
+  "x_id" int
+  "z_x3" int
+
+  Indexes {
+    (x_id, z_x3) [pk]
+  }
+}
+
+Ref:"x"."id" < "y"."x_id"
+
+Ref:"x"."id" < "y"."x2"
+
+Ref:"x"."id" < "x_z"."x_id"
+
+Ref:"z"."x3" < "x_z"."z_x3"

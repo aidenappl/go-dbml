@@ -1,0 +1,9 @@
+
+Table events {
+  id int
+  created_at timestamp
+}
+records events(id, created_at) {
+  1, 12345
+  2, true
+}

@@ -1,0 +1,6 @@
+
+Table users { id int }
+DiagramView myView {
+  Tables { users }
+  Notes { * }
+}

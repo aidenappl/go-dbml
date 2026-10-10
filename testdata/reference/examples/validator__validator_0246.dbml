@@ -1,0 +1,3 @@
+
+Enum status { active }
+Enum status { pending }

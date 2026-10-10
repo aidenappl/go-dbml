@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"DEP_SELF_LOOP","end":[2,17],"level":"error","msg":"A column cannot depend on itself","start":[2,5]}]}

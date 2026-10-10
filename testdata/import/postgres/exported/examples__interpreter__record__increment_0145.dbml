@@ -1,0 +1,10 @@
+Table "users" {
+  "id" INT [pk, increment]
+  "name" varchar
+}
+
+Records users(id, name) {
+  null, 'Alice'
+  null, 'Bob'
+  1, 'Charlie'
+}

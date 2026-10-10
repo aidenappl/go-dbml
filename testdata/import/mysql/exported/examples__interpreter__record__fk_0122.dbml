@@ -1,0 +1,42 @@
+Table "products" {
+  "id" int
+  "region" varchar(255)
+
+  Indexes {
+    (id, region) [pk]
+  }
+}
+
+Table "categories" {
+  "id" int
+  "region" varchar(255)
+
+  Indexes {
+    (id, region) [pk]
+  }
+}
+
+Table "products_categories" {
+  "products_id" int
+  "products_region" varchar
+  "categories_id" int
+  "categories_region" varchar
+
+  Indexes {
+    (products_id, products_region, categories_id, categories_region) [pk]
+  }
+}
+
+Ref:"products".("id", "region") ?<? "products_categories".("products_id", "products_region")
+
+Ref:"categories".("id", "region") ?<? "products_categories".("categories_id", "categories_region")
+
+Records products(id, region) {
+  1, 'US'
+  2, 'US'
+}
+
+Records categories(id, region) {
+  1, 'US'
+  3, 'EU'
+}

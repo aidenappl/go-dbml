@@ -1,0 +1,10 @@
+Enum "orders_status_enum" {
+  "pending"
+  "processing"
+  "completed"
+}
+
+Table "orders" {
+  "id" int [pk]
+  "status" orders_status_enum [default: 'pending']
+}

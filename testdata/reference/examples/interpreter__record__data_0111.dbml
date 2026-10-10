@@ -1,0 +1,9 @@
+
+Table data {
+  active boolean
+  verified bool
+}
+records data(active, verified) {
+  true, false
+  false, true
+}

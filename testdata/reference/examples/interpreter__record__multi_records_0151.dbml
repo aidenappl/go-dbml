@@ -1,0 +1,14 @@
+
+Table products {
+  id int [pk]
+  name varchar
+  price decimal
+
+  records (id, name) {
+    1, 'Laptop'
+  }
+}
+
+records products(id, name, price) {
+  2, 'Mouse', 29.99
+}

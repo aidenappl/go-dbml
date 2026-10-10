@@ -1,0 +1,26 @@
+Enum "user_status_enum" {
+  "active"
+  "churned"
+  "inactive"
+}
+
+Enum "user_gender_enum" {
+  "male"
+  "female"
+}
+
+Enum "user_age_type_enum" {
+  "toddler"
+  "children"
+  "teenager"
+  "young_adult"
+  "elder"
+}
+
+Table "user" {
+  "name" text
+  "id" int
+  "status" user_status_enum [default: 'active']
+  "gender" user_gender_enum [default: 'male']
+  "age_type" user_age_type_enum [default: 'young_adult']
+}

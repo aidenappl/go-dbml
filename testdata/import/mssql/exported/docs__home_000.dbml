@@ -1,0 +1,17 @@
+Table "users" {
+  "id" integer
+  "username" nvarchar(255)
+  "role" nvarchar(255)
+  "created_at" timestamp
+}
+
+Table "posts" {
+  "id" integer [pk]
+  "title" nvarchar(255)
+  "body" text [note: 'Content of the post']
+  "user_id" integer
+  "status" nvarchar(255) [check: `[status] IN ('draft', 'published', 'private')`]
+  "created_at" timestamp
+}
+
+Ref:"users"."id" < "posts"."user_id"

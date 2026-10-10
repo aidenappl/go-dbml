@@ -1,0 +1,11 @@
+Table "users" {
+  "id" integer [pk, increment]
+  "email" varchar(255) [unique, not null]
+  "status" user_status [default: 'active']
+
+  Indexes {
+    (id, email) [pk]
+    email [unique, name: "idx_email"]
+  }
+  Note: 'Main users table'
+}

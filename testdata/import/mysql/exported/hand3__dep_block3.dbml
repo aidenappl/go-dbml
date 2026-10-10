@@ -1,0 +1,11 @@
+Table "a" {
+  "x" int
+}
+
+Table "b" {
+  "y" int
+}
+
+Table "c" {
+  "z" int
+}

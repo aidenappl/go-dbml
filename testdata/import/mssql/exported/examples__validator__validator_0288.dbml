@@ -1,0 +1,7 @@
+Table "categories" {
+  "id" int [pk]
+  "parent_id" int
+  "name" nvarchar(255)
+}
+
+Ref:"categories"."id" < "categories"."parent_id"

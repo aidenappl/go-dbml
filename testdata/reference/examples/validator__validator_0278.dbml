@@ -1,0 +1,4 @@
+
+Table outer {
+  Table inner { id int }
+}

@@ -1,0 +1,13 @@
+
+TablePartial common {
+  user_id int [ref: > users.id]
+}
+
+Table users {
+  id int [pk]
+}
+
+Table posts {
+  id int [pk]
+  ~common
+}

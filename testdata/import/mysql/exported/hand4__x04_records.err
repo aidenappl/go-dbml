@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `t` (\n  `id` int PRIMARY KEY,\n  `r` real,\n  `f` float,\n  `b` boolean,\n  `bt` bit,\n  `s` varchar(3),\n  `d` date,\n  `ts` timestamp,\n  `j` json,\n  `by` bytea'
+mismatched input '2' expecting '-'

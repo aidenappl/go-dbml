@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_COLUMN","end":[2,19],"level":"error","msg":"A column must have a type","start":[1,13]},{"code":"INVALID_COLUMN_NAME","end":[2,19],"level":"error","msg":"A column name must be an identifier or a quoted identifier","start":[1,13]}]}

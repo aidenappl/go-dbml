@@ -1,0 +1,29 @@
+Table "tags" {
+  "id" int [pk]
+}
+
+Table "posts" {
+  "id" int [pk]
+}
+
+Table "tags_posts" {
+  "tags_id" int
+  "posts_id" int
+
+  Indexes {
+    (tags_id, posts_id) [pk]
+  }
+}
+
+Ref:"tags"."id" ?<? "tags_posts"."tags_id"
+
+Ref:"posts"."id" ?<? "tags_posts"."posts_id"
+
+Records tags(id) {
+  null
+  1
+}
+
+Records posts(id) {
+  10
+}

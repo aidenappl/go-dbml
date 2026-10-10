@@ -1,0 +1,17 @@
+TableGroup core {
+  users
+  sessions
+}
+Table users {
+  id int [pk]
+  username varchar(50) [not null, unique]
+  bio "character varying(500)"
+  balance "numeric(18, 4)"
+  tags "text[]"
+}
+Table sessions {
+  token char(64) [pk]
+  user_id int [not null]
+  expires timestamp(3) [not null]
+}
+Ref: sessions.user_id > users.id

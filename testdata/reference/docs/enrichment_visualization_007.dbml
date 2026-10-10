@@ -1,0 +1,13 @@
+Table users [owner: "data-team", sla_hours: "24", pii: "true"] {
+  id int [pk, masking: "partial"]
+  email varchar [classification: "confidential"]
+}
+
+TableGroup e_commerce [team: "growth"] {
+  merchants
+  countries
+}
+
+Note reminder [author: "docs"] {
+  'Remember to review this schema'
+}

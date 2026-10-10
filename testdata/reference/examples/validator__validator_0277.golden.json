@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"DUPLICATE_NOTE_SETTING","end":[1,28],"level":"error","msg":"'color' can only appear once","start":[1,14]},{"code":"DUPLICATE_NOTE_SETTING","end":[1,44],"level":"error","msg":"'color' can only appear once","start":[1,30]}]}

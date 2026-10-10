@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `id_to_uuid_migration_map` (\n  `column_name` key_column_name_type'

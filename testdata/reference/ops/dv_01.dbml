@@ -1,0 +1,23 @@
+Table core.users as U { id int }
+Table orders { id int }
+TableGroup g1 { orders }
+TableGroup g2 { U }
+Note n1 { 'x' }
+DiagramView a {
+  Tables { U
+   orders }
+  Notes { n1 }
+}
+DiagramView b {
+  TableGroups { * }
+}
+DiagramView c {
+  Schemas { core }
+}
+DiagramView d { * }
+DiagramView e {
+  Tables { * }
+  Notes { }
+}
+DiagramView f {
+}

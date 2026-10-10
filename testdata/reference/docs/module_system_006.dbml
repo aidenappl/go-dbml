@@ -1,0 +1,5 @@
+// auth.dbml
+Table users {
+  id int [pk]
+  email varchar
+}

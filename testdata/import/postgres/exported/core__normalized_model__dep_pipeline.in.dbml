@@ -1,0 +1,75 @@
+Table "raw_users" {
+  "id" int [pk]
+  "email" varchar
+  "name" varchar
+  "created_at" timestamp
+  "raw_data" json
+}
+
+Table "raw_orders" {
+  "id" int [pk]
+  "user_id" int
+  "ordered_at" timestamp
+  "status" varchar
+  "raw_data" json
+}
+
+Table "raw_order_items" {
+  "id" int [pk]
+  "order_id" int
+  "product_id" int
+  "quantity" int
+  "price" decimal
+}
+
+Table "stg_users" {
+  "user_id" int [pk]
+  "email" varchar
+  "name" varchar
+  "created_at" timestamp
+}
+
+Table "stg_orders" {
+  "order_id" int [pk]
+  "user_id" int
+  "ordered_at" timestamp
+  "status" varchar
+}
+
+Table "stg_order_items" {
+  "order_item_id" int [pk]
+  "order_id" int
+  "product_id" int
+  "quantity" int
+  "unit_price" decimal
+  "line_total" decimal
+}
+
+Table "dim_users" {
+  "user_id" int [pk]
+  "email" varchar
+  "name" varchar
+  "first_order_at" timestamp
+  "total_orders" int
+  "total_spent" decimal
+  "created_at" timestamp
+}
+
+Table "fct_orders" {
+  "order_id" int [pk]
+  "user_id" int
+  "ordered_at" timestamp
+  "status" varchar
+  "total_items" int
+  "order_total" decimal
+}
+
+Ref:"raw_users"."id" ?<? "raw_orders"."user_id"
+
+Ref:"raw_orders"."id" ?<? "raw_order_items"."order_id"
+
+Ref:"stg_users"."user_id" ?<? "stg_orders"."user_id"
+
+Ref:"stg_orders"."order_id" ?<? "stg_order_items"."order_id"
+
+Ref:"dim_users"."user_id" ?<? "fct_orders"."user_id"

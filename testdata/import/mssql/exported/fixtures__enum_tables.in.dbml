@@ -1,0 +1,10 @@
+Table "jobs" {
+  "id" integer [pk]
+  "status" nvarchar(255) [check: `[status] IN ('created', 'running', 'done', 'failed', 'wait for validation')`, note: 'This is a column note']
+}
+
+Table "orders" {
+  "id" int [unique, pk]
+  "status" nvarchar(255) [check: `[status] IN ('created', 'pending', 'processing', 'completed')`]
+  "created_at" nvarchar(255)
+}

@@ -1,0 +1,4 @@
+
+Table a.b.R {
+  id int [ref: < a.b.R]
+}

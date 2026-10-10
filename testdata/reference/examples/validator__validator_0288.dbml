@@ -1,0 +1,6 @@
+
+Table categories {
+  id int [pk]
+  parent_id int [ref: > categories.id]
+  name varchar
+}

@@ -1,0 +1,3 @@
+Table "my_table" {
+  "my_column" varchar [note: 'Employee ID number']
+}

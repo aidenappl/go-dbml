@@ -1,0 +1,9 @@
+Table "auth"."users" {
+  "id" int [pk]
+}
+
+Table "posts" {
+  "user_id" int
+}
+
+Ref:"auth"."users"."id" < "posts"."user_id"

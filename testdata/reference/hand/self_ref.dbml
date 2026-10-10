@@ -1,0 +1,4 @@
+Table emp {
+  id int [pk]
+  manager_id int [ref: > emp.id]
+}

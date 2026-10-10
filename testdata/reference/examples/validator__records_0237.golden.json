@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"DUPLICATE_RECORDS_SETTING","end":[5,32],"level":"error","msg":"'example' can only appear once","start":[5,25]},{"code":"DUPLICATE_RECORDS_SETTING","end":[5,41],"level":"error","msg":"'example' can only appear once","start":[5,34]}]}

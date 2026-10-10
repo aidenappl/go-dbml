@@ -1,0 +1,41 @@
+Enum "accounts_status_enum" {
+  "active"
+  "suspended"
+  "deleted"
+}
+
+Table "accounts" {
+  "id" bigint [pk, not null, increment]
+  "email" varchar(320) [not null]
+  "display_name" varchar(100) [note: 'shown in UI']
+  "status" accounts_status_enum [not null, default: 'active']
+  "balance" decimal(12,2) [not null, default: '0.00']
+  "flags" set('a','b')
+  "created_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  "updated_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  "is_admin" tinyint(1) [not null, default: '0']
+
+  Indexes {
+    email [unique, name: "accounts_email_unique"]
+    status [type: btree, name: "accounts_status_index"]
+  }
+  Note: 'User accounts'
+}
+
+Table "sessions" {
+  "id" char(36) [pk, not null]
+  "account_id" bigint [not null]
+  "ip" varbinary(16)
+  "expires_at" datetime(6) [not null]
+
+  Indexes {
+    account_id [name: "sessions_account_id_foreign"]
+  }
+}
+
+Ref "sessions_account_id_foreign":"accounts"."id" <? "sessions"."account_id" [update: no action, delete: cascade]
+
+Records accounts(id, email, display_name, status, balance, flags, created_at, updated_at, is_admin) {
+  1, 'a@b.c', 'Ann', 'active', 10.5, null, '2024-01-01 00:00:00', '2024-01-01 00:00:00', 1
+  2, 'd@e.f', null, 'deleted', 0, 'a,b', '2024-02-01 10:00:00', '2024-02-01 10:00:00', 0
+}

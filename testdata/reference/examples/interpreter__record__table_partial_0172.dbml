@@ -1,0 +1,16 @@
+
+TablePartial Metadata {
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table users {
+  ~Metadata
+  id int [pk]
+  name varchar
+
+  records (created_at, updated_at, id, name) {
+    '2024-01-01 00:00:00+07:00', '2024-01-01 00:00:00+07:00', 1, 'Alice'
+    '2024-01-02 00:00:00+07:00', '2024-01-02 00:00:00+07:00', 2, 'Bob'
+  }
+}

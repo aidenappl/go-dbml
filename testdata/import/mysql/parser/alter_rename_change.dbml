@@ -1,0 +1,139 @@
+Enum "enum_rename_status_enum" {
+  "active"
+  "inactive"
+  "pending"
+}
+
+Table "alter_rename_test" {
+  "id" INT [pk]
+  "old_name" VARCHAR(100)
+  "old_email" VARCHAR(100)
+  "status" VARCHAR(20)
+  "value" INT
+}
+
+Table "backtick_test" {
+  "old-name" VARCHAR(100)
+  "old-email" VARCHAR(100)
+}
+
+Table "reserved_rename_test" {
+  "select" VARCHAR(100)
+  "where" VARCHAR(100)
+  "from" VARCHAR(100)
+}
+
+Table "index_rename_test" {
+  "id" INT [pk]
+  "name" VARCHAR(100)
+  "email" VARCHAR(100)
+
+  Indexes {
+    name [name: "old_idx_name"]
+    email [name: "old_idx_email"]
+  }
+}
+
+Table "type_change_test" {
+  "id" INT
+  "data" VARCHAR(100)
+}
+
+Table "full_attributes_test" {
+  "id" INT
+  "value" INT
+}
+
+Table "generated_rename_test" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "tax" DECIMAL(10,2)
+}
+
+Table "position_test" {
+  "col1" INT
+  "col2" INT
+  "col3" INT
+  "col4" INT
+}
+
+Table "long_name_test" {
+  "short_name" INT
+}
+
+Table "chain_test" {
+  "col_a" INT
+}
+
+Table "fk_parent" {
+  "id" INT [pk]
+}
+
+Table "fk_child" {
+  "id" INT [pk]
+  "parent_id" INT
+}
+
+Table "indexed_rename" {
+  "id" INT [pk]
+  "searchable" VARCHAR(100)
+
+  Indexes {
+    searchable [name: "idx_search"]
+  }
+}
+
+Table "pk_rename" {
+  "old_id" INT [pk]
+}
+
+Table "uk_rename" {
+  "id" INT [pk]
+  "unique_field" VARCHAR(100) [unique]
+}
+
+Table "gen_col_rename" {
+  "id" INT [pk]
+  "base_value" INT
+  "computed" INT
+}
+
+Table "check_rename" {
+  "id" INT [pk]
+  "age" INT [check: `age >= 0`]
+}
+
+Table "cycle_test" {
+  "col_a" INT
+  "col_b" INT
+  "col_c" INT
+}
+
+Table "timestamp_rename" {
+  "id" INT [pk]
+  "created" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  "modified" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "enum_rename" {
+  "id" INT [pk]
+  "status" enum_rename_status_enum
+  "permissions" SET('read','write','delete')
+}
+
+Table "json_rename" {
+  "id" INT [pk]
+  "data" JSON
+}
+
+Table "invisible_rename" {
+  "id" INT [pk]
+  "visible_col" INT
+  "hidden_col" INT
+}
+
+Table "multi_rename" {
+  "original_name" INT
+}
+
+Ref:"fk_parent"."id" ?<? "fk_child"."parent_id"

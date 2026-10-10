@@ -1,0 +1,4 @@
+
+Ref: posts.user_id > users.id
+Table users { id int }
+Table posts { user_id int }

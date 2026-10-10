@@ -1,0 +1,18 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar(255)
+}
+
+Table "orders" {
+  "id" int [pk]
+  "user_id" int
+}
+
+Table "audit_logs" {
+  "id" int [pk]
+  "order_id" int
+}
+
+Ref "FK_orders_users":"users"."id" < "orders"."user_id" [update: set null, delete: cascade]
+
+Ref "FK_audit_logs_orders":"orders"."id" < "audit_logs"."order_id"

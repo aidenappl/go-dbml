@@ -1,0 +1,22 @@
+
+TablePartial P1 {
+  a int
+  shared int
+  b int
+}
+
+TablePartial P2 {
+  shared varchar
+  c int
+}
+
+Table T {
+  ~P1
+  x int [pk]
+  ~P2
+  y int
+}
+
+records T(a, b, x, shared, c, y) {
+  1, 2, 3, 'shared_value', 4, 5
+}

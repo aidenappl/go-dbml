@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `Order Items` (\n  `Item ID` int PRIMARY KEY,\n  `Type` ENUM ('a b', 'c'),\n  `user` USER'

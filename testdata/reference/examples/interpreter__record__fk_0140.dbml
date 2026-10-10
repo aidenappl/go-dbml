@@ -1,0 +1,18 @@
+
+Table students {
+  id int [pk]
+}
+Table courses {
+  id int [pk]
+}
+Ref: students.id <> courses.id
+
+records students(id) {
+  1
+  2
+  3
+}
+records courses(id) {
+  10
+  20
+}

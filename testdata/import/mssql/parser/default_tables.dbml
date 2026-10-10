@@ -1,0 +1,9 @@
+Table "products" {
+  "id" int [pk, default: 123]
+  "name" varchar(255) [default: 'Tea']
+  "merchant_id" int [not null]
+  "price" float [default: 123.12]
+  "status" varchar(255)
+  "created_at" date [default: `GETDATE()`]
+  "expiration" date [default: `GETDATE()`]
+}

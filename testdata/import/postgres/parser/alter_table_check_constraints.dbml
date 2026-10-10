@@ -1,0 +1,20 @@
+Table "products" {
+  "id" INT [pk]
+  "price" DECIMAL(10,4)
+
+  Checks {
+    `price > 0`
+    `price <= 1000000` [name: 'chk_price_upper']
+  }
+}
+
+Table "employees" {
+  "emp_id" INT [pk]
+  "age" INT
+  "salary" DECIMAL(10,2)
+
+  Checks {
+    `age >= 18 AND age <= 65` [name: 'chk_age']
+    `salary > 0` [name: 'chk_salary']
+  }
+}

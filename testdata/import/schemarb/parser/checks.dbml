@@ -1,0 +1,177 @@
+Table "products" {
+  "id" integer
+  "price" decimal
+  "quantity" integer
+  "discount" decimal
+
+  Checks {
+    `price > 0` [name: 'price_positive']
+    `quantity >= 0`
+  }
+}
+
+Table "employees" {
+  "id" varchar
+  "emp_id" integer
+  "age" integer
+  "salary" decimal
+
+  Checks {
+    `age >= 18 AND age <= 65` [name: 'chk_age']
+    `salary > 0` [name: 'chk_salary']
+  }
+}
+
+Table "orders" {
+  "id" varchar
+  "order_id" integer
+  "order_date" timestamp
+  "delivery_date" timestamp
+  "total" decimal
+
+  Checks {
+    `delivery_date > order_date`
+    `total >= 0`
+  }
+}
+
+Table "shipments" {
+  "id" varchar
+  "shipment_id" integer
+  "weight" decimal
+  "cost" decimal
+
+  Checks {
+    `weight > 0` [name: 'chk_weight']
+    `cost >= 0` [name: 'chk_cost']
+  }
+}
+
+Table "payments" {
+  "id" varchar
+  "payment_id" integer
+  "amount" decimal
+
+  Checks {
+    `amount > 0`
+  }
+}
+
+Table "users" {
+  "id" varchar
+  "user_id" integer
+  "role" string
+
+  Checks {
+    `role NOT IN ('banned', 'deleted', 'suspended')`
+  }
+}
+
+Table "ranges" {
+  "id" varchar
+  "range_id" integer
+  "min_val" integer
+  "max_val" integer
+
+  Checks {
+    `(min_val >= 0) AND (max_val <= 100) AND (min_val < max_val)`
+  }
+}
+
+Table "inventory" {
+  "id" varchar
+  "item_id" integer
+  "stock" integer
+  "status" string
+
+  Checks {
+    `CASE WHEN status = 'active' THEN stock WHEN status = 'discontinued' THEN 0 ELSE 1 END >= 0`
+  }
+}
+
+Table "accounts" {
+  "id" varchar
+  "account_id" integer
+  "balance" decimal
+  "overdraft_limit" decimal
+
+  Checks {
+    `balance + overdraft_limit >= 0` [name: 'chk_balance_overdraft']
+  }
+}
+
+Table "transactions" {
+  "id" varchar
+  "txn_id" integer
+  "amount" decimal
+  "fee" decimal
+  "total" decimal
+
+  Checks {
+    `total = amount + fee`
+    `amount > 0 OR fee > 0`
+  }
+}
+
+Table "contacts" {
+  "id" varchar
+  "contact_id" integer
+  "email" string
+  "phone" string
+
+  Checks {
+    `email LIKE '%@%'`
+  }
+}
+
+Table "settings" {
+  "id" varchar
+  "setting_id" integer
+  "value" integer
+
+  Checks {
+    `value = 0 OR value = 1 OR value = -1`
+  }
+}
+
+Table "pricing" {
+  "id" varchar
+  "price_id" integer
+  "base_price" decimal
+  "discount_pct" decimal
+  "final_price" decimal
+
+  Checks {
+    `final_price = base_price * (1 - discount_pct / 100)`
+  }
+}
+
+Table "limits" {
+  "id" varchar
+  "limit_id" integer
+  "min_value" integer
+  "max_value" integer
+
+  Checks {
+    `max_value > min_value`
+    `min_value >= 0` [name: 'chk_min_positive']
+  }
+}
+
+Ref "fk_rails_orders_orders":"orders"."order_id" - "orders"."id"
+
+Ref "fk_rails_shipments_shipments":"shipments"."shipment_id" - "shipments"."id"
+
+Ref "fk_rails_payments_payments":"payments"."payment_id" - "payments"."id"
+
+Ref "fk_rails_users_users":"users"."user_id" - "users"."id"
+
+Ref "fk_rails_ranges_ranges":"ranges"."range_id" - "ranges"."id"
+
+Ref "fk_rails_accounts_accounts":"accounts"."account_id" - "accounts"."id"
+
+Ref "fk_rails_contacts_contacts":"contacts"."contact_id" - "contacts"."id"
+
+Ref "fk_rails_settings_settings":"settings"."setting_id" - "settings"."id"
+
+Ref "fk_rails_limits_limits":"limits"."limit_id" - "limits"."id"

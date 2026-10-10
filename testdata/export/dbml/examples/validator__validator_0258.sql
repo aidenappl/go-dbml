@@ -1,0 +1,7 @@
+Table "users" {
+  "id" int
+}
+
+TableGroup "social" [color: #ff0000] {
+  "users"
+}

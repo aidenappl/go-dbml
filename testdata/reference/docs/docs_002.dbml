@@ -1,0 +1,9 @@
+// table belonged to default "public" schema
+Table table_name {
+  column_name column_type [column_settings]
+}
+
+// table belonged to a schema
+Table schema_name.table_name {
+  column_name column_type [column_settings]
+}

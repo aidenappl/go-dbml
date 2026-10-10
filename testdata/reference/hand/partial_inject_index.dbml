@@ -1,0 +1,6 @@
+TablePartial ts { created int
+ indexes { created [name: 'idx_created'] } }
+Table a { ~ts
+ id int }
+Table b { id int
+ ~ts }

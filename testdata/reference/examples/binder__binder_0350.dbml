@@ -1,0 +1,7 @@
+
+Table R { id int }
+Table v.G { id int }
+TableGroup a {
+  R
+  G
+}

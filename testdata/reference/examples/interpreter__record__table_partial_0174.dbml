@@ -1,0 +1,13 @@
+
+TablePartial Empty {
+}
+
+Table T {
+  a int [pk]
+  ~Empty
+  b int
+}
+
+records T(a, b) {
+  1, 2
+}

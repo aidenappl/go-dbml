@@ -1,0 +1,11 @@
+Table "Bảng Người Dùng" {
+  "mã số" int [pk]
+  "名前" nvarchar(255)
+  "emoji 😀" text [note: 'emoji 🎉 inside']
+}
+
+Table "order items" {
+  "user id" int
+}
+
+Ref:"Bảng Người Dùng"."mã số" < "order items"."user id"

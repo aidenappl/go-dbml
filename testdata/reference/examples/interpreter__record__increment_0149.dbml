@@ -1,0 +1,9 @@
+
+Table users {
+  id int [pk, not null, default: 1]
+  name varchar
+}
+records users(id, name) {
+  null, "Alice"
+  null, "Bob"
+}

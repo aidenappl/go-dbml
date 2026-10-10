@@ -1,0 +1,11 @@
+Table "Order Items" {
+  "Item ID" int [pk]
+  "Type" "User Type"
+  user USER
+  qty Int
+  "select" varchar
+}
+Enum "User Type" {
+  "a b"
+  c
+}

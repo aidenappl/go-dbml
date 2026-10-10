@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[1,13],"level":"error","msg":"Schema or Table 'b' does not exist","start":[1,12]}]}

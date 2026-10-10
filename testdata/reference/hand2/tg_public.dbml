@@ -1,0 +1,5 @@
+Table public.users { id int }
+Table users2 { id int }
+TableGroup g { public.users
+ users2 }
+Ref: public.users.id > public.users2.id

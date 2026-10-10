@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_COLUMN_TYPE","end":[2,20],"level":"error","msg":"Invalid column type","start":[2,14]}]}

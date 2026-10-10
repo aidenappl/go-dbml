@@ -1,0 +1,476 @@
+Table "expr_lower" {
+  "id" INT [pk]
+  "email" VARCHAR(100)
+
+  Indexes {
+    `(LOWER(email))` [name: "idx_lower_email"]
+  }
+}
+
+Table "expr_upper" {
+  "id" INT [pk]
+  "name" VARCHAR(100)
+
+  Indexes {
+    `(UPPER(name))` [name: "idx_upper_name"]
+  }
+}
+
+Table "expr_substring" {
+  "id" INT [pk]
+  "code" VARCHAR(50)
+
+  Indexes {
+    `(SUBSTRING(code,1,5))` [name: "idx_prefix"]
+  }
+}
+
+Table "expr_concat" {
+  "id" INT [pk]
+  "first_name" VARCHAR(50)
+  "last_name" VARCHAR(50)
+
+  Indexes {
+    `(CONCAT(first_name,' ',last_name))` [name: "idx_full_name"]
+  }
+}
+
+Table "expr_arithmetic" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "tax_rate" DECIMAL(5,2)
+
+  Indexes {
+    `(price*(1+tax_rate))` [name: "idx_total"]
+  }
+}
+
+Table "expr_round" {
+  "id" INT [pk]
+  "value" DECIMAL(10,5)
+
+  Indexes {
+    `(ROUND(value,2))` [name: "idx_rounded"]
+  }
+}
+
+Table "expr_floor" {
+  "id" INT [pk]
+  "amount" DECIMAL(10,2)
+
+  Indexes {
+    `(FLOOR(amount))` [name: "idx_floored"]
+  }
+}
+
+Table "expr_ceil" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+
+  Indexes {
+    `(CEIL(price))` [name: "idx_ceiled"]
+  }
+}
+
+Table "expr_abs" {
+  "id" INT [pk]
+  "delta" INT
+
+  Indexes {
+    `(ABS(delta))` [name: "idx_absolute"]
+  }
+}
+
+Table "expr_date" {
+  "id" INT [pk]
+  "created_at" TIMESTAMP
+
+  Indexes {
+    `(YEAR(created_at))` [name: "idx_year"]
+    `(MONTH(created_at))` [name: "idx_month"]
+    `(DAY(created_at))` [name: "idx_day"]
+  }
+}
+
+Table "expr_date_format" {
+  "id" INT [pk]
+  "event_date" DATE
+
+  Indexes {
+    `(DATE_FORMAT(event_date,'%Y-%m'))` [name: "idx_year_month"]
+  }
+}
+
+Table "expr_json" {
+  "id" INT [pk]
+  "data" JSON
+
+  Indexes {
+    `(CAST(data->>'$.name'ASCHAR(100)))` [name: "idx_json_name"]
+    `(CAST(data->>'$.age'ASUNSIGNED))` [name: "idx_json_age"]
+  }
+}
+
+Table "expr_json_extract" {
+  "id" INT [pk]
+  "metadata" JSON
+
+  Indexes {
+    `(JSON_UNQUOTE(JSON_EXTRACT(metadata,'$.type')))` [name: "idx_json_type"]
+  }
+}
+
+Table "expr_cast" {
+  "id" INT [pk]
+  "value" VARCHAR(50)
+
+  Indexes {
+    `(CAST(valueASSIGNED))` [name: "idx_as_int"]
+    `(CAST(valueASDECIMAL(10,2)))` [name: "idx_as_decimal"]
+  }
+}
+
+Table "expr_coalesce" {
+  "id" INT [pk]
+  "primary_val" INT
+  "secondary_val" INT
+
+  Indexes {
+    `(COALESCE(primary_val,secondary_val,0))` [name: "idx_coalesce"]
+  }
+}
+
+Table "expr_trim" {
+  "id" INT [pk]
+  "text_data" VARCHAR(200)
+
+  Indexes {
+    `(TRIM(text_data))` [name: "idx_trimmed"]
+  }
+}
+
+Table "expr_ltrim_rtrim" {
+  "id" INT [pk]
+  "data" VARCHAR(100)
+
+  Indexes {
+    `(LTRIM(data))` [name: "idx_ltrim"]
+    `(RTRIM(data))` [name: "idx_rtrim"]
+  }
+}
+
+Table "expr_replace" {
+  "id" INT [pk]
+  "phone" VARCHAR(20)
+
+  Indexes {
+    `(REPLACE(REPLACE(phone,'-',''),' ',''))` [name: "idx_clean_phone"]
+  }
+}
+
+Table "expr_if" {
+  "id" INT [pk]
+  "age" INT
+
+  Indexes {
+    `(IF(age>=18,1,0))` [name: "idx_is_adult"]
+  }
+}
+
+Table "expr_case" {
+  "id" INT [pk]
+  "score" INT
+
+  Indexes {
+    `(CASEWHENscore>=90THEN'A'WHENscore>=80THEN'B'WHENscore>=70THEN'C'ELSE'F'END)` [name: "idx_grade"]
+  }
+}
+
+Table "expr_char_length" {
+  "id" INT [pk]
+  "description" TEXT
+
+  Indexes {
+    `(CHAR_LENGTH(description))` [name: "idx_length"]
+  }
+}
+
+Table "expr_left_right" {
+  "id" INT [pk]
+  "code" VARCHAR(50)
+
+  Indexes {
+    `(LEFT(code,5))` [name: "idx_left5"]
+    `(RIGHT(code,5))` [name: "idx_right5"]
+  }
+}
+
+Table "expr_mod" {
+  "id" INT [pk]
+  "value" INT
+
+  Indexes {
+    `(MOD(value,10))` [name: "idx_mod10"]
+  }
+}
+
+Table "expr_greatest_least" {
+  "id" INT [pk]
+  "val1" INT
+  "val2" INT
+  "val3" INT
+
+  Indexes {
+    `(GREATEST(val1,val2,val3))` [name: "idx_max"]
+    `(LEAST(val1,val2,val3))` [name: "idx_min"]
+  }
+}
+
+Table "expr_nullif" {
+  "id" INT [pk]
+  "numerator" INT
+  "denominator" INT
+
+  Indexes {
+    `(numerator/NULLIF(denominator,0))` [name: "idx_safe_div"]
+  }
+}
+
+Table "expr_pad" {
+  "id" INT [pk]
+  "code" INT
+
+  Indexes {
+    `(LPAD(code,8,'0'))` [name: "idx_padded"]
+  }
+}
+
+Table "expr_complex" {
+  "id" INT [pk]
+  "a" DECIMAL(10,2)
+  "b" DECIMAL(10,2)
+  "c" DECIMAL(10,2)
+
+  Indexes {
+    `(ROUND((a*b+c)/NULLIF(a+b,0),2))` [name: "idx_formula"]
+  }
+}
+
+Table "expr_reverse" {
+  "id" INT [pk]
+  "code" VARCHAR(50)
+
+  Indexes {
+    `(REVERSE(code))` [name: "idx_reversed"]
+  }
+}
+
+Table "expr_hex" {
+  "id" INT [pk]
+  "value" INT
+
+  Indexes {
+    `(HEX(value))` [name: "idx_hex"]
+  }
+}
+
+Table "expr_timestamp_diff" {
+  "id" INT [pk]
+  "start_time" TIMESTAMP
+  "end_time" TIMESTAMP
+
+  Indexes {
+    `(TIMESTAMPDIFF(SECOND,start_time,end_time))` [name: "idx_duration"]
+  }
+}
+
+Table "expr_datediff" {
+  "id" INT [pk]
+  "start_date" DATE
+  "end_date" DATE
+
+  Indexes {
+    `(DATEDIFF(end_date,start_date))` [name: "idx_days_diff"]
+  }
+}
+
+Table "expr_create_test" {
+  "id" INT [pk]
+  "email" VARCHAR(100)
+  "name" VARCHAR(100)
+  "price" DECIMAL(10,2)
+
+  Indexes {
+    `(LOWER(email))` [name: "idx_lower_email"]
+    `(UPPER(name))` [name: "idx_upper_name"]
+    `(ROUND(price))` [name: "idx_rounded_price"]
+  }
+}
+
+Table "expr_alter_test" {
+  "id" INT [pk]
+  "data" VARCHAR(100)
+}
+
+Table "expr_visible" {
+  "id" INT [pk]
+  "email" VARCHAR(100)
+
+  Indexes {
+    `(LOWER(email))` [name: "idx_lower_email"]
+  }
+}
+
+Table "expr_invisible" {
+  "id" INT [pk]
+  "name" VARCHAR(100)
+
+  Indexes {
+    `(UPPER(name))` [name: "idx_upper_name"]
+  }
+}
+
+Table "expr_comment" {
+  "id" INT [pk]
+  "data" VARCHAR(100)
+
+  Indexes {
+    `(LOWER(data))` [name: "idx_lower"]
+  }
+}
+
+Table "expr_all_options" {
+  "id" INT [pk]
+  "text_col" VARCHAR(200)
+
+  Indexes {
+    `(TRIM(LOWER(text_col)))` [name: "idx_expr"]
+  }
+}
+
+Table "expr_multiple" {
+  "id" INT [pk]
+  "first_name" VARCHAR(50)
+  "last_name" VARCHAR(50)
+  "email" VARCHAR(100)
+  "price" DECIMAL(10,2)
+
+  Indexes {
+    `(LOWER(first_name))` [name: "idx_lower_first"]
+    `(LOWER(last_name))` [name: "idx_lower_last"]
+    `(LOWER(email))` [name: "idx_lower_email"]
+    `(CONCAT(first_name,' ',last_name))` [name: "idx_full_name"]
+    `(ROUND(price,2))` [name: "idx_rounded_price"]
+  }
+}
+
+Table "expr_unique" {
+  "id" INT [pk]
+  "email" VARCHAR(100)
+
+  Indexes {
+    `(LOWER(email))` [unique, name: "uk_lower_email"]
+  }
+}
+
+Table "expr_desc" {
+  "id" INT [pk]
+  "created_at" TIMESTAMP
+
+  Indexes {
+    `(YEAR(created_at))` [name: "idx_year_desc"]
+  }
+}
+
+Table "expr_on_generated" {
+  "id" INT [pk]
+  "base_val" INT
+  "computed_val" INT
+
+  Indexes {
+    `(computed_val+10)` [name: "idx_expr"]
+  }
+}
+
+Table "expr_nested" {
+  "id" INT [pk]
+  "text_data" VARCHAR(200)
+
+  Indexes {
+    `(UPPER(TRIM(SUBSTRING(text_data,1,50))))` [name: "idx_nested"]
+  }
+}
+
+Table "expr_multi_col" {
+  "id" INT [pk]
+  "first_name" VARCHAR(50)
+  "last_name" VARCHAR(50)
+  "suffix" VARCHAR(10)
+
+  Indexes {
+    `(CONCAT(UPPER(first_name),' ',UPPER(last_name),' ',COALESCE(suffix,'')))` [name: "idx_complex"]
+  }
+}
+
+Table "expr_soundex" {
+  "id" INT [pk]
+  "name" VARCHAR(100)
+
+  Indexes {
+    `(SOUNDEX(name))` [name: "idx_soundex"]
+  }
+}
+
+Table "expr_md5" {
+  "id" INT [pk]
+  "data" VARCHAR(200)
+
+  Indexes {
+    `(MD5(data))` [name: "idx_hash"]
+  }
+}
+
+Table "expr_sha" {
+  "id" INT [pk]
+  "sensitive_data" VARCHAR(200)
+
+  Indexes {
+    `(SHA1(sensitive_data))` [name: "idx_sha1"]
+  }
+}
+
+Table "expr_ip" {
+  "id" INT [pk]
+  "ip_address" VARCHAR(15)
+
+  Indexes {
+    `(INET_ATON(ip_address))` [name: "idx_ip_num"]
+  }
+}
+
+Table "expr-backticks" {
+  "id" INT [pk]
+  "col-name" VARCHAR(100)
+
+  Indexes {
+    `(LOWER(`col-name`))` [name: "idx-expr"]
+  }
+}
+
+Table "expr_elt" {
+  "id" INT [pk]
+  "status_code" INT
+
+  Indexes {
+    `(ELT(status_code,'pending','active','inactive'))` [name: "idx_status_text"]
+  }
+}
+
+Table "expr_field" {
+  "id" INT [pk]
+  "priority" VARCHAR(20)
+
+  Indexes {
+    `(FIELD(priority,'high','medium','low'))` [name: "idx_priority_order"]
+  }
+}

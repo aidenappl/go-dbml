@@ -1,0 +1,5 @@
+
+Project myapp {
+  database_type: 'PostgreSQL'
+}
+Table users { id int }

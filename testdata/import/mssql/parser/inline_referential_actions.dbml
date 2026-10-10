@@ -1,0 +1,38 @@
+Table "users" {
+  "user_id" int [pk, increment]
+  "name" varchar(255)
+  "email" varchar(255) [unique]
+  "date_of_birth" datetime
+  "created_at" datetime [default: `GETDATE()`]
+  "country_code" int [not null]
+}
+
+Table "orders" {
+  "id" int [pk, increment]
+  "user_id" int [unique, not null]
+  "created_at" varchar(255)
+}
+
+Table "products" {
+  "id" int
+  "name" varchar(255)
+  "price" decimal(10,4)
+  "created_at" datetime [default: `GETDATE()`]
+
+  Indexes {
+    id [pk]
+  }
+}
+
+Table "order_items" {
+  "order_id" int
+  "product_id" int
+  "product_name" varchar(255)
+  "quantity" int [default: 1]
+}
+
+Ref:"users"."user_id" <? "orders"."user_id" [delete: no action]
+
+Ref:"orders"."id" ?<? "order_items"."order_id" [delete: cascade]
+
+Ref:"products"."id" ?<? "order_items"."product_id" [delete: set null]

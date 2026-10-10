@@ -1,0 +1,7 @@
+Table a { id int }
+Table s.b { id int }
+TableGroup grp [color: #ff0000, note: 'group note'] {
+  a
+  s.b
+  Note: 'inner note'
+}

@@ -1,0 +1,1 @@
+no viable alternative at input 'INSERT INTO `auth`.`users` (`id`, `role`, `status`)\nVALUES\n  (1, , CAST'

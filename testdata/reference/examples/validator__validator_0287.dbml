@@ -1,0 +1,9 @@
+
+Table a {
+  id int
+  b_id int [ref: > b.id]
+}
+Table b {
+  id int
+  a_id int [ref: > a.id]
+}

@@ -1,0 +1,7 @@
+
+Table users { id int [pk] }
+Table posts { id int [pk] }
+Table user_posts {
+  user_id int [ref: > users.id]
+  post_id int [ref: > posts.id]
+}

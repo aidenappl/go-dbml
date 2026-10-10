@@ -1,0 +1,123 @@
+{
+  "schemas": [],
+  "tables": [
+    {
+      "name": "users",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "full_name",
+          "type": {
+            "type_name": "nvarchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "email",
+          "type": {
+            "type_name": "nvarchar(255)",
+            "schemaName": null
+          },
+          "unique": true
+        },
+        {
+          "name": "gender",
+          "type": {
+            "type_name": "nvarchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "date_of_birth",
+          "type": {
+            "type_name": "nvarchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "nvarchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "country_code",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "active",
+          "type": {
+            "type_name": "boolean",
+            "schemaName": null
+          }
+        }
+      ],
+      "indexes": [
+        {
+          "pk": true,
+          "columns": [
+            {
+              "value": "id",
+              "type": "column"
+            },
+            {
+              "value": "full_name",
+              "type": "column"
+            }
+          ]
+        },
+        {
+          "name": "users_index_0",
+          "unique": true,
+          "columns": [
+            {
+              "value": "id",
+              "type": "column"
+            }
+          ]
+        },
+        {
+          "name": "User Name",
+          "unique": false,
+          "columns": [
+            {
+              "value": "full_name",
+              "type": "column"
+            }
+          ]
+        },
+        {
+          "name": "users_index_2",
+          "unique": false,
+          "columns": [
+            {
+              "value": "email",
+              "type": "column"
+            },
+            {
+              "value": "created_at",
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "checks": []
+    }
+  ],
+  "refs": [],
+  "enums": [],
+  "tableGroups": [],
+  "aliases": [],
+  "project": {},
+  "records": []
+}

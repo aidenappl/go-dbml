@@ -1,0 +1,15 @@
+Table "users" {
+  "name" varchar
+  "created_at" datetime [not null]
+  "updated_at" datetime
+  "id" bigint [note: 'local']
+
+  Checks {
+    `updated_at >= created_at` [name: 'users.chk_upd']
+  }
+
+  Indexes {
+    created_at
+  }
+  Note: 'base note'
+}

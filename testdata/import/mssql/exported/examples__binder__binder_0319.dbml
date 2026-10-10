@@ -1,0 +1,4 @@
+Table "orders" {
+  "id" int [pk]
+  "status" nvarchar(255) [check: `[status] IN ('pending', 'processing', 'completed')`, default: 'pending']
+}

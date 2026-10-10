@@ -1,0 +1,30 @@
+Enum "app"."role" {
+  "admin"
+  "member"
+}
+
+Table "app"."users" {
+  "id" bigint [pk, not null]
+  "email" "character varying(320)" [unique, not null, note: '''login, it\'s unique''']
+  "role" app.role [not null, default: `'member'::app.role`]
+  "meta" jsonb [default: `'{}'::jsonb`]
+  "created_at" timestamp [not null, default: `now()`]
+  "tags" "text[]" [default: `ARRAY[]::text[]`]
+  Note: 'Application users'
+}
+
+Table "app"."posts" {
+  "id" integer [pk, not null]
+  "user_id" bigint
+  "title" text [not null]
+  "body" text
+  "score" numeric(10,2) [default: 0.0]
+  "published" boolean [default: false]
+
+  Indexes {
+    user_id [type: btree, name: "posts_user_id_idx"]
+    `lower(title)` [type: btree, unique, name: "posts_title_lower"]
+  }
+}
+
+Ref "posts_user_id_fkey":"app"."users"."id" ?<? "app"."posts"."user_id" [delete: cascade]

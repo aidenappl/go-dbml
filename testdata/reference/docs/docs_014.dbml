@@ -1,0 +1,7 @@
+// short form
+Ref: products.merchant_id > merchants.id [delete: cascade, update: no action]
+
+// long form
+Ref {
+  products.merchant_id > merchants.id [delete: cascade, update: no action]
+}

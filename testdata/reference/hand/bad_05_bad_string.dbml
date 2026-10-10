@@ -1,0 +1,3 @@
+Table a {
+  name varchar [note: 'unterminated
+}

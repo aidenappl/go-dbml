@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `foo` (\n  `bar` text[],\n  `bar2` int[1'

@@ -1,0 +1,10 @@
+// short form
+Ref: posts.user_id > users.id [inactive]
+
+// with other settings
+Ref: posts.user_id > users.id [delete: cascade, inactive]
+
+// long form
+Ref {
+  posts.user_id > users.id [inactive]
+}

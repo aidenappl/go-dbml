@@ -1,0 +1,29 @@
+Table auth.accounts {
+  id uuid [pk, default: `gen_random_uuid()`]
+  email citext [unique]
+}
+
+Table billing.invoices {
+  id bigserial [pk]
+  account_id uuid [not null]
+  amount_cents int [not null, note: "can't be negative"]
+  issued_on date [default: `CURRENT_DATE`]
+  paid boolean [default: false]
+  indexes {
+    (account_id, issued_on) [unique, name: 'invoices_account_issued']
+    issued_on [type: btree]
+  }
+}
+
+Enum billing.currency {
+  USD
+  EUR
+  GBP
+}
+
+Table billing.prices {
+  id int [pk]
+  currency billing.currency [not null]
+}
+
+Ref fk_invoice_account: billing.invoices.account_id > auth.accounts.id [delete: restrict]

@@ -1,0 +1,31 @@
+Enum "jobs_status_enum" {
+  "created"
+  "running"
+  "done"
+  "failed"
+  "wait for validation"
+}
+
+Enum "orders_priority_enum" {
+  "low"
+  "medium"
+  "high"
+}
+
+Enum "orders_status_enum" {
+  "pending"
+  "processing"
+  "done"
+}
+
+Table "jobs" {
+  "id" integer [pk]
+  "status" jobs_status_enum
+}
+
+Table "orders" {
+  "id" int [pk]
+  "created_at" varchar(255)
+  "priority" orders_priority_enum
+  "status" orders_status_enum
+}

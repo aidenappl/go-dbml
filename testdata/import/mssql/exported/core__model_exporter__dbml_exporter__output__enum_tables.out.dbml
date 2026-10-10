@@ -1,0 +1,11 @@
+Table "jobs" {
+  "id" integer [pk]
+  "status" nvarchar(255) [check: `[status] IN ('created', 'running', 'done', 'failed', 'wait for validation')`]
+}
+
+Table "orders" {
+  "id" int [pk]
+  "created_at" nvarchar(255)
+  "priority" nvarchar(255) [check: `[priority] IN ('low', 'medium', 'high')`]
+  "status" nvarchar(255) [check: `[status] IN ('pending', 'processing', 'done')`]
+}

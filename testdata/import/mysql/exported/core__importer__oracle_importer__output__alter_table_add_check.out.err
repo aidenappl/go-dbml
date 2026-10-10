@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `employees` (\n  `emp_id` NUMBER'
+mismatched input 'discount_price' expecting '-'

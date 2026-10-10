@@ -1,0 +1,9 @@
+mismatched input 'CHECK' expecting {'INDEX', ')', ','}
+no viable alternative at input ',CHECK'
+mismatched input ')' expecting 'CONVERSATION'
+no viable alternative at input ',CHECK'
+no viable alternative at input ',CHECK'
+no viable alternative at input 'code~'
+extraneous input '[]' expecting {'INDEX', ')', ','}
+no viable alternative at input ',CHECK'
+no viable alternative at input '(tags'

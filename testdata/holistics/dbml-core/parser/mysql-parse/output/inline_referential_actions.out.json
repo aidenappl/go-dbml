@@ -1,0 +1,319 @@
+{
+  "schemas": [],
+  "tables": [
+    {
+      "name": "products",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "increment": true,
+          "pk": true,
+          "checks": []
+        },
+        {
+          "name": "name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          },
+          "checks": []
+        },
+        {
+          "name": "price",
+          "type": {
+            "type_name": "decimal(10,4)",
+            "schemaName": null
+          },
+          "checks": []
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "datetime",
+            "schemaName": null
+          },
+          "dbdefault": {
+            "value": "now()",
+            "type": "expression"
+          },
+          "checks": []
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    },
+    {
+      "name": "countries",
+      "fields": [
+        {
+          "name": "code",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "pk": true,
+          "checks": []
+        },
+        {
+          "name": "name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          },
+          "checks": []
+        },
+        {
+          "name": "continent_name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          },
+          "checks": []
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    },
+    {
+      "name": "users",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "increment": true,
+          "pk": true,
+          "checks": []
+        },
+        {
+          "name": "name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          },
+          "checks": []
+        },
+        {
+          "name": "email",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          },
+          "unique": true,
+          "checks": []
+        },
+        {
+          "name": "date_of_birth",
+          "type": {
+            "type_name": "datetime",
+            "schemaName": null
+          },
+          "checks": []
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "datetime",
+            "schemaName": null
+          },
+          "dbdefault": {
+            "value": "now()",
+            "type": "expression"
+          },
+          "checks": []
+        },
+        {
+          "name": "country_code",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "not_null": true,
+          "checks": []
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    },
+    {
+      "name": "orders",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "increment": true,
+          "pk": true,
+          "checks": []
+        },
+        {
+          "name": "user_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "not_null": true,
+          "checks": []
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "datetime",
+            "schemaName": null
+          },
+          "dbdefault": {
+            "value": "now()",
+            "type": "expression"
+          },
+          "checks": []
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    },
+    {
+      "name": "order_items",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "increment": true,
+          "pk": true,
+          "checks": []
+        },
+        {
+          "name": "order_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "not_null": true,
+          "checks": []
+        },
+        {
+          "name": "product_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "dbdefault": {
+            "value": "null",
+            "type": "boolean"
+          },
+          "checks": []
+        },
+        {
+          "name": "quantity",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "dbdefault": {
+            "value": "1",
+            "type": "number"
+          },
+          "checks": []
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    }
+  ],
+  "refs": [
+    {
+      "onDelete": "NO ACTION",
+      "onUpdate": "NO ACTION",
+      "endpoints": [
+        {
+          "tableName": "users",
+          "fieldNames": [
+            "country_code"
+          ],
+          "relation": "0..*"
+        },
+        {
+          "tableName": "countries",
+          "fieldNames": [
+            "code"
+          ],
+          "relation": "0..1"
+        }
+      ]
+    },
+    {
+      "onDelete": "RESTRICT",
+      "onUpdate": "NO ACTION",
+      "endpoints": [
+        {
+          "tableName": "orders",
+          "fieldNames": [
+            "user_id"
+          ],
+          "relation": "0..*"
+        },
+        {
+          "tableName": "users",
+          "fieldNames": [
+            "id"
+          ],
+          "relation": "0..1"
+        }
+      ]
+    },
+    {
+      "onDelete": "CASCADE",
+      "onUpdate": "RESTRICT",
+      "endpoints": [
+        {
+          "tableName": "order_items",
+          "fieldNames": [
+            "order_id"
+          ],
+          "relation": "0..*"
+        },
+        {
+          "tableName": "orders",
+          "fieldNames": [
+            "id"
+          ],
+          "relation": "0..1"
+        }
+      ]
+    },
+    {
+      "onDelete": "SET NULL",
+      "endpoints": [
+        {
+          "tableName": "order_items",
+          "fieldNames": [
+            "product_id"
+          ],
+          "relation": "0..*"
+        },
+        {
+          "tableName": "products",
+          "fieldNames": [
+            "id"
+          ],
+          "relation": "0..1"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "tableGroups": [],
+  "aliases": [],
+  "project": {},
+  "records": []
+}

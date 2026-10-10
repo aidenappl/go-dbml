@@ -1,0 +1,24 @@
+
+TablePartial fk_partial {
+  user_id int [ref: > users.id]
+}
+
+Table users {
+  id int [pk]
+  name varchar
+}
+
+Table posts {
+  id int [pk]
+  title varchar
+  ~fk_partial
+}
+
+records users(id, name) {
+  1, "Alice"
+}
+
+records posts(id, title, user_id) {
+  1, "Post 1", 1
+  2, "Post 2", 999
+}

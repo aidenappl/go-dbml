@@ -1,0 +1,25 @@
+Table "products" {
+  "id" int
+  "region" varchar
+
+  Indexes {
+    (id, region) [pk]
+  }
+}
+
+Table "orders" {
+  "id" int [pk]
+  "product_id" int
+  "region" varchar
+}
+
+Ref:"products".("id", "region") < "orders".("product_id", "region")
+
+Records products(id, region) {
+  1, 'US'
+  null, 'EU'
+}
+
+Records orders(id, product_id, region) {
+  1, 1, 'US'
+}

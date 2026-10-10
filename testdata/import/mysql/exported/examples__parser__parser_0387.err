@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `users` (\n  `id` integer PRIMARY KEY AUTO_INCREMENT,\n  `email` varchar(255) UNIQUE NOT NULL,\n  `status` user_status'

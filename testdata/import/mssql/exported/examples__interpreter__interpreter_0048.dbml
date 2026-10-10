@@ -1,0 +1,8 @@
+Table "t" {
+  "first_name" nvarchar(255)
+  "last_name" nvarchar(255)
+
+  Indexes {
+    (first_name, last_name) [name: "idx_fullname"]
+  }
+}

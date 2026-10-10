@@ -1,0 +1,5 @@
+Project ecommerce [note: 'proj'] {
+  database_type: 'MySQL'
+  custom_key: 'v'
+}
+Table a { id int }

@@ -1,0 +1,16 @@
+Enum "tasks_priority_enum" {
+  "low"
+  "medium"
+  "high"
+}
+
+Table "tasks" {
+  "id" int [pk]
+  "name" varchar(255)
+  "priority" tasks_priority_enum
+}
+
+Records tasks(id, name, priority) {
+  1, 'Task 1', 'high'
+  2, 'Task 2', 'invalid_priority'
+}

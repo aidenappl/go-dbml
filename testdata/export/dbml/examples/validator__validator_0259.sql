@@ -1,0 +1,8 @@
+Table "users" {
+  "id" int
+}
+
+TableGroup "social" {
+  "users"
+  Note: 'Social tables'
+}

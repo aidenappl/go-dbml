@@ -1,0 +1,7 @@
+Table a { x int }
+Table b { y int }
+Table c { z int }
+Dep order_staging [color: #79AD51, owner: 'data-team'] {
+  a, b -> c
+  note: 'built nightly'
+}

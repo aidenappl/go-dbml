@@ -1,0 +1,4 @@
+Table "users" {
+  "id" int
+  Note: 'Main users table'
+}

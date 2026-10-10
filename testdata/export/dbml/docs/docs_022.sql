@@ -1,0 +1,19 @@
+Enum "Status" {
+  "active"
+  "inactive"
+  "pending"
+}
+
+Table "users" {
+  "id" int
+  "name" varchar
+  "age" int
+  "status" Status
+  "created_at" timestamp
+}
+
+Records users(id, name, age, status, created_at) {
+  1, 'Alice', 30, null, '2024-01-15T10:30:00'
+  2, 'Bob', null, 'inactive', `now()`
+  3, 'Charlie', null, null, '2024-01-15'
+}

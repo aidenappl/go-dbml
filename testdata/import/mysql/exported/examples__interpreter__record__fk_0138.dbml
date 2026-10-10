@@ -1,0 +1,25 @@
+Table "merchants" {
+  "id" int
+  "country_code" varchar(255)
+
+  Indexes {
+    (id, country_code) [pk]
+  }
+}
+
+Table "orders" {
+  "id" int [pk]
+  "merchant_id" int
+  "country" varchar(255)
+}
+
+Ref:"merchants".("id", "country_code") ?<? "orders".("merchant_id", "country")
+
+Records merchants(id, country_code) {
+  1, 'US'
+  null, 'UK'
+}
+
+Records orders(id, merchant_id, country) {
+  1, 1, 'US'
+}

@@ -1,0 +1,12 @@
+
+Table data {
+  id int
+  value decimal
+  count int
+  temperature float
+}
+records data(id, value, count, temperature) {
+  1, 1e10, 1e2, 3.14e2
+  2, 3.14e-5, 2E3, -2.5e-3
+  3, 2E+8, ,
+}

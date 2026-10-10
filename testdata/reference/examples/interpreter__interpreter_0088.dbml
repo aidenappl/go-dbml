@@ -1,0 +1,6 @@
+
+Table users { id int }
+TableGroup Inv { users }
+DiagramView myView {
+  TableGroups { Inv }
+}

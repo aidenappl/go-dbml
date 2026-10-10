@@ -1,0 +1,8 @@
+Table "users" {
+  "id" int [pk]
+  "email" varchar(255)
+
+  Indexes {
+    email [unique, name: "users_index_0"]
+  }
+}

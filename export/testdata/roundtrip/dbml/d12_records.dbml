@@ -1,0 +1,13 @@
+Table countries {
+  code char(2) [pk]
+  name varchar not null
+}
+Table countries2 {
+  code char(2) [pk]
+  name varchar
+  pop int
+}
+records countries2(code, name, pop) {
+  'US', 'United States', 331000000
+  'FR', 'France', null
+}

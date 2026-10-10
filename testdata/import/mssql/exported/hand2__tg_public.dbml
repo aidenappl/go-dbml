@@ -1,0 +1,9 @@
+Table "users" {
+  "id" int
+}
+
+Table "users2" {
+  "id" int
+}
+
+Ref:"users2"."id" < "users"."id"

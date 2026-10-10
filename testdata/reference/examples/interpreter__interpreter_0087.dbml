@@ -1,0 +1,9 @@
+
+Note Note1 { 'hello' }
+Note Note2 { 'world' }
+DiagramView myView {
+  Notes {
+    Note1
+    Note2
+  }
+}

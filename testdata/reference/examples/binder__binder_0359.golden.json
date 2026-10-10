@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[2,24],"level":"error","msg":"Could not find schema 'ghost_schema'","start":[2,12]}]}

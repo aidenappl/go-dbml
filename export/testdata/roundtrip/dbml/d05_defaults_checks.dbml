@@ -1,0 +1,13 @@
+Table products {
+  id int [pk, increment]
+  name varchar(100) [not null, default: 'unnamed']
+  price decimal(10,2) [default: 0.00]
+  ratio float [default: -1.5]
+  active boolean [default: true]
+  deleted_at timestamp [null, default: null]
+  created timestamp [default: `CURRENT_TIMESTAMP`]
+  stock int [check: `stock >= 0`]
+  checks {
+    `price >= 0` [name: 'chk_price']
+  }
+}

@@ -1,0 +1,11 @@
+Table "a" {
+  "id" int
+}
+
+Table "b" {
+  "id" int
+}
+
+Table "c" {
+  "id" int
+}

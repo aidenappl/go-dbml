@@ -1,0 +1,23 @@
+
+TablePartial Base {
+  id int [pk]
+  created_at timestamp
+}
+
+TablePartial SoftDelete {
+  deleted_at timestamp
+  is_deleted boolean
+}
+
+Table posts {
+  ~Base
+  title varchar
+  content text
+  ~SoftDelete
+  author_id int
+}
+
+records posts(id, title, content, author_id) {
+  1, 'First Post', 'Hello World', 100
+  2, 'Second Post', 'Welcome', 101
+}

@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"BINDING_ERROR","end":[2,22],"level":"error","msg":"Column 'R' does not exist","start":[2,21]}]}

@@ -1,0 +1,18 @@
+
+Enum priority {
+  low
+  medium
+  high
+}
+TablePartial audit_fields {
+  priority priority
+}
+Table tasks {
+  id int [pk]
+  name varchar
+  ~audit_fields
+}
+records tasks(id, name, priority) {
+  1, "Task 1", "high"
+  2, "Task 2", "invalid_priority"
+}

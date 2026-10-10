@@ -1,0 +1,17 @@
+Table "bookings" {
+  "id" integer
+  "country" varchar(255)
+  "booking_date" date
+  "created_at" timestamp
+
+  Indexes {
+    (id, country) [pk]
+    created_at [name: "created_at_index"]
+    booking_date [name: "bookings_index_1"]
+    (country, booking_date) [unique, name: "bookings_index_2"]
+    booking_date [type: hash, name: "bookings_index_3"]
+    `(id*2)` [name: "bookings_index_4"]
+    (`(id*3)`, `(getdate())`) [name: "bookings_index_5"]
+    (`(id*3)`, id) [name: "bookings_index_6"]
+  }
+}

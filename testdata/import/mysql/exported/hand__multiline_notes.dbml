@@ -1,0 +1,4 @@
+Table "t" {
+  "c" int [note: '''it\'\'s escaped 
+ newline''']
+}

@@ -1,0 +1,5 @@
+Table orders { id int [pk]
+ total float }
+records orders(id, total) [example] {
+  1, 10.5
+}

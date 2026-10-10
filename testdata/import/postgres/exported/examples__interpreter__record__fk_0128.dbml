@@ -1,0 +1,35 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar
+}
+
+Table "posts" {
+  "id" int [pk]
+  "user_id" int
+  "title" varchar
+}
+
+Table "employees" {
+  "id" int [pk]
+  "manager_id" int
+  "name" varchar
+}
+
+Ref:"users"."id" ?<? "posts"."user_id"
+
+Ref:"employees"."id" ?<? "employees"."manager_id"
+
+Records users(id, name) {
+  1, 'Alice'
+}
+
+Records posts(id, user_id, title) {
+  1, 1, 'Valid Post'
+  2, 999, 'Invalid Post'
+}
+
+Records employees(id, manager_id, name) {
+  1, null, 'CEO'
+  2, 1, 'Manager'
+  3, 999, 'Invalid Manager Reference'
+}

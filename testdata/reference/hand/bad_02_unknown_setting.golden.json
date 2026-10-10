@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_COLUMN_SETTING_VALUE","end":[1,13],"level":"error","msg":"Custom setting 'foo' must be a string or a color literal","start":[1,10]}]}

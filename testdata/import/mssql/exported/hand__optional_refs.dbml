@@ -1,0 +1,37 @@
+Table "a" {
+  "id" int [pk]
+  "b_id" int
+  "c_id" int
+  "d_id" int
+}
+
+Table "b" {
+  "id" int [pk]
+}
+
+Table "c" {
+  "id" int [pk]
+}
+
+Table "d" {
+  "id" int [pk]
+}
+
+Table "a_c" {
+  "a_c_id" int
+  "c_id" int
+
+  Indexes {
+    (a_c_id, c_id) [pk]
+  }
+}
+
+Ref:"b"."id" < "a"."b_id"
+
+Ref:"a"."c_id" < "a_c"."a_c_id"
+
+Ref:"c"."id" < "a_c"."c_id"
+
+Ref:"a"."d_id" < "d"."id"
+
+Ref:"b"."id" < "a"."id"

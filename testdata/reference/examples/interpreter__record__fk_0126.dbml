@@ -1,0 +1,19 @@
+
+Table categories {
+  id int [pk]
+  name varchar
+}
+Table products {
+  id int [pk]
+  category_id int
+  name varchar
+}
+Ref: products.category_id >? categories.id
+
+records categories(id, name) {
+  1, "Electronics"
+}
+records products(id, category_id, name) {
+  1, 1, "Laptop"
+  2, null, "Uncategorized Item"
+}

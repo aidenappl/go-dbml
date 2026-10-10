@@ -1,0 +1,8 @@
+Table users [owner: 'alice', pii: 'yes', accent: #ff00ff] {
+  email varchar [sensitivity: 'high']
+}
+Enum status { active [note: 'Active'] }
+Metadata Table users {
+  owner: 'bob'
+  domain: 'identity'
+}

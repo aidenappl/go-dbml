@@ -1,0 +1,6 @@
+Table "emp" {
+  "id" int [pk]
+  "manager_id" int
+}
+
+Ref:"emp"."id" ?<? "emp"."manager_id"

@@ -1,0 +1,41 @@
+commands:
+    - name: build
+      description: Build all packages natively and for GOOS=js GOARCH=wasm
+      run: go build ./... && GOOS=js GOARCH=wasm go build ./...
+      syncAfter: false
+    - name: run
+      description: Run every golden suite verbose (parser conformance/reference, emit round trip, export, import) with pass rates
+      run: go test -count=1 -run 'Conformance|ReferenceSuite' -v . && go test -count=1 -v -run 'TestRoundTrip|TestExportGoldens|TestImportGoldens' ./emit ./export ./importer
+      syncAfter: false
+    - name: test
+      description: Run tests (unit, conformance, reference, limits, round trips, export/import goldens, wasm API)
+      run: go test ./...
+      syncAfter: false
+    - name: integration
+      description: Execute exported DDL on MariaDB 11.4, Postgres 16 and SQL Server 2022 containers (adversarial names, smuggling, round trips; needs Docker)
+      run: go test -count=1 -timeout 20m -tags integration -run Against -v ./export
+      syncAfter: false
+    - name: fuzz
+      description: Fuzz the parser, the emitter round trip, type translation and the four importers (30s each)
+      run: go test -run='^$' -fuzz=FuzzParse -fuzztime=30s . && go test -run='^$' -fuzz=FuzzEmitRoundTrip -fuzztime=30s ./emit && go test -run='^$' -fuzz=FuzzTranslate -fuzztime=30s ./export && for f in FuzzImportMySQL FuzzImportPostgres FuzzImportMSSQL FuzzImportSchemaRB; do go test -run='^$' -fuzz=$f -fuzztime=30s ./importer || exit 1; done
+      syncAfter: false
+    - name: wasm
+      description: Build dist/go-dbml.wasm (+ wasm_exec.js) for the browser and print raw/gzip size (budget 3 MB gzipped)
+      run: mkdir -p dist && GOOS=js GOARCH=wasm go build -ldflags='-s -w' -o dist/go-dbml.wasm ./wasm && cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" dist/ && ls -l dist/go-dbml.wasm && echo "gzip: $(gzip -9 -c dist/go-dbml.wasm | wc -c) bytes"
+      syncAfter: false
+    - name: fmt
+      description: Format code
+      run: gofmt -w -s .
+      syncAfter: false
+    - name: vet
+      description: Run go vet (native and js/wasm)
+      run: go vet ./... && GOOS=js GOARCH=wasm go vet ./...
+      syncAfter: false
+    - name: check
+      description: Run all checks
+      run: gofmt -w -s . && go vet ./... && GOOS=js GOARCH=wasm go vet ./... && go test ./...
+      syncAfter: false
+    - name: tidy
+      description: Tidy dependencies (keep the go directive at 1.25)
+      run: GOTOOLCHAIN=local go mod tidy
+      syncAfter: false

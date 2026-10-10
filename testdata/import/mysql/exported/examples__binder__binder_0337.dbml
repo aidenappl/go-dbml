@@ -1,0 +1,11 @@
+Table "merchants" {
+  "id" int [pk]
+  "country_code" varchar(255)
+}
+
+Table "orders" {
+  "merchant_id" int
+  "country" varchar(255)
+}
+
+Ref:"merchants".("id", "country_code") ?<? "orders".("merchant_id", "country")

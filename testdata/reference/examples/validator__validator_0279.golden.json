@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_PROJECT_CONTEXT","end":[2,24],"level":"error","msg":"An Enum can only appear top-level","start":[2,2]}]}

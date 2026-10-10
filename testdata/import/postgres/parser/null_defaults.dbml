@@ -1,0 +1,10 @@
+Table "test_nulls" {
+  "id" INT [pk]
+  "nullable_varchar" VARCHAR(255)
+  "nullable_int" INT
+  "nullable_text" TEXT
+  "nullable_date" DATE
+  "nullable_timestamp" TIMESTAMP
+  "not_null_with_default" VARCHAR(50) [not null, default: 'value']
+  "just_nullable" VARCHAR(100)
+}

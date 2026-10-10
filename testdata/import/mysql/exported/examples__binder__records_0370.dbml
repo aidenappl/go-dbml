@@ -1,0 +1,8 @@
+Table "auth"."users" {
+  "id" int
+  "email" varchar(255)
+}
+
+Records auth.users(id, email) {
+  1, 'alice@example.com'
+}

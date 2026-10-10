@@ -1,0 +1,7 @@
+Table "t" {
+  "email" varchar
+
+  Indexes {
+    `lower(email)` [name: "idx_email_lower"]
+  }
+}

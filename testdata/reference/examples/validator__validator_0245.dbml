@@ -1,0 +1,4 @@
+
+Table users { id int }
+Table roles { id int }
+Table user_roles { user_id int [ref: > users.id, ref: > roles.id] }

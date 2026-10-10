@@ -1,0 +1,7 @@
+
+TablePartial searchable {
+  search_text varchar
+  indexes {
+    search_text
+  }
+}

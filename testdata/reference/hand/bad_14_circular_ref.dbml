@@ -1,0 +1,2 @@
+Table a { id int [ref: > a.id] }
+Ref: a.id > a.id

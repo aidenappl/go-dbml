@@ -1,0 +1,15 @@
+Table very_long_users as U {
+  id int [pk]
+}
+Table orders {
+  uid int [ref: > U.id]
+  uid2 int
+}
+TableGroup g1 [color: #abc] {
+  U
+  orders
+}
+Note sticky {
+  'hello'
+}
+Ref: orders.uid2 - U.id

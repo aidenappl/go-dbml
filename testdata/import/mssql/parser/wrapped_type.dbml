@@ -1,0 +1,5 @@
+Table "products" {
+  "name" varchar(MAX) [default: 'Tea']
+  "status" varchar(255)
+  "price" "double precision"
+}

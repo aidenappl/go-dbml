@@ -1,0 +1,6 @@
+
+TableGroup ecommerce {
+  public.users
+  public.orders
+  public.products
+}

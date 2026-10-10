@@ -1,0 +1,13 @@
+Project {
+    Table A {
+
+    }
+
+    Table B as C {
+        
+    }
+}
+
+Table wrong_nested_element [] {
+    Indexes wrong nested element {} // parsed successfully as function application
+}

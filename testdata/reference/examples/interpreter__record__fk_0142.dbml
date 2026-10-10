@@ -1,0 +1,16 @@
+
+Table tags {
+  id int [pk]
+}
+Table posts {
+  id int [pk]
+}
+Ref: tags.id <>? posts.id
+
+records tags(id) {
+  1
+  2
+}
+records posts(id) {
+  10
+}

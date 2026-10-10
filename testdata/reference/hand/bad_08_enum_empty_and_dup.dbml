@@ -1,0 +1,5 @@
+Enum e {
+  x
+  x
+}
+Table t { c e [default: 1] }

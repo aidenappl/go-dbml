@@ -1,0 +1,3 @@
+Table "users" {
+  "name" varchar
+}

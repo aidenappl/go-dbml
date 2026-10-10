@@ -1,0 +1,16 @@
+
+Enum status {
+  active
+  inactive
+  pending
+}
+Table users {
+  id int [pk]
+  status status
+}
+records users(id, status) {
+  1, status.active
+  2, "inactive"
+  3, status.pending
+  4, null
+}

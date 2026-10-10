@@ -1,0 +1,8 @@
+
+Table t {
+  col1 int
+  col2 int
+  indexes {
+    (col1, col2) [pk]
+  }
+}

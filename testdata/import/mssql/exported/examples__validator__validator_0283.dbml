@@ -1,0 +1,23 @@
+Table "users" {
+  "id" integer [pk, increment]
+  "email" varchar(255) [unique, not null, note: 'User email']
+  "status" nvarchar(255) [default: 'active']
+  "created_at" timestamp [default: `now()`]
+  "updated_at" timestamp
+
+  Indexes {
+    email [unique, name: "idx_users_email"]
+  }
+  Note: 'Main users table'
+}
+
+Table "orders" {
+  "id" integer [pk, increment]
+  "user_id" integer
+  "status" nvarchar(255) [check: `[status] IN ('pending', 'processing', 'completed', 'cancelled')`, default: 'pending']
+  "total" decimal(10,2) [not null]
+  "created_at" timestamp [default: `now()`]
+  "updated_at" timestamp
+}
+
+Ref:"users"."id" < "orders"."user_id"

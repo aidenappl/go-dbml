@@ -1,0 +1,8 @@
+Table products {
+  price decimal [check: `price > 0`]
+  discount decimal
+  checks {
+    `discount >= 0` [name: 'disc_nonneg']
+    `discount < price`
+  }
+}

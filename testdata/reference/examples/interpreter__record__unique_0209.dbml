@@ -1,0 +1,9 @@
+
+Table users {
+  id int [pk]
+  email varchar [unique]
+}
+records users(id, email) {
+  1, "alice@example.com"
+  1, "bob@example.com"
+}

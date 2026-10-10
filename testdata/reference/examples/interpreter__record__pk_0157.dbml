@@ -1,0 +1,17 @@
+
+Table users {
+  id int [pk]
+  name varchar
+}
+Table countries {
+  code varchar(2) [pk]
+  name varchar
+}
+records users(id, name) {
+  1, "Alice"
+  1, "Bob"
+}
+records countries(code, name) {
+  "US", "United States"
+  "US", "USA"
+}

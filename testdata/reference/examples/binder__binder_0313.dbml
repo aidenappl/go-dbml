@@ -1,0 +1,10 @@
+
+Table users {
+  first_name varchar
+  last_name varchar
+  email varchar
+  indexes {
+    (first_name, last_name)
+    email [unique]
+  }
+}

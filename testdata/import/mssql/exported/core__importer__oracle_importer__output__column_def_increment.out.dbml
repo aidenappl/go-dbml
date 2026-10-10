@@ -1,0 +1,76 @@
+Table "customers" {
+  "cust_id" "NUMBER IDENTITY(1,1)"
+  "cust_name" VARCHAR2(100) [default: 'Unknown']
+  "email" VARCHAR2(100) [default: 'noemail@example.com']
+  "phone" VARCHAR2(20) [default: 'N/A']
+}
+
+Table "inventory" {
+  "item_id" "NUMBER IDENTITY(1,1)"
+  "item_name" VARCHAR2(200) [default: 'Default Item']
+  "price" NUMBER(10,2) [default: 0]
+  "category" VARCHAR2(50) [default: 'Misc']
+}
+
+Table "shipments" {
+  "ship_id" "NUMBER IDENTITY(1,1)"
+  "customer_id" NUMBER(10) [default: 1]
+  "ship_date" DATE [default: `SYSDATE`]
+  "total_amount" NUMBER(12,2) [default: 0]
+}
+
+Table "departments" {
+  "dept_id" "NUMBER IDENTITY(1,1)"
+  "dept_name" VARCHAR2(100) [default: 'General']
+  "manager_id" NUMBER(10) [default: 0]
+  "budget" NUMBER(12,2) [default: 10000]
+}
+
+Table "suppliers" {
+  "supp_id" "NUMBER IDENTITY(1,1)"
+  "supp_name" VARCHAR2(100) [default: 'Anonymous']
+  "contact" VARCHAR2(100) [default: 'Contact']
+  "credit_limit" NUMBER(10,2) [default: 5000]
+}
+
+Table "test_datatypes" {
+  "col_number" "NUMBER IDENTITY(1,1)"
+  "col_varchar2" VARCHAR2(100) [default: 'Default Text']
+  "col_char" CHAR(10) [default: 'DEFAULT   ']
+  "col_date" DATE [default: `SYSDATE`]
+}
+
+Table "test_basic" {
+  "id" "NUMBER IDENTITY(1,1)"
+  "[value]" NUMBER(10) [default: 100]
+}
+
+Table "test_status" {
+  "status_id" "NUMBER IDENTITY(1,1)"
+  "status" VARCHAR2(20) [default: 'OPEN']
+}
+
+Table "test_not_null" {
+  "record_id" NUMBER [not null, increment]
+  "description" VARCHAR2(200) [not null, default: 'No description']
+}
+
+Table "test_start_with" {
+  "order_id" "NUMBER IDENTITY(1,1)"
+  "order_code" VARCHAR2(20) [default: 'ORD000']
+}
+
+Table "test_increment" {
+  "ticket_id" "NUMBER IDENTITY(1,1)"
+  "ticket_type" VARCHAR2(20) [default: 'STANDARD']
+}
+
+Table "test_maxvalue" {
+  "ref_id" "NUMBER IDENTITY(1,1)"
+  "ref_name" VARCHAR2(100) [default: 'Reference']
+}
+
+Table "test_minvalue" {
+  "batch_id" "NUMBER IDENTITY(1,1)"
+  "batch_name" VARCHAR2(50) [default: 'Batch']
+}

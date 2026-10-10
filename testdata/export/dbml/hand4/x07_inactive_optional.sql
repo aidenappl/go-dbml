@@ -1,0 +1,18 @@
+Table "users" {
+  "id" integer [pk]
+}
+
+Table "posts" {
+  "user_id" integer [not null]
+  "editor_id" int
+  "owner_id" int [unique]
+  "other_id" int
+}
+
+Ref:"users"."id" ?< "posts"."user_id"
+
+Ref:"posts"."editor_id" ?< "users"."id" [inactive]
+
+Ref:"users"."id" ?-? "posts"."owner_id"
+
+Ref:"posts"."other_id" ?<>? "users"."id"

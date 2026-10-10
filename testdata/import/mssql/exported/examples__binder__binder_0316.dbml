@@ -1,0 +1,4 @@
+Table "users" {
+  "id" int
+  "status" nvarchar(255) [check: `[status] IN ('active', 'inactive')`]
+}

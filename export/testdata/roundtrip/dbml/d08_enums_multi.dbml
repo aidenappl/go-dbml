@@ -1,0 +1,18 @@
+Enum job_status {
+  created [note: 'Waiting to be processed']
+  running
+  done
+  failure
+}
+Enum priority { low medium high }
+Table jobs {
+  id int [pk, increment]
+  status job_status [not null]
+  prio priority [default: 'medium']
+  note varchar
+}
+Table runs {
+  id int [pk]
+  job_id int [ref: > jobs.id]
+  final job_status
+}

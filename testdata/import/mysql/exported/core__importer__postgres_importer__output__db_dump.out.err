@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `humanresources`.`department` (\n  `departmentid` integer PRIMARY KEY NOT NULL COMMENT 'Primary key for Department records.',\n  `name` public'
+mismatched input ''18 years'' expecting '-'

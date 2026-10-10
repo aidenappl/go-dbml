@@ -1,0 +1,105 @@
+Table "old_table" {
+  "id" INT [pk]
+  "data" VARCHAR(100)
+}
+
+Table "table1" {
+  "id" INT [pk]
+}
+
+Table "table2" {
+  "id" INT [pk]
+}
+
+Table "table3" {
+  "id" INT [pk]
+}
+
+Table "table_a" {
+  "id" INT
+}
+
+Table "table_b" {
+  "id" INT
+}
+
+Table "temp_table" {
+  "id" INT
+}
+
+Table "source_with_indexes" {
+  "id" INT [pk]
+  "name" VARCHAR(100)
+  "email" VARCHAR(100)
+
+  Indexes {
+    name [name: "idx_name"]
+    email [unique, name: "uk_email"]
+  }
+}
+
+Table "truncate_test" {
+  "id" INT [pk]
+  "data" VARCHAR(100)
+}
+
+Table "truncate_test2" {
+  "id" INT [pk]
+}
+
+Table "truncate_vs_delete" {
+  "id" INT [pk, increment]
+  "data" VARCHAR(100)
+}
+
+Table "parent_trunc" {
+  "id" INT [pk]
+}
+
+Table "child_trunc" {
+  "id" INT [pk]
+  "parent_id" INT
+}
+
+Table "partitioned_truncate" {
+  "id" INT
+  "created_year" INT
+
+  Indexes {
+    (id, created_year) [pk]
+  }
+}
+
+Table "temp_truncate" {
+  "id" INT
+  "data" VARCHAR(100)
+}
+
+Table "table_with_trigger_trunc" {
+  "id" INT [pk]
+  "data" VARCHAR(100)
+}
+
+Table "t1" {
+  "id" INT
+}
+
+Table "t2" {
+  "id" INT
+}
+
+Table "t3" {
+  "id" INT
+}
+
+Ref:"parent_trunc"."id" ?<? "child_trunc"."parent_id"
+
+Records truncate_vs_delete(data) {
+  'test1'
+  'test2'
+  'test3'
+}
+
+Records temp_truncate(id, data) {
+  1, 'test'
+}

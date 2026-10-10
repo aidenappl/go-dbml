@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_RECORDS_FIELD","end":[6,26],"level":"error","msg":"Records can only contain simple values (literals, null, true, false, or enum references). Complex expressions are not allowed.","start":[6,5]}]}

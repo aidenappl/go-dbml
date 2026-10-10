@@ -1,0 +1,44 @@
+
+Project ecommerce {
+  database_type: 'PostgreSQL'
+  Note: 'E-commerce database'
+}
+
+Enum order_status {
+  pending [note: 'Initial state']
+  processing
+  completed
+  cancelled
+}
+
+TablePartial timestamps {
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+}
+
+Table users [headercolor: #3498db] {
+  id integer [pk, increment]
+  email varchar(255) [unique, not null, note: 'User email']
+  status varchar [default: 'active']
+  ~timestamps
+
+  indexes {
+    email [unique, name: 'idx_users_email']
+  }
+
+  Note: 'Main users table'
+}
+
+Table orders {
+  id integer [pk, increment]
+  user_id integer [ref: > users.id]
+  status order_status [default: 'pending']
+  total decimal(10, 2) [not null]
+  ~timestamps
+}
+
+TableGroup ecommerce [color: #2ecc71] {
+  users
+  orders
+  Note: 'Core e-commerce tables'
+}

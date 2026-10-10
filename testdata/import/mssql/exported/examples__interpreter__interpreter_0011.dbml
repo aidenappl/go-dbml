@@ -1,0 +1,7 @@
+Table "users" {
+  "email" nvarchar(255)
+
+  Indexes {
+    email [name: "users_index_0"]
+  }
+}

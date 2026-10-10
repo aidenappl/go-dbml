@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `orders` (\n  `id` int,\n  `user_id` int,\n  `status` varchar(255),\n  `create_at` date_time'

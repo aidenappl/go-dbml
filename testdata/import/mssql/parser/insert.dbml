@@ -1,0 +1,27 @@
+Table "dbo"."T1" {
+  "column_1" "int IDENTITY"
+  "column_2" VARCHAR(30)
+}
+
+Records Production.UnitMeasure(Name, UnitMeasureCode, ModifiedDate) {
+  `N'Square Yards'`, `N'Y2'`, `GETDATE()`
+  null, null, null
+}
+
+Records special_chars(id, name, value) {
+  1, 'Special 1', 'test\'\'s value'
+  2, 'Special 2', 'value with \"quotes\"'
+  3, 'Special 3', 'value with [brackets]'
+}
+
+Records complex_table(id, name, value, created_at) {
+  1, 'Complex 1', `ABS(-100) * 2 + 3`, `GETDATE()`
+  2, 'Complex 2', `CAST(123 AS VARCHAR(10)) + 'test'`, `CURRENT_TIMESTAMP`
+  3, 'Complex 3', `NULLIF(1, 1)`, `GETDATE()`
+}
+
+Records T1(column_1, column_2) {
+  1, 'Row #1'
+  1, 'Explicit identity value'
+  2, 'Explicit identity value'
+}

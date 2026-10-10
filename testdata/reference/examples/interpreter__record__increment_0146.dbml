@@ -1,0 +1,9 @@
+
+Table users {
+  id serial [pk]
+  name varchar
+}
+records users(id, name) {
+  null, "Alice"
+  null, "Bob"
+}

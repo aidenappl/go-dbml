@@ -1,0 +1,4 @@
+Table src { v int }
+Table mid [dep: < src] {
+  v int [dep: < src.v]
+}

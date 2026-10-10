@@ -1,0 +1,25 @@
+Table s1.t1 {
+  a int
+  b int
+  c text
+  indexes {
+    (a, b) [pk]
+    a [unique, type: hash]
+    (b, `lower(c)`) [name: 'expr_ix', type: btree]
+    `a + b`
+    c [note: 'n']
+  }
+}
+Table t2 {
+  a int
+  indexes {
+    a
+    (a) [unique]
+  }
+}
+Table s1.t3 {
+  a int [pk]
+  indexes {
+    a
+  }
+}

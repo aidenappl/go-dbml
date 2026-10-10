@@ -1,0 +1,7 @@
+Table "users" {
+  "email" varchar(255)
+
+  Indexes {
+    email [type: btree, unique, name: "idx_email"]
+  }
+}

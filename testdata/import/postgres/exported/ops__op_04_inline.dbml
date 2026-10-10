@@ -1,0 +1,44 @@
+Table "b" {
+  "id" int [pk]
+}
+
+Table "a" {
+  "id" int [pk]
+  "b_id" int
+  "self" int
+}
+
+Table "b_a" {
+  "b_id" int
+  "a_b_id" int
+
+  Indexes {
+    (b_id, a_b_id) [pk]
+  }
+}
+
+Table "a_a" {
+  "a_id" int
+  "a_self" int
+
+  Indexes {
+    (a_id, a_self) [pk]
+  }
+}
+
+Ref:"b"."id" ?<? "b_a"."b_id"
+
+Ref:"a"."b_id" ?<? "b_a"."a_b_id"
+
+Ref:"a"."id" ?<? "a_a"."a_id"
+
+Ref:"a"."self" ?<? "a_a"."a_self"
+
+Records b(id) {
+  1
+}
+
+Records a(id, b_id, self) {
+  1, 1, 1
+  2, 9, null
+}

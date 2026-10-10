@@ -1,0 +1,5 @@
+
+Table users {
+  status status_enum
+}
+Enum status_enum { active\n inactive }

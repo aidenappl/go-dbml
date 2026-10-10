@@ -1,0 +1,10 @@
+Table "users" {
+  "extra" varchar(255)
+  "id" int [pk]
+  "name" varchar(255)
+}
+
+Records users(extra, id, name) {
+  'extra_value', 1, 'Alice'
+  'extra_value2', 2, 'Bob'
+}

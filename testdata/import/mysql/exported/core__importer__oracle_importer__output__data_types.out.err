@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `data_types` (\n  `c1_char` CHAR(10),\n  `c2_varchar2` VARCHAR2'

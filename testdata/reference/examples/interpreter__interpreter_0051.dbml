@@ -1,0 +1,7 @@
+
+Table t {
+  email varchar
+  indexes {
+    email [unique, name: 'idx_email', type: btree, note: 'Unique email']
+  }
+}

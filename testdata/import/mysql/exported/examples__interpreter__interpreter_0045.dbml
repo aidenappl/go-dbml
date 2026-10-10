@@ -1,0 +1,7 @@
+Table "t" {
+  "col" varchar(255)
+
+  Indexes {
+    col [type: hash, name: "t_index_0"]
+  }
+}

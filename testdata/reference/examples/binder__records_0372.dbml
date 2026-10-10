@@ -1,0 +1,7 @@
+
+Table users {
+  id int
+}
+records users(id, nonexistent) {
+  1, "value"
+}

@@ -1,0 +1,4 @@
+Enum "status" {
+  "active"
+  "inactive"
+}

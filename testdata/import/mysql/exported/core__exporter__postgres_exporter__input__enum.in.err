@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `accounts` (\n  `id` int,\n  `name` Var'

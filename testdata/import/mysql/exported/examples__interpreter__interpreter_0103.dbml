@@ -1,0 +1,11 @@
+Table "alpha" {
+  "id" int
+}
+
+Table "beta" {
+  "id" int
+}
+
+Table "gamma" {
+  "id" int
+}

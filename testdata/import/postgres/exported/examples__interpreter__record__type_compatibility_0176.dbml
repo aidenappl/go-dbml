@@ -1,0 +1,21 @@
+Table "data" {
+  "id" int
+  "active" boolean
+}
+
+Records data(id, active) {
+  1, true
+  2, false
+  3, true
+  4, false
+  5, true
+  6, false
+  7, true
+  8, false
+  9, true
+  10, false
+  11, true
+  12, false
+  13, true
+  14, false
+}

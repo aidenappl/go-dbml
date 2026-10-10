@@ -1,0 +1,6 @@
+no viable alternative at input 'CASEWHENstatus='ACTIVE'THENsalary>'
+mismatched input '=' expecting 'CONVERSATION'
+no viable alternative at input '(TRIM'
+no viable alternative at input '(emp_name'
+mismatched input 'salary' expecting {'SELECT', '('}
+no viable alternative at input '(email'

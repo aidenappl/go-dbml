@@ -1,0 +1,24 @@
+TablePartial audit [headerColor: #fff, note: 'audit'] {
+  created_by s.user_ref [ref: > users.id]
+  kind public.kind
+  amount decimal(10,2) [default: 1.5, check: `amount > 0`]
+  indexes {
+    created_by [name: 'by_creator']
+  }
+  checks {
+    `amount < 100` [name: 'small']
+  }
+}
+Enum kind {
+  x
+  y
+}
+Table users {
+  id int [pk]
+  ~audit
+}
+Table posts {
+  id int [pk]
+  ~audit
+  note2 text [note: 'n']
+}

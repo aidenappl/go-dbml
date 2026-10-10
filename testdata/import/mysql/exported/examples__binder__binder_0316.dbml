@@ -1,0 +1,9 @@
+Enum "users_status_enum" {
+  "active"
+  "inactive"
+}
+
+Table "users" {
+  "id" int
+  "status" users_status_enum
+}

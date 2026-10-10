@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_SETTINGS","end":[7,3],"level":"error","msg":"'somekey' must be a simple field (e.g. somekey: value). Block syntax is not allowed","start":[5,2]}]}

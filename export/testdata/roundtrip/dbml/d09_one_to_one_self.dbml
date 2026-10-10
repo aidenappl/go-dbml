@@ -1,0 +1,12 @@
+Table employees {
+  id int [pk]
+  manager_id int
+  name varchar
+}
+Table badges {
+  id int [pk]
+  employee_id int [unique]
+}
+Ref: employees.manager_id > employees.id [delete: set null]
+Ref: badges.employee_id - employees.id [update: cascade, delete: cascade]
+Ref: employees.id < badges.id

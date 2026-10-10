@@ -1,0 +1,186 @@
+Table "A"."a" {
+  "AB" integer
+  "BA" integer
+
+  Indexes {
+    (AB, BA) [pk]
+  }
+}
+
+Table "A"."a_b" {
+  "a_AB" integer
+  "a_BA" integer
+  "b_BC" integer
+  "b_CB" integer
+
+  Indexes {
+    (a_AB, a_BA, b_BC, b_CB) [pk]
+  }
+}
+
+Table "B"."b" {
+  "BC" integer
+  "CB" integer
+
+  Indexes {
+    (BC, CB) [pk]
+  }
+}
+
+Table "C"."c" {
+  "CD" integer [pk]
+  "DC" integer
+}
+
+Table "D"."d" {
+  "DE" integer [pk]
+  "ED" integer
+}
+
+Table "D"."d_c" {
+  "d_DE" integer
+  "c_CD" integer
+
+  Indexes {
+    (d_DE, c_CD) [pk]
+  }
+}
+
+Table "E"."e" {
+  "EF" integer
+  "FE" integer
+  "DE" integer
+  "ED" integer
+
+  Indexes {
+    (EF, FE) [pk]
+  }
+}
+
+Table "E"."e_g" {
+  "e_EF" integer
+  "e_FE" integer
+  "g_GH" integer
+  "g_HG" integer
+
+  Indexes {
+    (e_EF, e_FE, g_GH, g_HG) [pk]
+  }
+}
+
+Table "G"."g" {
+  "GH" integer
+  "HG" integer
+  "EH" integer
+  "HE" integer
+
+  Indexes {
+    (GH, HG) [pk]
+  }
+}
+
+Table "t1" {
+  "a" int [pk]
+  "b" int [unique]
+}
+
+Table "t2" {
+  "a" int [pk]
+  "b" int [unique]
+}
+
+Table "t1_t2" {
+  "a" int
+}
+
+Table "t1_t2(1)" {
+  "t1_a" int
+  "t2_a" int
+
+  Indexes {
+    (t1_a, t2_a) [pk]
+  }
+}
+
+Table "t1_t2(2)" {
+  "t1_b" int
+  "t2_b" int
+
+  Indexes {
+    (t1_b, t2_b) [pk]
+  }
+}
+
+Ref:"D"."d"."DE" < "D"."d_c"."d_DE"
+
+Ref:"C"."c"."CD" < "D"."d_c"."c_CD"
+
+Ref:"A"."a".("AB", "BA") < "A"."a_b".("a_AB", "a_BA")
+
+Ref:"B"."b".("BC", "CB") < "A"."a_b".("b_BC", "b_CB")
+
+Ref:"E"."e".("EF", "FE") < "E"."e_g".("e_EF", "e_FE")
+
+Ref:"G"."g".("GH", "HG") < "E"."e_g".("g_GH", "g_HG")
+
+Ref:"t1"."a" < "t1_t2(1)"."t1_a"
+
+Ref:"t2"."a" < "t1_t2(1)"."t2_a"
+
+Ref:"t1"."b" < "t1_t2(2)"."t1_b"
+
+Ref:"t2"."b" < "t1_t2(2)"."t2_b"
+
+Ref:"schema"."image"."id" < "schema"."image_content_item"."image_id"
+
+Ref:"schema"."content_item"."id" < "schema"."image_content_item"."content_item_id"
+
+Ref:"schema1"."customers"."id" < "schema1"."customers_orders"."customers_id"
+
+Ref:"schema2"."orders"."id" < "schema1"."customers_orders"."orders_id"
+
+Table "schema"."image" {
+  "id" integer [pk]
+  "url" nvarchar(255)
+}
+
+Table "schema"."content_item" {
+  "id" integer [pk]
+  "heading" nvarchar(255)
+  "description" nvarchar(255)
+}
+
+Table "schema"."footer_item" {
+  "id" integer [pk]
+  "left" nvarchar(255)
+  "centre" nvarchar(255)
+  "right" nvarchar(255)
+}
+
+Table "schema"."image_content_item" {
+  "image_id" integer
+  "content_item_id" integer
+
+  Indexes {
+    (image_id, content_item_id) [pk]
+  }
+}
+
+Table "schema1"."customers" {
+  "id" integer [pk]
+  "full_name" nvarchar(255)
+}
+
+Table "schema1"."customers_orders" {
+  "customers_id" integer
+  "orders_id" integer
+
+  Indexes {
+    (customers_id, orders_id) [pk]
+  }
+}
+
+Table "schema2"."orders" {
+  "id" integer [pk]
+  "total_price" integer
+}

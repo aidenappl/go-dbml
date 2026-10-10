@@ -1,0 +1,18 @@
+
+Enum auth.role {
+  admin
+  user
+}
+Enum app.status {
+  active
+  inactive
+}
+Table auth.users {
+  id int [pk]
+  role auth.role
+  status app.status
+}
+records auth.users(id, role, status) {
+  1, auth.role.admin, "active"
+  2, auth.role.user, app.status.inactive
+}

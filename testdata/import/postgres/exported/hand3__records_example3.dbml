@@ -1,0 +1,4 @@
+Table "orders" {
+  "id" int [pk]
+  "total" float
+}

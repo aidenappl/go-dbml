@@ -1,0 +1,36 @@
+Table "a" {
+  "id" int [pk]
+  "b_id" int [not null]
+  "n" int
+}
+
+Table "b" {
+  "id" int [pk]
+  "u" int [unique]
+}
+
+Table "a_b" {
+  "a_b_id" int
+  "b_id" int
+
+  Indexes {
+    (a_b_id, b_id) [pk]
+  }
+}
+
+Table "a_b(1)" {
+  "a_n" int
+  "b_u" int
+
+  Indexes {
+    (a_n, b_u) [pk]
+  }
+}
+
+Ref:"a"."b_id" < "a_b"."a_b_id"
+
+Ref:"b"."id" < "a_b"."b_id"
+
+Ref:"a"."n" < "a_b(1)"."a_n"
+
+Ref:"b"."u" < "a_b(1)"."b_u"

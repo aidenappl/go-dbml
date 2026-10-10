@@ -1,0 +1,8 @@
+
+Table users { id int }
+TableGroup Inventory { users }
+DiagramView myView {
+  Tables { * }
+  TableGroups { Inventory }
+  Schemas { * }
+}

@@ -1,0 +1,13 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar(255)
+}
+
+Table "posts" {
+  "id" int [pk]
+  "user_id" int
+}
+
+Table "sales"."orders" {
+  "id" int [pk]
+}

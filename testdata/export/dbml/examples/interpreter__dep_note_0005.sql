@@ -1,0 +1,5 @@
+Table "a" {
+  "id" int
+}
+
+Dep: "a" -> "a"

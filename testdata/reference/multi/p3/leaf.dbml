@@ -1,0 +1,2 @@
+Table a { id int [pk] }
+TablePartial tp { x int }

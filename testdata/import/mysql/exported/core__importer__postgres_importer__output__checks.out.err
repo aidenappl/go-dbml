@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `contacts` (\n  `contact_id` INT PRIMARY KEY,\n  `email` VARCHAR(100) CHECK (email LIKE '%@%'),\n  `phone` VARCHAR(20) CHECK (phone ~'
+mismatched input 'discount_pct' expecting '-'

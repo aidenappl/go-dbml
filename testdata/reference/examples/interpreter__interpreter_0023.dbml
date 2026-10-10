@@ -1,0 +1,4 @@
+
+Project myapp {
+  database_type: 'PostgreSQL'
+}

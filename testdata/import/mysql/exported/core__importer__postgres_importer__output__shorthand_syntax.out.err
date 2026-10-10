@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `booking_reference` (\n  `reference_id` NVARCHAR(10) NOT NULL,\n  `cust_id` NUMBER'

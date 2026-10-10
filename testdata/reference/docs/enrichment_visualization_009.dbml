@@ -1,0 +1,16 @@
+// schema.dbml
+Table users [owner: 'jane'] {   // inline setting
+  id int [pk]
+}
+Metadata Table users {          // beats inline -> 'david'
+  owner: 'david'
+}
+
+// team.dbml
+use * from 'schema'
+Metadata Table users {          // beats imported block -> 'alice'
+  owner: 'alice'
+}
+
+// main.dbml
+use * from 'team'

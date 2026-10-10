@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_COLUMN_SETTING_VALUE","end":[1,37],"level":"error","msg":"Custom setting 'unknown_setting' must be a string or a color literal","start":[1,22]},{"code":"BINDING_ERROR","end":[1,57],"level":"error","msg":"Table 'nonexistent' does not exist in Schema 'public'","start":[1,46]}]}

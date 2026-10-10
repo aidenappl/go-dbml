@@ -1,0 +1,17 @@
+Table "d" {
+  "a" INT [default: 0]
+  "b" VARCHAR(10) [default: 'x']
+  "c" BOOLEAN [default: TRUE]
+  "e" DATETIME [default: `NOW()`]
+  "f" DECIMAL(5,2) [default: 1.5]
+  "g" INT
+  "h" VARCHAR(20) [default: `UUID()`]
+  "i" BIT(1) [default: 'b'1'']
+  "j" VARBINARY(4) [default: 0x00FF]
+  "k" TIMESTAMP(3) [default: `CURRENT_TIMESTAMP(3)`]
+  "l" INT [default: 007]
+  "m" FLOAT [default: `-2.5e3`]
+  "n" TEXT [not null]
+  "o" YEAR(4)
+  "p" MEDIUMINT(8) [not null, default: '0', note: '''it\'\'s a "quote"''']
+}

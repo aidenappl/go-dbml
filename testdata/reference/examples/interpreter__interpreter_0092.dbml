@@ -1,0 +1,9 @@
+
+Table users as U { id int }
+Table posts { id int }
+DiagramView myView {
+  Tables {
+    U
+    posts
+  }
+}

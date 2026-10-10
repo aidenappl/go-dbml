@@ -1,0 +1,286 @@
+Table "gen_simple" {
+  "id" INT [pk]
+  "first_name" VARCHAR(50)
+  "last_name" VARCHAR(50)
+  "full_name" VARCHAR(101)
+}
+
+Table "gen_virtual" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "quantity" INT
+  "total" DECIMAL(10,2)
+}
+
+Table "gen_stored" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "tax_rate" DECIMAL(5,2) [default: 0.10]
+  "tax_amount" DECIMAL(10,2)
+}
+
+Table "gen_always" {
+  "id" INT [pk]
+  "radius" DECIMAL(10,2)
+  "area" DECIMAL(10,2)
+}
+
+Table "gen_multiple" {
+  "id" INT [pk]
+  "width" DECIMAL(10,2)
+  "height" DECIMAL(10,2)
+  "depth" DECIMAL(10,2)
+  "area" DECIMAL(10,2)
+  "volume" DECIMAL(10,2)
+  "perimeter" DECIMAL(10,2)
+}
+
+Table "gen_strings" {
+  "id" INT [pk]
+  "email" VARCHAR(100)
+  "domain" VARCHAR(100)
+  "username" VARCHAR(100)
+  "email_upper" VARCHAR(100)
+}
+
+Table "gen_dates" {
+  "id" INT [pk]
+  "birth_date" DATE
+  "age" INT
+  "birth_year" INT
+  "birth_month" INT
+}
+
+Table "gen_json" {
+  "id" INT [pk]
+  "data" JSON
+  "name" VARCHAR(100)
+  "age" INT
+  "city" VARCHAR(100)
+}
+
+Table "gen_case" {
+  "id" INT [pk]
+  "score" INT
+  "grade" CHAR(1)
+}
+
+Table "gen_if" {
+  "id" INT [pk]
+  "age" INT
+  "is_adult" BOOLEAN
+  "category" VARCHAR(20)
+}
+
+Table "gen_null_safe" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "discount" DECIMAL(10,2)
+  "final_price" DECIMAL(10,2)
+}
+
+Table "gen_math" {
+  "id" INT [pk]
+  "x" DECIMAL(10,2)
+  "y" DECIMAL(10,2)
+  "distance" DECIMAL(10,2)
+  "abs_x" DECIMAL(10,2)
+  "rounded" DECIMAL(10,0)
+}
+
+Table "gen_concat_ws" {
+  "id" INT [pk]
+  "first_name" VARCHAR(50)
+  "middle_name" VARCHAR(50)
+  "last_name" VARCHAR(50)
+  "full_name" VARCHAR(152)
+}
+
+Table "gen_indexed" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "quantity" INT
+  "total" DECIMAL(10,2)
+
+  Indexes {
+    total [name: "idx_total"]
+  }
+}
+
+Table "gen_length" {
+  "id" INT [pk]
+  "description" TEXT
+  "char_count" INT
+  "word_count" INT
+}
+
+Table "gen_date_calc" {
+  "id" INT [pk]
+  "start_date" DATE
+  "duration_days" INT
+  "end_date" DATE
+  "is_expired" BOOLEAN
+}
+
+Table "gen_timestamps" {
+  "id" INT [pk]
+  "created_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  "created_year" INT
+  "created_month" VARCHAR(20)
+  "created_day" VARCHAR(20)
+}
+
+Table "gen_padding" {
+  "id" INT [pk]
+  "code" INT
+  "padded_code" VARCHAR(10)
+  "formatted_code" VARCHAR(15)
+}
+
+Table "gen_chained" {
+  "id" INT [pk]
+  "base_price" DECIMAL(10,2)
+  "markup" DECIMAL(10,2)
+  "final_price" DECIMAL(10,2)
+}
+
+Table "gen_substring" {
+  "id" INT [pk]
+  "full_code" VARCHAR(20)
+  "prefix" VARCHAR(5)
+  "suffix" VARCHAR(5)
+}
+
+Table "gen_replace" {
+  "id" INT [pk]
+  "phone" VARCHAR(20)
+  "phone_clean" VARCHAR(20)
+}
+
+Table "gen_trim" {
+  "id" INT [pk]
+  "raw_text" VARCHAR(200)
+  "trimmed_text" VARCHAR(200)
+  "trimmed_lower" VARCHAR(200)
+}
+
+Table "gen_mod" {
+  "id" INT [pk]
+  "value" INT
+  "is_even" BOOLEAN
+  "is_divisible_by_5" BOOLEAN
+}
+
+Table "gen_coalesce" {
+  "id" INT [pk]
+  "primary_email" VARCHAR(100)
+  "secondary_email" VARCHAR(100)
+  "contact_email" VARCHAR(100)
+}
+
+Table "gen_greatest_least" {
+  "id" INT [pk]
+  "score1" INT
+  "score2" INT
+  "score3" INT
+  "best_score" INT
+  "worst_score" INT
+}
+
+Table "gen_hex" {
+  "id" INT [pk]
+  "value" INT
+  "hex_value" VARCHAR(20)
+}
+
+Table "gen_date_compare" {
+  "id" INT [pk]
+  "expiry_date" DATE
+  "days_until_expiry" INT
+  "is_expired" BOOLEAN
+  "expires_soon" BOOLEAN
+}
+
+Table "gen_backticks" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "price-with-tax" DECIMAL(10,2)
+}
+
+Table "gen_floor_ceil" {
+  "id" INT [pk]
+  "value" DECIMAL(10,2)
+  "floored" INT
+  "ceiled" INT
+}
+
+Table "gen_complex" {
+  "id" INT [pk]
+  "a" DECIMAL(10,2)
+  "b" DECIMAL(10,2)
+  "c" DECIMAL(10,2)
+  "result" DECIMAL(10,2)
+}
+
+Table "gen_in" {
+  "id" INT [pk]
+  "status" VARCHAR(20)
+  "is_active" BOOLEAN
+}
+
+Table "gen_between" {
+  "id" INT [pk]
+  "age" INT
+  "is_adult" BOOLEAN
+  "is_senior" BOOLEAN
+}
+
+Table "gen_like" {
+  "id" INT [pk]
+  "email" VARCHAR(100)
+  "is_gmail" BOOLEAN
+}
+
+Table "gen_regexp" {
+  "id" INT [pk]
+  "code" VARCHAR(20)
+  "is_valid_code" BOOLEAN
+}
+
+Table "gen_alter_test" {
+  "id" INT [pk]
+  "price" DECIMAL(10,2)
+  "quantity" INT
+}
+
+Table "gen_not_null" {
+  "id" INT [pk]
+  "first_name" VARCHAR(50) [not null]
+  "last_name" VARCHAR(50) [not null]
+  "full_name" VARCHAR(101) [not null]
+}
+
+Table "gen_unique" {
+  "id" INT [pk]
+  "email" VARCHAR(100)
+  "normalized_email" VARCHAR(100) [unique]
+}
+
+Table "gen_comment" {
+  "id" INT [pk]
+  "radius" DECIMAL(10,2)
+  "area" DECIMAL(10,2) [note: 'Calculated circle area']
+}
+
+Table "gen_utc" {
+  "id" INT [pk]
+  "local_time" TIMESTAMP
+  "utc_time" TIMESTAMP
+}
+
+Table "gen_bin_oct" {
+  "id" INT [pk]
+  "value" INT
+  "binary_repr" VARCHAR(64)
+  "octal_repr" VARCHAR(64)
+}

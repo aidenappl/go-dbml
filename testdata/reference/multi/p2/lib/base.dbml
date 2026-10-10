@@ -1,0 +1,4 @@
+Table users { id int [pk] }
+Enum role { a
+ b }
+Table hidden { id int }

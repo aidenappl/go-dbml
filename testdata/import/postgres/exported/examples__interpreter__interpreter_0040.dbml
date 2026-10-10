@@ -1,0 +1,20 @@
+Table "a" {
+  "id" int
+}
+
+Table "b" {
+  "a_id" int
+}
+
+Table "a_b" {
+  "a_id" int
+  "b_a_id" int
+
+  Indexes {
+    (a_id, b_a_id) [pk]
+  }
+}
+
+Ref:"a"."id" ?<? "a_b"."a_id"
+
+Ref:"b"."a_id" ?<? "a_b"."b_a_id"

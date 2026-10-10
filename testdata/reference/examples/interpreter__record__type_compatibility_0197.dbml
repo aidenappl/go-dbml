@@ -1,0 +1,12 @@
+
+Enum app.status {
+  active
+  inactive
+}
+Table app.users {
+  id int [pk]
+  status app.status
+}
+records app.users(id, status) {
+  1, status.active
+}

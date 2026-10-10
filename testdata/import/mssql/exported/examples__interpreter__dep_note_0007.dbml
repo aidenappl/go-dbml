@@ -1,0 +1,4 @@
+Table "a" {
+  "id" int
+  "name" nvarchar(255)
+}

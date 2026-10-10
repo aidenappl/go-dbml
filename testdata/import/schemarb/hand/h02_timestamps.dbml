@@ -1,0 +1,4 @@
+Table "accounts" {
+  "id" varchar
+  "user_id" integer
+}

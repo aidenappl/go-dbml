@@ -1,0 +1,20 @@
+Table "users" {
+  "id" int [pk]
+  "full_name" varchar(255)
+  "email" varchar(255) [unique]
+  "gender" varchar(255)
+  "date_of_birth" varchar(255)
+  "created_at" varchar(255)
+  "country_code" int
+  "active" boolean [not null]
+
+  Indexes {
+    id [unique, name: "index_name"]
+    full_name [name: "User Name"]
+    (email, created_at) [type: hash, name: "index_name1"]
+    `now()` [name: "index_name2"]
+    (active, `lower(full_name)`) [name: "index_name3"]
+    (`getdate()`, `upper(gender)`) [name: "index_name4"]
+    `reverse(country_code)` [name: "index_name5"]
+  }
+}

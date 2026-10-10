@@ -1,0 +1,27 @@
+
+Table products {
+  id int
+  region varchar
+
+  indexes {
+    (id, region) [pk]
+  }
+}
+Table categories {
+  id int
+  region varchar
+
+  indexes {
+    (id, region) [pk]
+  }
+}
+Ref: products.(id, region) <> categories.(id, region)
+
+records products(id, region) {
+  1, "US"
+  2, "US"
+}
+records categories(id, region) {
+  1, "US"
+  3, "EU"
+}

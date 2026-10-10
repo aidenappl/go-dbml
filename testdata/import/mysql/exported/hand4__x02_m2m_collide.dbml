@@ -1,0 +1,58 @@
+Table "a" {
+  "id" int [pk]
+  "b_id" int
+}
+
+Table "b" {
+  "id" int [pk]
+}
+
+Table "a_b" {
+  "x" int
+}
+
+Table "c" {
+  "a_id" int
+  "id" int [pk]
+}
+
+Table "a_b(1)" {
+  "a_id" int
+  "b_id" int
+
+  Indexes {
+    (a_id, b_id) [pk]
+  }
+}
+
+Table "a_b(2)" {
+  "a_b_id" int
+  "b_id" int
+
+  Indexes {
+    (a_b_id, b_id) [pk]
+  }
+}
+
+Table "a_c" {
+  "a_id" int
+  "a_b_id" int
+  "c_a_id" int
+  "c_id" int
+
+  Indexes {
+    (a_id, a_b_id, c_a_id, c_id) [pk]
+  }
+}
+
+Ref:"a"."id" ?<? "a_b(1)"."a_id"
+
+Ref:"b"."id" ?<? "a_b(1)"."b_id"
+
+Ref:"a"."b_id" ?<? "a_b(2)"."a_b_id"
+
+Ref:"b"."id" ?<? "a_b(2)"."b_id"
+
+Ref:"a".("id", "b_id") ?<? "a_c".("a_id", "a_b_id")
+
+Ref:"c".("a_id", "id") ?<? "a_c".("c_a_id", "c_id")

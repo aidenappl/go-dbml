@@ -1,0 +1,15 @@
+Table users {
+  id int [pk, increment]
+  name varchar
+  score decimal(5,2)
+  active bool
+  created timestamp
+  kind user_kind
+}
+Enum user_kind { admin
+  guest }
+records users(id, name, score, active, created, kind) {
+  1, 'Alice', 9.5, true, '2024-01-02 03:04:05', user_kind.admin
+  2, "Bob", -1.25e2, false, null, 'guest'
+  3, `now()`, 0, TRUE, '2024-01-02', user_kind.guest
+}

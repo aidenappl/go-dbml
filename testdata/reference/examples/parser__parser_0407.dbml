@@ -1,0 +1,6 @@
+
+Table t {
+  indexes {
+    (a, b, c, d, e) [unique, name: 'complex_idx', type: btree]
+  }
+}

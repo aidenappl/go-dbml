@@ -1,0 +1,40 @@
+Table "users" {
+  "id" int [pk]
+  "name" nvarchar(255)
+  "pjs" nvarchar(255) [check: `[pjs] IN ('created2', 'running2', 'done2', 'failure2')`]
+  "pjs2" nvarchar(255) [check: `[pjs2] IN ('created2', 'running2', 'done2', 'failure2')`]
+  "pg" nvarchar(255) [check: `[pg] IN ('male', 'female')`]
+  "pg2" nvarchar(255) [check: `[pg2] IN ('male2', 'female2')`]
+}
+
+Table "products" {
+  "id" int [pk]
+  "name" nvarchar(255)
+}
+
+Ref:"users"."id" < "ecommerce"."users"."id"
+
+Ref "name_optional":"users"."name" < "ecommerce"."users"."id"
+
+Ref:"ecommerce"."users"."id" < "schemaA"."products"."name"
+
+Ref:"users"."id" < "schemaA"."locations"."name"
+
+Table "ecommerce"."users" {
+  "id" int [pk]
+  "name" nvarchar(255)
+  "ejs" nvarchar(255) [check: `[ejs] IN ('created2', 'running2', 'done2', 'failure2')`]
+  "ejs2" nvarchar(255) [check: `[ejs2] IN ('created2', 'running2', 'done2', 'failure2')`]
+  "eg" nvarchar(255) [check: `[eg] IN ('male', 'female')`]
+  "eg2" nvarchar(255) [check: `[eg2] IN ('male2', 'female2')`]
+}
+
+Table "schemaA"."products" {
+  "id" int [pk]
+  "name" nvarchar(255)
+}
+
+Table "schemaA"."locations" {
+  "id" int [pk]
+  "name" nvarchar(255)
+}

@@ -1,0 +1,13 @@
+Table "nodes" {
+  "id" int [pk]
+  "name" varchar
+  "parent_id" int
+}
+
+Ref:"nodes"."id" ?<? "nodes"."parent_id"
+
+Records nodes(id, name, parent_id) {
+  1, 'Root', null
+  2, 'Child 1', 1
+  3, 'Invalid Child', 999
+}

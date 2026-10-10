@@ -1,0 +1,2 @@
+go test fuzz v1
+string("TABle A{A A [000000A:'']}")

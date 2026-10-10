@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `comments` (\n  `id` int PRIMARY KEY,\n  `user_id` int,\n  `post_id` int,\n  `title` string'

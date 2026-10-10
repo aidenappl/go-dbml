@@ -1,0 +1,25 @@
+Enum "job_status" {
+  "created"
+  "running"
+  "done"
+  "failed"
+  "wait for validation"
+}
+
+Enum "order status" {
+  "created"
+  "pending"
+  "processing"
+  "completed"
+}
+
+Table "jobs" {
+  "id" integer [pk]
+  "status" job_status [note: 'This is a column note']
+}
+
+Table "orders" {
+  "id" int [unique, pk]
+  "status" "order status"
+  "created_at" varchar
+}

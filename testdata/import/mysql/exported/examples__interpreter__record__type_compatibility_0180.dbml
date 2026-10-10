@@ -1,0 +1,12 @@
+Table "data" {
+  "id" int
+  "quantity" int
+  "price" decimal
+}
+
+Records data(id, quantity, price) {
+  null, 100, 100
+  2, 10, 100
+  3, 20, null
+  4, 30, true
+}

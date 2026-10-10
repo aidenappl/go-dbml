@@ -1,0 +1,8 @@
+
+Table users {
+  id int
+  status varchar
+}
+records users(id, status) {
+  1, unknown_enum.value
+}

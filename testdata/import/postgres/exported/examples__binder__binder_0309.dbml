@@ -1,0 +1,6 @@
+Table "users" {
+  "id" INT [pk, increment]
+  "name" varchar [not null]
+  "email" varchar [unique]
+  "status" varchar [unique, not null]
+}

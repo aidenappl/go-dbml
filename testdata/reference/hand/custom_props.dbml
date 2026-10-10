@@ -1,0 +1,8 @@
+Table users [owner: 'alice', pii: true, tier: 3] {
+  email varchar [sensitivity: 'high', retention: 30]
+}
+Enum status [source: 'erp'] { active [label: 'Active'] }
+Metadata Table users {
+  owner: 'bob'
+  domain: 'identity'
+}

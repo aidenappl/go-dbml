@@ -1,0 +1,4 @@
+// Everything from ./base.dbml will be imported
+use * from './base'
+
+Ref: orders.user_id > users.id

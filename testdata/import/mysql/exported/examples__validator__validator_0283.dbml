@@ -1,0 +1,29 @@
+Enum "orders_status_enum" {
+  "pending"
+  "processing"
+  "completed"
+  "cancelled"
+}
+
+Table "users" {
+  "id" integer [pk, increment]
+  "email" varchar(255) [unique, not null, note: 'User email']
+  "status" varchar(255) [default: 'active']
+  "created_at" timestamp [default: `now()`]
+  "updated_at" timestamp
+
+  Indexes {
+    email [unique, name: "idx_users_email"]
+  }
+}
+
+Table "orders" {
+  "id" integer [pk, increment]
+  "user_id" integer
+  "status" orders_status_enum [default: 'pending']
+  "total" decimal(10,2) [not null]
+  "created_at" timestamp [default: `now()`]
+  "updated_at" timestamp
+}
+
+Ref:"users"."id" ?<? "orders"."user_id"

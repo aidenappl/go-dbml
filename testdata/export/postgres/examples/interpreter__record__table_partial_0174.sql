@@ -1,0 +1,15 @@
+CREATE TABLE "T" (
+  "a" int PRIMARY KEY,
+  "b" int
+);
+
+-- Defer constraint checking for INSERT
+BEGIN;
+SET CONSTRAINTS ALL DEFERRED;
+
+INSERT INTO "T" ("a", "b")
+VALUES
+  (1, 2);
+
+SET CONSTRAINTS ALL IMMEDIATE;
+COMMIT;

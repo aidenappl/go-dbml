@@ -1,0 +1,32 @@
+Table "courses" {
+  "id" varchar
+  "name" string
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "students" {
+  "id" varchar
+  "name" string
+  "created_at" datetime
+  "updated_at" datetime
+  "course_id" integer
+}
+
+Table "classes" {
+  "id" varchar
+  "name" string
+  "course_id" varchar
+}
+
+Table "rooms" {
+  "id" varchar
+  "name" string
+  "class_id" varchar
+}
+
+Ref "fk_rails_classes_courses":"classes"."course_id" - "courses"."id"
+
+Ref "fk_rails_rooms_classes":"rooms"."class_id" - "classes"."id"
+
+Ref "fk_rails_students_courses":"students"."course_id" - "courses"."id"

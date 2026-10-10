@@ -1,0 +1,18 @@
+TablePartial ts [headercolor: #abc, note: 'p'] {
+  created_at timestamp [default: `now()`]
+  id int [pk]
+  indexes { created_at }
+  checks { `id > 0` [name: 'pos'] }
+}
+TablePartial owner { owner_id int [ref: > users.id] }
+Table users { id int [pk] }
+Table posts [headercolor: #fff] {
+  ~ts
+  title varchar
+  ~owner
+  id bigint
+}
+records posts(id, title, owner_id, created_at) {
+  1, 'a', 1, '2024-01-01 00:00:00'
+  1, 'b', 2, null
+}

@@ -1,0 +1,2 @@
+
+Table users { id int [unknown_setting, ref: > nonexistent.id] }

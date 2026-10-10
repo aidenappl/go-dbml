@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"INVALID_COLUMN_TYPE","end":[2,18],"level":"error","msg":"Invalid column type","start":[2,14]},{"code":"INVALID_COLUMN","end":[2,27],"level":"error","msg":"These fields must be some inline settings optionally ended with a setting list","start":[2,19]}]}

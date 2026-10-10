@@ -1,0 +1,8 @@
+Enum "users_status_enum" {
+  "value"
+  "other"
+}
+
+Table "users" {
+  "status" users_status_enum [default: 'value']
+}

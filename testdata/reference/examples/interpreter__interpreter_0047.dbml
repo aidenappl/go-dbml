@@ -1,0 +1,7 @@
+
+Table t {
+  email varchar
+  indexes {
+    email [note: 'Email index']
+  }
+}

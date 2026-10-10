@@ -1,0 +1,19 @@
+Table tenants {
+  id int [pk]
+}
+Table projects {
+  tenant_id int [ref: > tenants.id]
+  id int
+  name varchar(100)
+  indexes {
+    (tenant_id, id) [pk]
+  }
+}
+Table tasks {
+  id bigint [pk, increment]
+  tenant_id int
+  project_id int
+  parent_id bigint [ref: > tasks.id]
+  title varchar(200) [not null]
+}
+Ref: tasks.(tenant_id, project_id) > projects.(tenant_id, id) [delete: cascade]

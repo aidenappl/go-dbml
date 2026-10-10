@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"UNKNOWN_PREFIX_OP","end":[1,3],"level":"error","msg":"Unexpected '.' in an expression","start":[1,2]},{"code":"INVALID_COLUMN","end":[1,3],"level":"error","msg":"A column must have a type","start":[1,3]},{"code":"INVALID_COLUMN_NAME","end":[1,3],"level":"error","msg":"A column name must be an identifier or a quoted identifier","start":[1,3]}]}

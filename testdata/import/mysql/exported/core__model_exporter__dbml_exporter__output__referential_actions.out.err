@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `orders` (\n  `id` int PRIMARY KEY AUTO_INCREMENT,\n  `user_id` int UNIQUE NOT NULL,\n  `status` orders_status_enum'

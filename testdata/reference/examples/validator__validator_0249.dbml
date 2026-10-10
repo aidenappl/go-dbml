@@ -1,0 +1,5 @@
+
+Enum public.status {
+  active
+  inactive
+}

@@ -1,0 +1,5 @@
+
+Enum status { active\n inactive }
+Table users {
+  status status [default: status.nonexistent]
+}

@@ -1,0 +1,30 @@
+Table "users" {
+  "id" integer [pk]
+  "username" varchar
+  "role" varchar
+  "created_at" timestamp
+}
+
+Table "posts" {
+  "id" integer [pk]
+  "title" varchar
+  "body" text [note: 'Content of the post']
+  "user_id" integer [not null]
+  "status" varchar
+  "created_at" timestamp
+}
+
+Ref "user_posts":"users"."id" <? "posts"."user_id"
+
+Records users(id, username, role) {
+  0, 'Alice', 'admin'
+  1, 'Bob', 'moderator'
+  2, 'Candice', 'moderator'
+  3, 'David', 'member'
+}
+
+Records posts(id, title, user_id) {
+  0, 'Welcome to the forum!', 0
+  1, 'Guidelines', 1
+  2, 'Hello all!', 3
+}

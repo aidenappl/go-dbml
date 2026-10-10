@@ -1,0 +1,25 @@
+TablePartial p1 {
+  a int
+  indexes {
+    a
+  }
+}
+TablePartial p2 [note: 'p2 note'] {
+  b int [pk]
+  a text
+  indexes {
+    b [unique]
+  }
+}
+Table t {
+  ~p1
+  x int
+  ~p2
+  indexes {
+    x
+  }
+}
+Table t2 [note: 'own'] {
+  ~p2
+  ~p1
+}

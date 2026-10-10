@@ -1,0 +1,39 @@
+Table "table1" {
+  "id" INT [pk, increment]
+  "payload" text
+}
+
+Table "table2" {
+  "id" INTEGER [pk, increment]
+  "name" varchar
+}
+
+Table "table3" {
+  "id" SMALLINT [pk, increment]
+  "name" varchar
+}
+
+Table "table4" {
+  "id" BIGINT [pk, increment]
+  "name" varchar
+}
+
+Table "table5" {
+  "id" SERIAL [pk, increment]
+  "name" varchar
+}
+
+Table "table6" {
+  "id" SMALLSERIAL [pk, increment]
+  "name" varchar
+}
+
+Table "table7" {
+  "id" BIGSERIAL [pk, increment]
+  "name" varchar
+}
+
+Table "table8" {
+  "id" SERIAL [pk, increment]
+  "name" varchar
+}

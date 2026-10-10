@@ -1,0 +1,3 @@
+use { table users as u, enum role } from './lib/base.dbml'
+Table posts { author int [ref: > u.id]
+ r role }

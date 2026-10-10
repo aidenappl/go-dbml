@@ -1,0 +1,3 @@
+
+TablePartial timestamps { created_at timestamp }
+TablePartial timestamps { updated_at timestamp }

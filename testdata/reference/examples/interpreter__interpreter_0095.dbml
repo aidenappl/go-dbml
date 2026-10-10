@@ -1,0 +1,15 @@
+
+Table users { id int }
+Table ecommerce.orders { id int }
+Table ecommerce.merchants { id int }
+DiagramView Default {
+  Tables {
+    ecommerce.merchants
+    users
+  }
+}
+DiagramView "New View" {
+  Tables {
+    ecommerce.orders
+  }
+}

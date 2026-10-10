@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"NONEXISTENT_MODULE","end":[1,24],"level":"error","msg":"Failed to resolve the non-existent file './base.dbml'","start":[1,11]},{"code":"BINDING_ERROR","end":[3,16],"level":"error","msg":"Could not find table 'users'","start":[3,11]}]}

@@ -1,0 +1,10 @@
+Table "t1" {
+  "id" INT
+}
+
+Table "t2" {
+  "id" INT
+  "t1_id" INT
+}
+
+Ref "fk_name":"t1"."id" ?<? "t2"."t1_id"

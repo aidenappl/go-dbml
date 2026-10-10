@@ -1,0 +1,7 @@
+
+Table t1 { c1 int }
+Table t2 { c2 int }
+Dep dep1 {
+  t1.c1 <- t2.c2
+  Note: 'some note'
+}

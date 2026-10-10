@@ -1,0 +1,4 @@
+
+Table users { id int }
+Table posts { author_id int }
+Ref: posts.author_id > users.id

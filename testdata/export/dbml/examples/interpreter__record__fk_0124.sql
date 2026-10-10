@@ -1,0 +1,71 @@
+Table "users" {
+  "id" int [pk]
+  "name" varchar
+}
+
+Table "countries" {
+  "code" varchar(2) [pk]
+  "name" varchar
+}
+
+Table "accounts" {
+  "id" int [pk]
+  "name" varchar
+}
+
+Table "posts" {
+  "id" int [pk]
+  "user_id" int
+  "title" varchar
+}
+
+Table "cities" {
+  "id" int [pk]
+  "country_code" varchar(2)
+  "name" varchar
+}
+
+Table "transactions" {
+  "id" int [pk]
+  "account_id" int
+  "amount" decimal
+}
+
+Ref:"users"."id" < "posts"."user_id"
+
+Ref:"countries"."code" < "cities"."country_code"
+
+Ref:"accounts"."id" < "transactions"."account_id"
+
+Records users(id, name) {
+  1, 'Alice'
+  2, 'Bob'
+}
+
+Records countries(code, name) {
+  'US', 'United States'
+  'UK', 'United Kingdom'
+}
+
+Records accounts(id, name) {
+  0, 'Default Account'
+  1, 'User Account'
+  2, 'Business Account'
+}
+
+Records posts(id, user_id, title) {
+  1, 1, 'Alice Post'
+  2, 1, 'Another Post'
+  3, 2, 'Bob Post'
+}
+
+Records cities(id, country_code, name) {
+  1, 'US', 'New York'
+  2, 'UK', 'London'
+}
+
+Records transactions(id, account_id, amount) {
+  1, 0, 100
+  2, 1, 50
+  3, 2, 25
+}

@@ -1,0 +1,3 @@
+
+Enum order_status { pending\n completed }
+Table orders { status order_status }

@@ -1,0 +1,5 @@
+
+Table ecommerce.merchants { id int }
+DiagramView myView {
+  Tables { ecommerce.merchants }
+}

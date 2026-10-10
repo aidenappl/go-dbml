@@ -1,0 +1,421 @@
+{
+  "schemas": [],
+  "tables": [
+    {
+      "name": "orders",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "increment": true,
+          "pk": true
+        },
+        {
+          "name": "user_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "not_null": true,
+          "unique": true
+        },
+        {
+          "name": "status",
+          "type": {
+            "type_name": "nvarchar(255)",
+            "schemaName": null
+          },
+          "not_null": true,
+          "checks": [
+            {
+              "expression": "[status] IN ('created', 'running', 'done', 'failure')"
+            }
+          ]
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    },
+    {
+      "name": "order_items",
+      "fields": [
+        {
+          "name": "order_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "product_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "quantity",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "dbdefault": {
+            "value": "1",
+            "type": "number"
+          }
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    },
+    {
+      "name": "products",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "pk": true
+        },
+        {
+          "name": "name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "merchant_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "not_null": true
+        },
+        {
+          "name": "price",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "status",
+          "type": {
+            "type_name": "nvarchar(255)",
+            "schemaName": null
+          },
+          "not_null": true
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "datetime",
+            "schemaName": null
+          },
+          "dbdefault": {
+            "value": "GETDATE()",
+            "type": "expression"
+          }
+        }
+      ],
+      "indexes": [
+        {
+          "name": "product_status",
+          "unique": false,
+          "columns": [
+            {
+              "value": "merchant_id",
+              "type": "column"
+            },
+            {
+              "value": "status",
+              "type": "column"
+            }
+          ]
+        },
+        {
+          "name": "products_index_1",
+          "unique": true,
+          "columns": [
+            {
+              "value": "id",
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "expression": "[status] IN ('Out of Stock', 'In Stock')"
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "pk": true
+        },
+        {
+          "name": "full_name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "email",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          },
+          "unique": true
+        },
+        {
+          "name": "gender",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "date_of_birth",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "country_code",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    },
+    {
+      "name": "merchants",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "merchant_name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "country_code",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "created_at",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "admin_id",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          }
+        }
+      ],
+      "indexes": [
+        {
+          "pk": true,
+          "columns": [
+            {
+              "value": "id",
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "checks": []
+    },
+    {
+      "name": "countries",
+      "fields": [
+        {
+          "name": "code",
+          "type": {
+            "type_name": "int",
+            "schemaName": null
+          },
+          "pk": true
+        },
+        {
+          "name": "name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        },
+        {
+          "name": "continent_name",
+          "type": {
+            "type_name": "varchar(255)",
+            "schemaName": null
+          }
+        }
+      ],
+      "indexes": [],
+      "checks": []
+    }
+  ],
+  "refs": [
+    {
+      "endpoints": [
+        {
+          "tableName": "order_items",
+          "fieldNames": [
+            "order_id"
+          ],
+          "relation": "*"
+        },
+        {
+          "tableName": "orders",
+          "fieldNames": [
+            "id"
+          ],
+          "relation": "1"
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "tableName": "order_items",
+          "fieldNames": [
+            "product_id"
+          ],
+          "relation": "*"
+        },
+        {
+          "tableName": "products",
+          "fieldNames": [
+            "id"
+          ],
+          "relation": "1"
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "tableName": "users",
+          "fieldNames": [
+            "country_code"
+          ],
+          "relation": "*"
+        },
+        {
+          "tableName": "countries",
+          "fieldNames": [
+            "code"
+          ],
+          "relation": "1"
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "tableName": "merchants",
+          "fieldNames": [
+            "country_code"
+          ],
+          "relation": "*"
+        },
+        {
+          "tableName": "countries",
+          "fieldNames": [
+            "code"
+          ],
+          "relation": "1"
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "tableName": "products",
+          "fieldNames": [
+            "merchant_id"
+          ],
+          "relation": "*"
+        },
+        {
+          "tableName": "merchants",
+          "fieldNames": [
+            "id"
+          ],
+          "relation": "1"
+        }
+      ]
+    },
+    {
+      "endpoints": [
+        {
+          "tableName": "merchants",
+          "fieldNames": [
+            "admin_id"
+          ],
+          "relation": "*"
+        },
+        {
+          "tableName": "users",
+          "fieldNames": [
+            "id"
+          ],
+          "relation": "1"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "tableGroups": [],
+  "aliases": [],
+  "project": {},
+  "records": []
+}

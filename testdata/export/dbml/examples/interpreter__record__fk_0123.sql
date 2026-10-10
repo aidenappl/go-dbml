@@ -1,0 +1,27 @@
+Table "auth"."users" {
+  "id" int
+  "tenant_id" int
+
+  Indexes {
+    (id, tenant_id) [pk]
+  }
+}
+
+Table "posts" {
+  "id" int [pk]
+  "user_id" int
+  "tenant_id" int
+  "content" text
+}
+
+Ref:"auth"."users".("id", "tenant_id") < "posts".("user_id", "tenant_id")
+
+Records auth.users(id, tenant_id) {
+  1, 100
+  2, 100
+}
+
+Records posts(id, user_id, tenant_id, content) {
+  1, 1, 100, 'Hello'
+  2, 999, 100, 'Invalid user'
+}

@@ -1,0 +1,5 @@
+
+Table employees {
+  id int
+  manager_id int [ref: > employees.id]
+}

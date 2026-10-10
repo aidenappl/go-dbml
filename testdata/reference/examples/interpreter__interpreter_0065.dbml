@@ -1,0 +1,6 @@
+
+Table users { id int }
+TableGroup auth_tables { users }
+DiagramView myView {
+  Tables { users }
+}

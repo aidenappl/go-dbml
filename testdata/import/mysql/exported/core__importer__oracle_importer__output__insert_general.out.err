@@ -1,0 +1,2 @@
+no viable alternative at input 'CREATE TABLE `database_products` (\n  `product_id` NUMBER'
+mismatched input '100.00' expecting '-'

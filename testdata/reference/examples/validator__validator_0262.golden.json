@@ -1,0 +1,1 @@
+{"database":null,"diags":[{"code":"DUPLICATE_TABLE_PARTIAL_INJECTION_NAME","end":[4,5],"level":"error","msg":"Duplicate table partial injection 'p1'","start":[4,2]},{"code":"DUPLICATE_TABLE_PARTIAL_INJECTION_NAME","end":[5,5],"level":"error","msg":"Duplicate table partial injection 'p1'","start":[5,2]}]}

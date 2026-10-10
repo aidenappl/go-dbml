@@ -1,0 +1,1 @@
+no viable alternative at input 'CREATE TABLE `cities` (\n  `id` integer PRIMARY KEY,\n  `name` e'

@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "description": "Dev-only: generates testdata goldens with the Holistics reference implementation (@dbml/parse for parsing, @dbml/core for export/import)",
+  "dependencies": {
+    "@dbml/core": "10.3.1",
+    "@dbml/parse": "10.3.1"
+  }
+}

@@ -1,0 +1,12 @@
+CREATE OR REPLACE TABLE m (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  doc LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`doc`)),
+  v INT GENERATED ALWAYS AS (id * 2) VIRTUAL,
+  s INT AS (id + 1) STORED,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `quoted table` (
+  `col one` INT,
+  `Upper` VARCHAR(5) NOT NULL UNIQUE,
+  KEY `k one` (`col one`)
+);

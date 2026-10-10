@@ -1,0 +1,41 @@
+Table "users" {
+  "id" int [pk]
+}
+
+Table "products" {
+  "id" int [pk]
+}
+
+Table "users_products" {
+  "users_id" int
+  "products_id" int
+
+  Indexes {
+    (users_id, products_id) [pk]
+  }
+}
+
+Ref:"users"."id" < "users_products"."users_id"
+
+Ref:"products"."id" < "users_products"."products_id"
+
+Ref:"C##test"."users"."id" < "C##test"."users_products(1)"."users_id"
+
+Ref:"C##test"."products"."id" < "C##test"."users_products(1)"."products_id"
+
+Table "C##test"."users" {
+  "id" int [pk]
+}
+
+Table "C##test"."products" {
+  "id" int [pk]
+}
+
+Table "C##test"."users_products(1)" {
+  "users_id" int
+  "products_id" int
+
+  Indexes {
+    (users_id, products_id) [pk]
+  }
+}

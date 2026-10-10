@@ -1,0 +1,5 @@
+
+Table users as U { id int }
+DiagramView myView {
+  Tables { U }
+}

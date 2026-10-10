@@ -1,0 +1,16 @@
+TablePartial base [headercolor: #111111, note: 'base note'] {
+  id int [pk, note: 'from base']
+  created_at timestamp [default: `now()`]
+  indexes { created_at }
+}
+TablePartial audit {
+  created_at datetime [not null]
+  updated_at datetime
+  checks { `updated_at >= created_at` [name: 'chk_upd'] }
+}
+Table users [headercolor: #222222] {
+  ~base
+  name varchar
+  ~audit
+  id bigint [note: 'local']
+}

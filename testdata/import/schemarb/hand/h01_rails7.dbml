@@ -1,0 +1,45 @@
+Table "categories" {
+  "id" varchar
+  "name" string
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "people" {
+  "id" varchar
+  "email" string
+  "category_id" bigint
+}
+
+Table "posts" {
+  "id" varchar
+  "title" string
+  "body" text
+  "author_id" bigint
+  "price" decimal
+  "person_id" varchar
+
+  Checks {
+    `char_length(title) > 0` [name: 'title_present']
+  }
+}
+
+Table "comments" {
+  "id" varchar
+  "post_id" bigint
+  "person_id" bigint
+
+  Checks {
+    `post_id > 0` [name: 'positive_post']
+  }
+}
+
+Ref "fk_rails_posts_people":"posts"."person_id" - "people"."id"
+
+Ref "fk_rails_comments_posts":"comments"."post_id" - "posts"."id" [delete: cascade]
+
+Ref "fk_rails_posts_people":"posts"."author_id" - "people"."id"
+
+Ref "fk_rails_people_categories":"people"."category_id" - "categories"."id"
+
+Ref "fk_rails_comments_people":"comments"."person_id" - "people"."id"

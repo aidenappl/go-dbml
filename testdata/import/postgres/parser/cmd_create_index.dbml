@@ -1,0 +1,22 @@
+Table "films" {
+  "title" varchar
+  "content" varchar
+
+  Indexes {
+    title [unique, name: "title_idx"]
+    content [unique, name: "title_idx"]
+    `(lower(title))`
+    title [name: "title_idx_german"]
+    title [name: "title_idx_nulls_low"]
+    title [unique, name: "title_idx"]
+  }
+}
+
+Table "points" {
+  "location" varchar(255)
+
+  Indexes {
+    `box(location,location)` [type: gist, name: "pointloc"]
+    locations [type: gin, name: "gin_idx"]
+  }
+}
