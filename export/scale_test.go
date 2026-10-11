@@ -12,7 +12,27 @@ import (
 // A 20k-table model with 20k refs exports in linear time (buildCore uses
 // map lookups and map-based ref de-duplication).
 func TestExport20kTables(t *testing.T) {
-	const n = 20000
+	for _, d := range export.Dialects {
+		db := tablesModel(20000)
+		start := time.Now()
+		if _, err := export.SQL(db, d); err != nil {
+			t.Fatal(err)
+		}
+		el := time.Since(start)
+		t.Logf("%s: %v", d, el)
+		strictBudget(t, string(d), el, 1500*time.Millisecond)
+		small, big := tablesModel(5000), db
+		assertScales(t, string(d)+" export", 5000, 20000, 2.5, func(n int) {
+			m := small
+			if n == 20000 {
+				m = big
+			}
+			_, _ = export.SQL(m, d)
+		})
+	}
+}
+
+func tablesModel(n int) *model.Database {
 	db := &model.Database{}
 	tru := true
 	for i := 0; i < n; i++ {
@@ -26,19 +46,5 @@ func TestExport20kTables(t *testing.T) {
 			{TableName: name, FieldNames: []string{"p_id"}, Relation: "*"},
 		}})
 	}
-	limit := 1500 * time.Millisecond
-	if raceEnabled {
-		limit *= 15
-	}
-	for _, d := range export.Dialects {
-		start := time.Now()
-		if _, err := export.SQL(db, d); err != nil {
-			t.Fatal(err)
-		}
-		el := time.Since(start)
-		t.Logf("%s: %v", d, el)
-		if el > limit {
-			t.Errorf("%s export took %v", d, el)
-		}
-	}
+	return db
 }

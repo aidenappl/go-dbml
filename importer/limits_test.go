@@ -10,14 +10,6 @@ import (
 	"github.com/aidenappl/go-dbml/importer"
 )
 
-// timeLimit scales wall-clock gates under the race detector.
-func timeLimit(d time.Duration) time.Duration {
-	if raceEnabled {
-		return d * 15
-	}
-	return d
-}
-
 func mysqldump(n int) string {
 	var b strings.Builder
 	for i := 0; i < n; i++ {
@@ -42,9 +34,8 @@ func TestImport20kTables(t *testing.T) {
 	if len(db.Tables) != 20000 || len(db.Refs) != 20000 {
 		t.Fatalf("%d tables, %d refs", len(db.Tables), len(db.Refs))
 	}
-	if el > timeLimit(1500*time.Millisecond) {
-		t.Fatalf("import took %v", el)
-	}
+	strictBudget(t, "20k tables", el, 1500*time.Millisecond)
+	assertScales(t, "mysqldump import", 5000, 20000, 2.5, func(n int) { _, _ = importer.Import(mysqldump(n), importer.MySQL) })
 }
 
 // A 16 MB INSERT dump is skipped without tokenising it into memory when
@@ -72,9 +63,24 @@ func TestImport16MBInsertDump(t *testing.T) {
 	if alloc > 64 {
 		t.Fatalf("allocated %d MB", alloc)
 	}
-	if el > timeLimit(2*time.Second) {
-		t.Fatalf("took %v", el)
+	strictBudget(t, "16 MB dump, records off", el, 2*time.Second)
+	dump := func(size int) string {
+		var b strings.Builder
+		b.WriteString("CREATE TABLE t (a int);\nINSERT INTO t VALUES ")
+		for b.Len() < size {
+			b.WriteString("(1),")
+		}
+		b.WriteString("(1);")
+		return b.String()
 	}
+	small, big := dump(4<<20), dump(importer.MaxInputBytes-100)
+	assertScales(t, "INSERT dump, records off", 1, 4, 2.5, func(n int) {
+		s := small
+		if n == 4 {
+			s = big
+		}
+		_, _ = importer.Import(s, importer.MySQL)
+	})
 	// with records the row cap bounds the work
 	start = time.Now()
 	r, err := importer.ImportWith(src, importer.MySQL, importer.ImportOptions{IncludeRecords: true})
@@ -82,24 +88,23 @@ func TestImport16MBInsertDump(t *testing.T) {
 		t.Fatalf("records on: %v %v", err, r.Diagnostics)
 	}
 	t.Logf("16 MB INSERT dump, records on (10k-row cap): %v", time.Since(start))
-	if el := time.Since(start); el > timeLimit(3*time.Second) {
-		t.Fatalf("records on took %v", el)
-	}
+	strictBudget(t, "16 MB dump, records on", time.Since(start), 3*time.Second)
 }
 
 // Deeply nested defaults/values are handled without recursion in linear
 // time in every dialect.
 func TestDeepNesting200k(t *testing.T) {
-	const n = 200000
-	paren := strings.Repeat("(", n) + "1" + strings.Repeat(")", n)
-	unary := strings.Repeat("- ", n) + "1"
-	cases := map[importer.Format][]string{
-		importer.MySQL:    {"CREATE TABLE t (a int DEFAULT " + paren + ");", "CREATE TABLE t (a int);\nINSERT INTO t VALUES (" + paren + ");"},
-		importer.Postgres: {"CREATE TABLE t (a int DEFAULT " + paren + ");", "CREATE TABLE t (a int);\nINSERT INTO t VALUES (" + paren + ");"},
-		importer.MSSQL: {"CREATE TABLE t (a int DEFAULT " + paren + ");", "CREATE TABLE t (a int DEFAULT " + unary + ");",
-			"CREATE TABLE t (a int);\nINSERT INTO t VALUES (" + paren + ");"},
+	inputs := func(n int) map[importer.Format][]string {
+		paren := strings.Repeat("(", n) + "1" + strings.Repeat(")", n)
+		unary := strings.Repeat("- ", n) + "1"
+		return map[importer.Format][]string{
+			importer.MySQL:    {"CREATE TABLE t (a int DEFAULT " + paren + ");", "CREATE TABLE t (a int);\nINSERT INTO t VALUES (" + paren + ");"},
+			importer.Postgres: {"CREATE TABLE t (a int DEFAULT " + paren + ");", "CREATE TABLE t (a int);\nINSERT INTO t VALUES (" + paren + ");"},
+			importer.MSSQL: {"CREATE TABLE t (a int DEFAULT " + paren + ");", "CREATE TABLE t (a int DEFAULT " + unary + ");",
+				"CREATE TABLE t (a int);\nINSERT INTO t VALUES (" + paren + ");"},
+		}
 	}
-	for f, srcs := range cases {
+	for f, srcs := range inputs(200000) {
 		for i, src := range srcs {
 			start := time.Now()
 			_, err := importer.ImportWith(src, f, importer.ImportOptions{IncludeRecords: true})
@@ -107,9 +112,10 @@ func TestDeepNesting200k(t *testing.T) {
 			if err != nil {
 				t.Errorf("%s/%d: %v", f, i, err)
 			}
-			if el > timeLimit(time.Second) {
-				t.Errorf("%s/%d took %v", f, i, el)
-			}
+			strictBudget(t, fmt.Sprintf("%s/%d", f, i), el, time.Second)
+			assertScales(t, fmt.Sprintf("%s/%d", f, i), 50000, 200000, 2.5, func(n int) {
+				_, _ = importer.ImportWith(inputs(n)[f][i], f, importer.ImportOptions{IncludeRecords: true})
+			})
 		}
 	}
 }
@@ -172,27 +178,29 @@ func TestTSQLRoutineBatchesNotSplit(t *testing.T) {
 // schema.rb arguments nested 200k deep (hashes, arrays, lambdas) parse in
 // linear time, without recursion, in clean and parity mode.
 func TestSchemaRBDeepNesting(t *testing.T) {
-	const n = 200000
 	wrap := func(arg string) string {
 		return "ActiveRecord::Schema[7.1].define(version: 2024_01_01_000000) do\n  create_table \"t\" do |t|\n    t.string \"a\", " + arg + "\n  end\nend\n"
 	}
-	cases := map[string]string{
-		"hash":   wrap("x: " + strings.Repeat("{a: ", n) + "1" + strings.Repeat("}", n)),
-		"array":  wrap("default: " + strings.Repeat("[", n) + "1" + strings.Repeat("]", n)),
-		"lambda": wrap("default: " + strings.Repeat("-> { ", n) + "\"now()\"" + strings.Repeat(" }", n)),
-		"mixed":  wrap("x: " + strings.Repeat("[{a: -> { ", n/3) + "1" + strings.Repeat(" }}]", n/3)),
-		"open":   wrap("x: " + strings.Repeat("{a: [", n)),
-		"1MiB":   wrap("x: " + strings.Repeat("{", 1<<19) + strings.Repeat("}", 1<<19)),
+	cases := func(n int) map[string]string {
+		return map[string]string{
+			"hash":   wrap("x: " + strings.Repeat("{a: ", n) + "1" + strings.Repeat("}", n)),
+			"array":  wrap("default: " + strings.Repeat("[", n) + "1" + strings.Repeat("]", n)),
+			"lambda": wrap("default: " + strings.Repeat("-> { ", n) + "\"now()\"" + strings.Repeat(" }", n)),
+			"mixed":  wrap("x: " + strings.Repeat("[{a: -> { ", n/3) + "1" + strings.Repeat(" }}]", n/3)),
+			"open":   wrap("x: " + strings.Repeat("{a: [", n)),
+			"braces": wrap("x: " + strings.Repeat("{", n*5/2) + strings.Repeat("}", n*5/2)), // 1 MiB at n = 200k
+		}
 	}
-	for name, src := range cases {
+	for name, src := range cases(200000) {
 		for _, mode := range []importer.Mode{importer.ModeClean, importer.ModeParity} {
 			start := time.Now()
 			_, err := importer.ImportWith(src, importer.SchemaRB, importer.ImportOptions{Mode: mode})
 			el := time.Since(start)
 			t.Logf("%s mode=%d: %v (%v)", name, mode, el, err)
-			if el > timeLimit(200*time.Millisecond) {
-				t.Errorf("%s mode=%d took %v", name, mode, el)
-			}
+			strictBudget(t, name, el, 200*time.Millisecond)
+			assertScales(t, fmt.Sprintf("%s mode=%d", name, mode), 50000, 200000, 2.5, func(n int) {
+				_, _ = importer.ImportWith(cases(n)[name], importer.SchemaRB, importer.ImportOptions{Mode: mode})
+			})
 		}
 	}
 }

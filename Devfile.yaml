@@ -11,6 +11,10 @@ commands:
       description: Run tests (unit, conformance, reference, limits, round trips, export/import goldens, wasm API)
       run: go test ./...
       syncAfter: false
+    - name: perf
+      description: Performance gates with absolute wall-clock budgets (DBML_PERF_STRICT=1; run on an idle machine)
+      run: DBML_PERF_STRICT=1 go test -count=1 -run 'Deep|Large|20k|16MB|Cancel|SchemaRBDeep|Export20k|ScalingGate' -v . ./importer ./export
+      syncAfter: false
     - name: integration
       description: Execute exported DDL on MariaDB 11.4, Postgres 16 and SQL Server 2022 containers (adversarial names, smuggling, round trips; needs Docker)
       run: go test -count=1 -timeout 20m -tags integration -run Against -v ./export

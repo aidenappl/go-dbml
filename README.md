@@ -122,7 +122,7 @@ go get github.com/aidenappl/go-dbml
 | `importer.Import(src, format)` | SQL/schema.rb → model (clean mode, records skipped); `*importer.CompileError` carries a partial model; formats `mysql`, `postgres`, `mssql`, `schemarb` |
 | `importer.ImportWith(src, format, importer.ImportOptions)` | `Mode` (`ModeClean` / `ModeParity`), `IncludeRecords`, `MaxRecordRows`, `MaxInputBytes`, `OmitProject`, compiler `Model` options → `*importer.Result` (incl. `Warnings`) |
 | `importer.CoreDBML(src, format)` | `@dbml/core`-identical DBML text (parity) |
-| `atlasrealm.FromRealm(realm, atlasrealm.Options)` | Atlas `schema.Realm` → model (not in WASM) |
+| `atlasrealm.FromRealm(realm, atlasrealm.Options)` / `atlasrealm.Import` | Atlas `schema.Realm` → model (+ DBML and warnings with `Import`); MySQL/MariaDB backtick expressions normalised, inline ENUMs named per column, FKs outside the inspected schemas left out with a warning (not in WASM) |
 
 Browser: build with `dev wasm`, load `dist/wasm_exec.js` + `dist/go-dbml.wasm`, run it, then
 call `goDbml.parse(src, opts?)`, `goDbml.exportSQL(src, "postgres", opts?)`,
@@ -171,6 +171,7 @@ build artifact copied into `dbdiagram-web`. Nothing to deploy.
 ## Contributing & further reading
 
 - [AGENTS.md](AGENTS.md) — architecture, conventions, conformance, deviations, verification
+- [CHANGELOG.md](CHANGELOG.md) — release notes
 - [scripts/README.md](scripts/README.md) — regenerating goldens
 - [LICENSE](LICENSE) (Apache-2.0) and [NOTICE](NOTICE) — portions derived from
   [holistics/dbml](https://github.com/holistics/dbml) `packages/dbml-parse` and

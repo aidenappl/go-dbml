@@ -125,7 +125,8 @@ go-dbml/
                                    #   generated columns, dbo unqualification
     schemarb_clean.go              #   clean schema.rb (Rails types → SQL types, enums, virtual columns, references FKs)
     schemarb.go pluralize.go       #   parity schema.rb (PEG grammar port) + pluralize 8.0.0 (MIT)
-    atlasrealm/                    #   FromRealm(*schema.Realm, Options) — //go:build !js; the only ariga.io/atlas user
+    atlasrealm/                    #   FromRealm / Import(*schema.Realm, Options{DefaultSchema, Dialect}) -> *Result{Database,
+                                   #   DBML, Warnings} — //go:build !js; the only ariga.io/atlas user
   wasm/                            # browser entry: goDbml.{parse,exportSQL,importSQL,emit,version}, typed JSON responses
     api.go main_js.go main_other.go#   handlers (natively tested), js wiring (js && wasm), non-js stub main
   scripts/                         # dev-only golden regeneration (see scripts/README.md)
@@ -140,7 +141,7 @@ go-dbml/
                                    #   (Holistics fixtures), hand (testdata/import/inputs/<format>/), exported
                                    #   (@dbml/core's own SQL export from testdata/export, deduplicated)
   testdata/fuzz/FuzzParse/         # fuzz regression corpus (keep: past crashers); emit/ and importer/testdata/fuzz likewise
-  LICENSE, NOTICE, Devfile.yaml
+  LICENSE, NOTICE, Devfile.yaml, CHANGELOG.md (release notes; bump dbml.Version with it)
 ```
 
 ## 4. Running, building & testing
@@ -155,6 +156,7 @@ which runs as linux/amd64 — emulated on Apple silicon; ~2 min in total).
 | `dev test` | `go test ./...` (unit, conformance, reference, limits, round trip, export/import goldens, wasm API) |
 | `dev run` | all golden suites verbose: pass rates and failing cases |
 | `dev fuzz` | 30 s each: `FuzzParse`, `FuzzEmitRoundTrip`, `FuzzTranslate`, `FuzzImport{MySQL,Postgres,MSSQL,SchemaRB}` |
+| `dev perf` | the performance gates with their absolute wall-clock budgets (`DBML_PERF_STRICT=1`); run on an idle machine |
 | `dev integration` | `go test -tags integration -run Against ./export`: executes exported DDL on MariaDB 11.4, PostgreSQL 16 (also `standard_conforming_strings=off`) and SQL Server 2022 containers — adversarial names, smuggling (sentinel must survive), clean-import round trips (≥ 90% gate for MySQL/PostgreSQL), DBML corpus |
 | `dev wasm` | builds `dist/go-dbml.wasm` (`-ldflags='-s -w'`) + copies `wasm_exec.js`, prints raw/gzip size |
 | `dev check` | `gofmt -w -s . && go vet ./... && go test ./...` |
@@ -486,11 +488,26 @@ Any error from lex/parse/validate/bind suppresses interpreter diagnostics and ma
   - **Input cap:** `MaxInputBytes` (16 MiB) by default; `ImportOptions.MaxInputBytes` lowers
     it per call (callers choose it per format). WASM `importSQL` uses `maxBytes` (1 MiB) or
     a per-format `maxInputBytes` object, e.g. `{"maxInputBytes": {"schemarb": 262144}}`.
-- **`atlasrealm.FromRealm(realm, opts)`** (native only, own package so `importer` stays
-  stdlib-only) maps an Atlas realm: raw column types (split into name+args), NOT NULL,
-  defaults, auto-increment (`AutoIncrement`/`Identity`/`SerialType` by type name), comments,
-  PKs, indexes (non-btree type kept), checks, enums, FKs → refs. The default schema (`public`
-  or the realm's only schema) is unqualified.
+- **`atlasrealm.FromRealm(realm, opts)`** / **`atlasrealm.Import(realm, opts)`** (native
+  only, own package so `importer` stays stdlib-only) map an Atlas realm: raw column types
+  (split into name+args), NOT NULL, defaults, auto-increment (`AutoIncrement`/`Identity`/
+  `SerialType` by type name), comments, PKs, indexes (non-btree type kept), table and column
+  checks, generated columns (`schema.GeneratedExpr`, STORED/PERSISTENT → stored), enums, FKs →
+  refs. The default schema (`public` or the realm's only schema) is unqualified. `Import`
+  also returns the DBML text and `Warnings`; `FromRealm` is `Import(...).Database`.
+  - **Dialect** (`Options.Dialect`: `importer.MySQL` for MySQL/MariaDB, `Postgres`, `MSSQL`;
+    empty = detected from Atlas's `sql/mysql` / `sql/postgres` attribute types, else MySQL
+    when an expression has backticks) is recorded as `Project database_type` and decides
+    expression normalisation: every CHECK, expression default, generated expression and
+    expression index part goes through `importer.NormalizeExpr` (the clean importer's
+    normaliser), so MySQL's `` `col` `` becomes `col` (`"key"` for reserved words) and
+    `emit.DBML` no longer fails with `ErrUnrepresentable`. An expression that cannot be kept
+    is left out with a warning.
+  - **Enums:** MySQL/MariaDB inline ENUMs (Atlas types them all `enum`) become
+    `<table>_<column>_enum`, with `_2`, `_3`, … on a clash; named types (PostgreSQL) keep
+    their name and are shared (a second definition with other values is warned about).
+  - **Foreign keys** to a table outside the inspected schemas, or to columns that were not
+    inspected, are left out with a warning, so the result always compiles.
 
 #### Resource limits and memory
 
@@ -632,8 +649,10 @@ and import goldens compare text exactly after trimming trailing whitespace per l
   messages are not mirrored; malformed DDL may import partially where the reference throws.
 - The MySQL importer drops `[ ] { } ? \` like the reference lexer, which reproduces texts like
   `` check: `status] IN (…)` `` in parity mode.
-- `FromRealm` has no reference; it is tested against a hand-built realm only. Charset,
-  collation, generated columns and partitions are ignored.
+- `FromRealm` has no reference; it is tested against hand-built realms shaped like MariaDB
+  11.4 and PostgreSQL 16 inspections (`importer/atlasrealm/realm_test.go`; the Atlas
+  dialect packages are not imported because they would add 13 modules to go.mod). Charset,
+  collation and partitions are ignored.
 - Lexer trivia are re-lexed on demand (`Token.LeadingTrivia()` is a method, no longer a
   field); `lexer.Position` / `ast.NodeBase` fields are int32. These packages are internal to
   go-dbml's consumers (dbdiagram-api uses `dbml`, `model`, `diag`, whose APIs only grew).
@@ -713,12 +732,23 @@ for f in FuzzImportMySQL FuzzImportPostgres FuzzImportMSSQL FuzzImportSchemaRB; 
 dev wasm                              # ≤ 3 MB gzipped
 ```
 
-`limits_test.go`'s gates are wall-clock based (scaled under `-race`: 15 s perf, 40 s for the
-10^6-deep inputs); on an overloaded machine re-run the root package alone before treating a
-timing failure as a regression.
+Performance gates are load-robust: each test times the same workload at two sizes in process
+CPU time (getrusage; other processes competing for the machine do not inflate it), best of
+five, interleaved, GC between runs, and fails only when a 4x input takes more than 10x as
+long (a quadratic pass takes ~16x; `TestScalingGateCatchesQuadratic` checks the gate still
+catches one). Cancellation must return within max(50 ms, 5% of an uncanceled compile measured
+in the same test) of the moment `cancel()` ran (best of three attempts per cancel point: a
+scheduling spike is not a missing poll). Verified passing with two full suites and a `-race`
+run executing concurrently. Absolute budgets (1 s for 20k columns, 1.5 s
+for a 20k-table dump / export, 2 s for a 16 MB dump, 200 ms for 200k-deep schema.rb, …) apply
+only with `DBML_PERF_STRICT=1` (`dev perf`). Allocation gates (16 MB dumps, dense 2 MiB
+inputs) are absolute and skipped under `-race`, which inflates allocation.
 
 ## 11. Keeping this file updated
 
 Any change to structure, public API, JSON shape, limits, supported syntax, commands,
 conformance suites or deviations updates this file (and README.md if setup/commands/role
 changed) in the same change — not a follow-up.
+
+Every release (git tag `vX.Y.Z`) gets a CHANGELOG.md section and the matching `dbml.Version`
+bump in the same change.

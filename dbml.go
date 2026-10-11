@@ -29,7 +29,7 @@ import (
 
 // Version is the go-dbml compiler version. Store it (with
 // model.JSONSchemaVersion) alongside persisted model JSON.
-const Version = "0.1.0"
+const Version = "0.1.1"
 
 // DefaultFilepath is the virtual path used for single-source parsing.
 const DefaultFilepath = "/main.dbml"

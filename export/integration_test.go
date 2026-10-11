@@ -104,7 +104,8 @@ type engine struct {
 func mariadbEngine(t *testing.T) *engine {
 	id := startContainer(t, "-e", "MARIADB_ROOT_PASSWORD=pw", "mariadb:11.4")
 	sql := func(db, stdin string) (string, error) {
-		args := []string{"exec", "-i", id, "mariadb", "-uroot", "-ppw", "-N", "-B"}
+		// TCP for the same reason (the init-time server skips networking)
+		args := []string{"exec", "-i", id, "mariadb", "-h", "127.0.0.1", "--protocol=tcp", "-uroot", "-ppw", "-N", "-B"}
 		if db != "" {
 			args = append(args, db)
 		}
@@ -142,7 +143,10 @@ func postgresEngine(t *testing.T, scsOff bool) *engine {
 		if scsOff {
 			args = append(args, "-e", "PGOPTIONS=-c standard_conforming_strings=off -c escape_string_warning=off")
 		}
-		args = append(args, id, "psql", "-U", "postgres", "-d", db, "-v", "ON_ERROR_STOP=1", "-qtA")
+		// TCP, not the socket: the image's init-time temporary server
+		// listens only on the socket, so a probe through it can succeed
+		// just before that server is restarted
+		args = append(args, id, "psql", "-h", "127.0.0.1", "-U", "postgres", "-d", db, "-v", "ON_ERROR_STOP=1", "-qtA")
 		return docker(stdin, args...)
 	}
 	waitFor(t, func() error { _, err := sql("postgres", "SELECT 1"); return err })

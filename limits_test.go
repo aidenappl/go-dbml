@@ -43,15 +43,10 @@ func TestDeepNestingIsBounded(t *testing.T) {
 			if !found && name != "unclosed-block" && name != "bracket" {
 				t.Fatalf("want NESTING_TOO_DEEP, got %d diagnostics", len(diags))
 			}
-			limit := 10 * time.Second
-			if raceEnabled {
-				// ~4 MB inputs under the race detector, possibly next to the
-				// other packages' suites in a parallel `go test ./...`
-				limit = 40 * time.Second
-			}
-			if el := time.Since(start); el > limit {
-				t.Fatalf("too slow: %v (> %v)", el, limit)
-			}
+			el := time.Since(start)
+			strictBudget(t, name, el, 10*time.Second)
+			// linear: 4x the nesting costs < 6x the time
+			assertScales(t, name, 125_000, 500_000, 2.5, func(n int) { Parse(deepInputs(n)[name]) })
 		})
 	}
 }
@@ -119,13 +114,12 @@ func TestLargeSchemasCompileFast(t *testing.T) {
 				t.Fatalf("unexpected errors: %v", diags.Errors()[:1])
 			}
 			t.Logf("%s: %v", tt.name, el)
-			limit := time.Second
-			if raceEnabled {
-				limit = 15 * time.Second // the race detector slows execution ~10x
-			}
-			if el > limit {
-				t.Fatalf("compile took %v (> %v)", el, limit)
-			}
+			strictBudget(t, tt.name, el, time.Second)
+			gen := map[string]func(int) string{"20k-column table": wideTable, "4k tables with refs": manyTables}[tt.name]
+			n := map[string]int{"20k-column table": 20_000, "4k tables with refs": 4_000}[tt.name]
+			assertScales(t, tt.name, n/4, n, 2.5, func(k int) {
+				ParseFileWith(DefaultFilepath, gen(k), Options{MaxElements: 50_000})
+			})
 		})
 	}
 }

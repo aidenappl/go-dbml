@@ -289,3 +289,13 @@ func clip(s string) string {
 	}
 	return s
 }
+
+// NormalizeExpr rewrites a raw SQL expression written in format f's
+// dialect into the form clean imports keep in DBML (see normalizeModel):
+// `x` / [x] identifiers become x or "x", string literals become '…' with
+// ” doubling. ok=false means the expression cannot be kept (comment, ';',
+// unbalanced quotes or parentheses, a backslash string of unknown
+// dialect); warning is a non-fatal note.
+func NormalizeExpr(expr string, f Format) (out, warning string, ok bool) {
+	return normalizeExpr(expr, sourceDialect(f))
+}
